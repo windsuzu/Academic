@@ -155,7 +155,7 @@ $$
 
 * https://youtu.be/pMFv6liWK4M
 
-若一個 V 空間為 R^n 空間的 subspace，那這個 V 空間必須滿足三個條件
+若一個 V 空間為 Rn 空間的 subspace，那這個 V 空間必須滿足三個條件
 $$
 \begin{align}
 &1. \mathbf{V} \text{ contains } \mathbf{0} = \begin{bmatrix} 0\\\vdots \\0 \end{bmatrix}\\\\
@@ -199,7 +199,7 @@ $$
 
 
 
----
+
 
 ### Basis
 
@@ -229,7 +229,7 @@ $$
 $$
 \mathbf{T} = \begin{Bmatrix} \begin{bmatrix}1\\0\end{bmatrix}, \begin{bmatrix}0\\1\end{bmatrix} \end{Bmatrix}
 $$
-首先他可以 span R^2 子空間
+首先他可以 span R2 子空間
 $$
 \begin{align}
 c_1\begin{bmatrix} 1\\0\end{bmatrix} + c_2\begin{bmatrix} 0\\1\end{bmatrix} &= \begin{bmatrix} x_1\\x_2\end{bmatrix} \\
@@ -247,7 +247,7 @@ c_1 + 0 = 0, c_1 &= 0\\
 0 + c_2 = 0, c_2 &= 0\\
 \end{align}
 $$
-所以 T 為 R^2 的 basis (而且是 ***standard basis***)
+所以 T 為 R2 的 basis (而且是 ***standard basis***)
 
 
 
@@ -278,7 +278,9 @@ $$
 
 
 
-## Vector dot and cross products
+
+
+## Vector dot product
 
 **Dot product** 有別於 addition 和 scalar multiplication，他將 output 出一個 scalar value
 $$
@@ -289,7 +291,7 @@ $$
 例如
 $$
 \begin{bmatrix} 2\\5\end{bmatrix} \cdot \begin{bmatrix} 2\\5\end{bmatrix} = 
-\begin{bmatrix} 4\\25\end{bmatrix}
+4+25=29
 $$
 
 
@@ -318,9 +320,13 @@ $$
 
 
 
-> Dot Product Properties: https://youtu.be/rVQ3G9epCjw
->
-> * Commutative, Distributive, Associative
+
+
+### Dot Product Properties
+
+* https://youtu.be/rVQ3G9epCjw
+
+* Commutative, Distributive, Associative
 
 $$
 \begin{align}
@@ -334,7 +340,7 @@ $$
 
 
 
-> Cauchy-Schwarz inequality: https://youtu.be/r2PogGDl8_U
+* Cauchy-Schwarz inequality: https://youtu.be/r2PogGDl8_U
 
 $$
 \lvert \vec{x}\cdot\vec{y}\rvert \le \lVert x\rVert \cdot\lVert y\rVert\\\\
@@ -343,7 +349,7 @@ $$
 
 
 
-> Triangle inequality: https://youtu.be/PsNidCBr5II
+* Triangle inequality: https://youtu.be/PsNidCBr5II
 
 $$
 \lVert \vec{x} + \vec{y} \rVert \le \lVert \vec{x} \rVert + \lVert \vec{y}  \rVert\\
@@ -358,3 +364,251 @@ $$
 
 
 
+* Angle between two vectors: https://youtu.be/5AWob_z74Ks
+
+$$
+\begin{align}
+\vec{a} \cdot \vec{b} &= \lVert \vec{a} \rVert \cdot \lVert \vec{b} \rVert \cdot cos\theta\\
+\vec{a} &= c\cdot\vec{b} \mid c > 0 \Rightarrow \theta = 0\\
+\vec{a} &= c\cdot\vec{b} \mid c < 0 \Rightarrow \theta = 180^\circ \\
+\end{align}
+$$
+
+
+
+套用這個公式，我們可以得出當 cos 為 90 度的時候，兩個向量的 dot product 必須為零
+$$
+\begin{align}
+\vec{a} \cdot \vec{b} &= \lVert \vec{a} \rVert \cdot \lVert \vec{b} \rVert \cdot \cos(90^\circ)\\
+&= \lVert \vec{a} \rVert \cdot \lVert \vec{b} \rVert \cdot 0\\
+&= 0
+\end{align}
+$$
+
+
+所以得出了 **Perpendicular** 的結論，但這個結論不是雙向的，因為 0 vector 不算在裡面
+$$
+\begin{align}
+\vec{a}, \vec{b} \text{ are perpendicular} &\Rightarrow \vec{a} \cdot \vec{b} = 0\\
+&\Leftarrow \vec{a}, \vec{b} \neq  \mathbf{0}, \vec{a} \cdot \vec{b} = 0
+\end{align}
+$$
+
+
+那如果只有給予兩個向量的 dot product 為零，這個情況稱作為 **orthogonal**
+
+同時也可以知道， 0 vector 可以和任何的向量 **orthogonal**
+$$
+\vec{a} \cdot \vec{b} = 0 \iff \vec{a}, \vec{b}\text{ are orthogonal}
+$$
+
+
+
+
+
+### Defining a plane in R3
+
+接下來，將可以透過上面的 properties 以及 **兩個向量** 和一個 **normal vector** 來定義出一個平面的 equation
+
+[平面的 equation](https://youtu.be/UJxgcVaNTqY) 可以表示成這樣，也就是給定 (x, y, z) 可以滿足以下等式
+$$
+Ax + By +Cz = D
+$$
+
+
+我們可以從兩個向量 (a, b) 得到 **躺在平面** 的向量 (a - b)，並且他會與 **normal vector** (n) 相互垂直
+
+![](../.gitbook/assets/3d_plane.jpg)
+$$
+\begin{align}
+&\vec{n} \cdot (\vec{a}-\vec{b}) = 0 \\
+&\begin{bmatrix} n_1\\n_2\\n_3 \end{bmatrix} \cdot 
+\begin{bmatrix} a_1-b_1\\a_2-b_2\\a_3-b_3 \end{bmatrix} = \mathbf{0}\\\\
+&n_1(a_1-b_1) + n_2(a_2-b_2) + n_3(a_3-b_3) = 0 \\
+&(Ax+By+Cz = D)
+\end{align}
+$$
+
+
+舉個例子，假設我們有一個 normal vector 和兩個指到平面的向量
+$$
+\begin{align}
+\vec{n} &= (1, 3, -2)\\ \vec{x_0} &= (1,2,3)\\ \vec{x} &= (x,y,z)
+\end{align}
+$$
+
+1. 先求出躺在該平面的向量 (x-x0)
+2. 再用 dot product 來帶入 n 和 (x-x0) 會等於 0 的結果，就可以得到平面方程式
+
+$$
+\vec{n} \cdot \left( \vec{x} - \vec{x_0}\right) = \mathbf{0}\\
+\begin{bmatrix} 1\\3\\-2\end{bmatrix} \cdot \begin{bmatrix} x-1\\y-2\\z-3\end{bmatrix} = \mathbf{0}\\
+1(x-1)+3(y-2)-2(z-3) =0\\
+x-1+3y-6-2z+6=0\\
+x+3y-2z=1
+$$
+
+3. 其實我們也可以直接帶入剛剛上面的公式
+
+$$
+\begin{align}
+& n_1(a_1-b_1) + n_2(a_2-b_2) + n_3(a_3-b_3)
+\\=\,&1(x-1)+3(y-2)-2(z-3)\\=\,&0
+\end{align}
+$$
+
+
+
+
+
+## Cross Product
+
+[Cross Product](https://youtu.be/pJzmiywagfY) 只使用於三維空間中， a × b 將會與 a 和 b 互相垂直 (dot product = 0)
+
+> 要注意的是第二列是顛倒的 !
+
+$$
+\vec{a} = \begin{bmatrix} a_1\\a_2\\a_3\end{bmatrix},
+\vec{b} = \begin{bmatrix} b_1\\b_2\\b_3\end{bmatrix},
+\vec{a} \times \vec{b} = \begin{bmatrix} a_2b_3-a_3b_2 \\ \color{red}{a_3b_1-a_1b_3} \\ a_1b_2-a_2b_1 \end{bmatrix}
+$$
+
+舉個例子
+$$
+\begin{bmatrix} 1 \\-7 \\1 \end{bmatrix} \times \begin{bmatrix} 5 \\2 \\4 \end{bmatrix}= 
+\begin{bmatrix} -7\times4-1\times2 \\ \color{red}{1\times5-1\times4} \\ 1\times2-(-7)\times5 \end{bmatrix} = \begin{bmatrix} -30 \\1 \\37 \end{bmatrix}
+$$
+我們可以利用右手定則看到 cross product 的結果
+
+![](../.gitbook/assets/right_hand_rule.jpg)
+
+> Relationship between cross product and sin of angle: https://youtu.be/7MKA2QlKvHc
+
+$$
+\begin{align}
+\vec{a} \cdot \vec{b} &= \lVert \vec{a} \rVert\lVert \vec{b} \rVert \cos(\theta)
+\\
+\lVert \vec{a} \times \vec{b} \rVert &= \lVert \vec{a} \rVert\lVert \vec{b} \rVert \sin(\theta)
+\end{align}
+$$
+
+
+
+
+
+### Dot and cross product comparison
+
+* https://youtu.be/tdwFdzVqito
+
+* Dot Product
+
+$$
+\vec{a} \cdot \vec{b} = \lVert\vec{a}\rVert\lVert\vec{b}\rVert\cos\theta\\
+\cos\theta = \frac{adj}{\lVert\vec{a}\rVert}, adj = \lVert\vec{a}\rVert\cos\theta
+$$
+
+![](../.gitbook/assets/dot_product_theta.jpg)
+
+這個鄰邊 (adj.) 可以說是 a 向量的投影
+
+所以 dot product 可以象徵是 a 向量的**投影**和 b向量在同方向的 **magnitude**
+$$
+\vec{a}\cdot\vec{b} = \lVert\vec{b}\rVert \times adj
+$$
+
+> 所以在 theta 等於 90 度 (垂直) 時，投影便會不見，dot product 也會等於 0
+>
+> 而 theta 等於 0 (平行) 時，則可以得到 dot product 的最大值
+
+$$
+\begin{align}
+&\text{when } \theta = 90^\circ, \vec{a} \cdot \vec{b} =
+\lVert\vec{a}\rVert\lVert\vec{b}\rVert\cos 90^\circ = \lVert\vec{a}\rVert\lVert\vec{b}\rVert\times 0 = 0 \\
+
+&\text{when } \theta = 0^\circ, \vec{a} \cdot \vec{b} =
+\lVert\vec{a}\rVert\lVert\vec{b}\rVert\cos 0^\circ = \lVert\vec{a}\rVert\lVert\vec{b}\rVert\times 1 = 0 = \lVert\vec{a}\rVert\lVert\vec{b}\rVert
+\end{align}
+$$
+
+
+
+* Cross Product
+
+$$
+\vec{a} \times \vec{b} = \lVert\vec{a}\rVert\lVert\vec{b}\rVert\sin\theta\\
+\sin\theta = \frac{opt}{\lVert\vec{a}\rVert}, opt = \lVert\vec{a}\rVert\sin\theta
+$$
+
+![](../.gitbook/assets/cross_product_theta.jpg)
+
+這個對邊 (opt.) 可以說是 a 向量垂直於 b 向量的那條線
+$$
+\vec{a} \times \vec{b} = \lVert\vec{b}\rVert \times opt
+$$
+
+> 當 theta 等於 90 度 (垂直) 時，opt 就會變為 a 向量本身，所以得到 cross product 最大值
+>
+> 當 theta 等於 0 (平行) 時，opt 便會消失，cross product 也會等於 0
+
+$$
+\begin{align}
+&\text{when } \theta = 90^\circ, \vec{a} \cdot \vec{b} =
+\lVert\vec{a}\rVert\lVert\vec{b}\rVert\sin 90^\circ = \lVert\vec{a}\rVert\lVert\vec{b}\rVert\times 1 = \lVert\vec{a}\rVert\lVert\vec{b}\rVert \\
+
+&\text{when } \theta = 0^\circ, \vec{a} \cdot \vec{b} =
+\lVert\vec{a}\rVert\lVert\vec{b}\rVert\sin 0^\circ = \lVert\vec{a}\rVert\lVert\vec{b}\rVert\times 0 = 0 
+\end{align}
+$$
+
+
+
+
+
+### Normal vector from plane equation
+
+* https://youtu.be/gw-4wltP5tY
+
+我們可以從平面方程式直接得到 **Normal Vector** 的方程式
+$$
+\begin{align}
+\text{Plane } \mathbf{U} &= Ax + By +Cz = D \\
+\text{normal vector } \vec{n} &= \begin{bmatrix} A\\B\\C\end{bmatrix}
+\end{align}
+$$
+
+
+### Point distance to plane
+
+* https://youtu.be/7rIFO8hct9g
+
+要找出某一個不在平面 U 的點 a 和 U 之間的最短距離 d 時
+
+先找到原點指向該平面的向量 b，再和原點到點 a 的向量 a 相減得到 f
+
+![](../.gitbook/assets/dot_plane_distance.jpg)
+$$
+\vec{n} = \begin{bmatrix}A\\B\\C \end{bmatrix},
+f = \begin{bmatrix}a_0-b_0 \\a_1-b_1\\a_2-b_2 \end{bmatrix}
+$$
+
+
+透過計算 cos 的公式可以得到 d 的結果，但我們不知道 theta 是多少啊
+$$
+\cos\theta = \frac{d}{\lvert\vec{f}\rvert}, d = \lvert\vec{f}\rvert\cos\theta
+$$
+
+
+沒關係， f 跟 d 的角度會跟 U 的法向量 n 一模一樣，我們帶入 n 向量發現分子變成 n 和 f 的 dot product
+$$
+\begin{align}
+d &= \frac{\lvert\vec{n}\rvert\lvert\vec{f}\rvert\cos\theta}{\lvert\vec{n}\rvert} = 
+\frac{\vec{n}\cdot\vec{f}}{\lvert\vec{n}\rvert} \\
+&= \frac{\begin{bmatrix}Aa_0-Ab_0 \\Ba_1-Bb_1\\Ca_2-Cb_2 \end{bmatrix}}{\sqrt{A^2+B^2+C^2}} = \frac{Aa_0+Ba_1+Ca_2-D}{\sqrt{A^2+B^2+C^2}}
+\end{align}
+$$
+舉個例子
+$$
+\text{Find the distance between }(2,3,1) \text{ and plane } (x-2y+3z=5) \\
+d = \frac{1\cdot2-2\cdot3+3\cdot1-5}{\sqrt{1^2+(-2)^2+3^2}}
+=\frac{2-6+3-5}{\sqrt{1+4+9}}=\frac{-6}{\sqrt{14}}
+$$
