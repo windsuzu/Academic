@@ -386,6 +386,7 @@ $$
 $$
 
 
+
 所以得出了 **Perpendicular** 的結論，但這個結論不是雙向的，因為 0 vector 不算在裡面
 $$
 \begin{align}
@@ -393,6 +394,7 @@ $$
 &\Leftarrow \vec{a}, \vec{b} \neq  \mathbf{0}, \vec{a} \cdot \vec{b} = 0
 \end{align}
 $$
+
 
 
 那如果只有給予兩個向量的 dot product 為零，這個情況稱作為 **orthogonal**
@@ -408,7 +410,7 @@ $$
 
 ### Defining a plane in R3
 
-接下來，將可以透過上面的 properties 以及 **兩個向量** 和一個 **normal vector** 來定義出一個平面的 equation
+接下來，將可以透過上面的 properties 以及 **一個點** 和 **一個 normal vector** 來定義出一個平面的 equation
 
 [平面的 equation](https://youtu.be/UJxgcVaNTqY) 可以表示成這樣，也就是給定 (x, y, z) 可以滿足以下等式
 $$
@@ -478,9 +480,13 @@ $$
 \begin{bmatrix} 1 \\-7 \\1 \end{bmatrix} \times \begin{bmatrix} 5 \\2 \\4 \end{bmatrix}= 
 \begin{bmatrix} -7\times4-1\times2 \\ \color{red}{1\times5-1\times4} \\ 1\times2-(-7)\times5 \end{bmatrix} = \begin{bmatrix} -30 \\1 \\37 \end{bmatrix}
 $$
+
+
 我們可以利用右手定則看到 cross product 的結果
 
 ![](../.gitbook/assets/right_hand_rule.jpg)
+
+
 
 > Relationship between cross product and sin of angle: https://youtu.be/7MKA2QlKvHc
 
@@ -577,6 +583,7 @@ $$
 $$
 
 
+
 ### Point distance to plane
 
 * https://youtu.be/7rIFO8hct9g
@@ -598,6 +605,7 @@ $$
 $$
 
 
+
 沒關係， f 跟 d 的角度會跟 U 的法向量 n 一模一樣，我們帶入 n 向量發現分子變成 n 和 f 的 dot product
 $$
 \begin{align}
@@ -606,9 +614,85 @@ d &= \frac{\lvert\vec{n}\rvert\lvert\vec{f}\rvert\cos\theta}{\lvert\vec{n}\rvert
 &= \frac{\begin{bmatrix}Aa_0-Ab_0 \\Ba_1-Bb_1\\Ca_2-Cb_2 \end{bmatrix}}{\sqrt{A^2+B^2+C^2}} = \frac{Aa_0+Ba_1+Ca_2-D}{\sqrt{A^2+B^2+C^2}}
 \end{align}
 $$
-舉個例子
+
+
+舉個例子 `Find the distance between (2, 3, 1) and plane (x - 2y + 3z = 5)`
 $$
-\text{Find the distance between }(2,3,1) \text{ and plane } (x-2y+3z=5) \\
 d = \frac{1\cdot2-2\cdot3+3\cdot1-5}{\sqrt{1^2+(-2)^2+3^2}}
 =\frac{2-6+3-5}{\sqrt{1+4+9}}=\frac{-6}{\sqrt{14}}
 $$
+
+
+
+### Distance between plane
+
+$$
+\text{現在有一平面方程式為 } Ax - 2y + z = d \\
+
+\text{還有另一平面包含兩條線 } \frac{x-1}{2}=\frac{y-2}{3}=\frac{z-3}{4} \text{ 和 } 
+\frac{x-2}{3}=\frac{y-3}{4}=\frac{z-4}{5}\\
+
+\text{並且兩個平面為平行的，且距離為} \sqrt{6} \\
+\text{請求出 } \lvert d \rvert
+$$
+
+
+
+我們先找出第二個平面的方程式，因為是平行的，所以他會跟第一個平面的方程式幾乎一樣，只有 d 不同
+
+首先先找出該平面上兩條線的 cross product 得出該平面的 normal vector 
+$$
+\begin{align}
+&a= (1,2,3) \text{ and } \\&b=(3,5,7)  \text{ from the first line} \\
+&c= (2,3,4) \text{ from the second line} \\\\
+
+&\vec{a} = b-a = 2i+3j+4k\\
+&\vec{b} = c-a = i+j+k\\\\
+
+&\vec{a} \times \vec{b} = \begin{vmatrix} i &\color{red}{j}&k\\2&3&4\\1&1&1 \end{vmatrix} = 
+-i+2j-k =\vec{n}
+
+\end{align}
+$$
+
+
+接著找出平面上任何一點的和 abc 隨便一點所生成的向量，根據 normal vector 來找出該平面的方程式
+$$
+\begin{align}\vec{c} &= (x-1)i+(y-2)j+(z-3)k \\
+\vec{n}\ &= -i+2j-k\\
+\vec{n} \times \vec{c} &= \mathbf{0} \\\\
+
+-x+&1+2y-4-z+3=0\\
+-x+&2y-z=0\\
+x-&2y+z=0
+\end{align}
+$$
+
+
+由此可知，A 得值為 1，所以第一個平面的方程式應該為
+$$
+\begin{align}
+&Ax-2y+z=d \\
+\Rightarrow &\,\,\,x-2y+z=d
+\end{align}
+$$
+
+
+最後帶入 **point to plane** 的公式即可，point 我們帶 (2, 3, 4)，以及題目給的 distance
+$$
+\begin{align}
+\text{distance} &= \frac{2\cdot1-3\cdot2+4\cdot1-d}{\sqrt{1^2+(-2)^2+1^2}} \\
+
+\sqrt{6} &= \frac{-d}{\sqrt{6}}\\
+d & =-6 \\
+\lvert d \rvert &= 6
+\end{align}
+$$
+算出 d 的絕對值為 6
+
+
+
+
+
+
+
