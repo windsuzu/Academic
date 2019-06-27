@@ -626,6 +626,8 @@ $$
 
 ### Distance between plane
 
+* https://youtu.be/v8plb6V8BQo
+
 $$
 \text{現在有一平面方程式為 } Ax - 2y + z = d \\
 
@@ -694,5 +696,301 @@ $$
 
 
 
+## Solve Linear System with matrix row-echelon form
+
+我們可以利用矩陣之力，將 Linear system 轉為矩陣快速解出答案
+$$
+\left\{\begin{matrix}
+x_1+2x_2+x_3+x_4=7\\
+x_1+2x_2+2x_3-x_4=12\\ 
+2x_1+4x_2+6x_4=4
+\end{matrix}\right.
+$$
+可以轉為 Augmented matrix
+$$
+A=\begin{bmatrix} 
+\begin{array}{cccc|c} 
+1&2&1&1&7\\
+1&2&2&-1&12\\
+2&4&0&6&4\\
+\end{array}\end{bmatrix}
+$$
+將矩陣運算至 Reduced Row-echelon form
+
+* 紅色的為 Leading 1s 只在該列有他一個 1 存在
+* 而藍色的為 free variables
+
+$$
+\begin{bmatrix} 
+\begin{array}{cccc|c} 
+\color{red}1&\color{blue}2&0&\color{blue}3&2\\
+0&0&\color{red}1&\color{blue}-2&5\\
+0&0&0&0&0\\
+\end{array}\end{bmatrix} = \text{rref}(A)
+$$
+
+我們可以將結果轉回 equations
+$$
+\begin{align}
+&\left\{\begin{matrix}
+x_1+2x_2+3x_4=2\\
+x_3-2x_4=5
+\end{matrix}\right.\\\\
+\Rightarrow\,& 
+\left\{\begin{matrix}
+x_1 = 2-2x_2-3x_4\\
+x_3 = 5 + 2x_4
+\end{matrix}\right.\\
+\end{align}
+$$
+並且可以表示成像 linear combination 的形式
+$$
+\begin{bmatrix}x_1\\x_2\\x_3\\x_4\end{bmatrix} =
+\begin{bmatrix}2\\0\\5\\0\end{bmatrix} +
+x_2\begin{bmatrix}-2\\1\\0\\0\end{bmatrix}+
+x_4\begin{bmatrix}-3\\0\\2\\1\end{bmatrix}
+$$
+
+
+在圖形上看起來像是這樣
+
+![](../.gitbook/assets/linear_system.jpg)
+
+
+
+### linear systems
+
+若你的 reduced-row echelon form 算到變成這樣時
+$$
+\begin{bmatrix} 
+\begin{array}{cccc|c} 
+1&2&0&3&4\\
+0&0&1&-2&4\\
+\color{red}0&\color{red}0&\color{red}0&\color{red}0&\color{red}-4\\
+\end{array}\end{bmatrix}
+$$
+表示你的三個 R4 向量在空間內是沒有交集的，所以是**無解 (no solution)**
+
+
+
+而每一個 leading ones 都可以對應一個值，這樣子代表**唯一解 (uniqle solution)**
+$$
+\begin{bmatrix} 
+\begin{array}{cccc|c} 
+1&x&x&x&a\\
+0&1&x&x&b\\
+0&0&1&x&c\\
+0&0&0&1&d\\
+\end{array}\end{bmatrix}
+$$
+而上面的例題中，含有 free variables 的，代表沒有唯一解，也就是**無限多解**
+$$
+\begin{bmatrix} 
+\begin{array}{cccc|c} 
+\color{red}1&\color{blue}2&0&\color{blue}3&2\\
+0&0&\color{red}1&\color{blue}-2&5\\
+0&0&0&0&0\\
+\end{array}\end{bmatrix}
+$$
+
+
+## Null space and column space
+
+### Matrix vector products
+
+* https://youtu.be/7Mo4S2wyMg4
+
+我們接下來可以將 matrix 和 vector 結合運算，我們表達 matrix size 為 m × n 時為
+$$
+\mathbf{A} = \begin{bmatrix} 
+a_{11} & a_{12} & \cdots  & a_{1n}\\
+a_{21} & a_{22} & \cdots  & a_{2n}\\
+\vdots & &\ddots\\
+a_{m1} & & & a_{mn}
+\end{bmatrix}
+$$
+
+
+而可以跟他相乘的 vector 的 components 必須要等於 matrix 的 column size
+
+> 例如: m × y matrix 只能跟 y × n 的 vector 相乘，並且會變成 m × n 的 matrix
+
+$$
+\begin{bmatrix} 
+a_{11} & a_{12} & \cdots  & a_{1n}\\
+a_{21} & a_{22} & \cdots  & a_{2n}\\
+\vdots & &\ddots\\
+a_{m1} & & & a_{mn}
+\end{bmatrix}
+\cdot
+\begin{bmatrix} 
+x_{1} \\x_{2}\\\vdots\\x_{n}
+\end{bmatrix}
+= \mathbf{A}\vec{x}
+= \begin{bmatrix} 
+a_{11}x_1 + a_{12}x_2+\cdots+a_{1n}x_n\\
+a_{21}x_1 + a_{22}x_2+\cdots+a_{2n}x_n\\
+\vdots\\
+a_{m1}x_1 + a_{m2}x_2+\cdots+a_{mn}x_n\\
+\end{bmatrix}=b=
+\begin{bmatrix} 
+b_{1} \\b_{2}\\\vdots\\b_{n}
+\end{bmatrix}
+$$
+
+舉個例子
+$$
+\mathbf{A}\vec{x} = 
+\begin{bmatrix} -3 & 0 & 3 & 2 \\1 &7 & -1& 9
+\end{bmatrix}
+\begin{bmatrix} 2 \\-3\\4\\-1
+\end{bmatrix}=
+\begin{bmatrix} -6+0+12-2 \\ 2-21-4-9
+\end{bmatrix} =\begin{bmatrix} 4\\-32
+\end{bmatrix}
+$$
+
+
+我們可以把 matrix A 的兩列視為兩個 row vector ，也就是 column vector 的 **Transpose**
+
+並且把矩陣相乘的結果表示為 Dot Product
+$$
+\vec{a_1} = \begin{bmatrix} -3\\0\\3\\2\end{bmatrix},
+\vec{a_2} = \begin{bmatrix} 1\\7\\-1\\9\end{bmatrix},
+\mathbf{A}\vec{x} = \begin{bmatrix} \vec{a_1^T} \\\vec{a_2^T} \end{bmatrix}\vec{x}
+= \begin{bmatrix} \vec{a_1}\cdot\vec{x}\\ \vec{a_2}\cdot\vec{x} \end{bmatrix}
+$$
+
+
+我們也可以把矩陣視為一個一個的 column vector
+$$
+\mathbf{A}\vec{x} = 
+\begin{bmatrix} \color{red}-3 & \color{blue}0 & \color{green}3 & \color{orange}2 
+\\\color{red}1 &\color{blue}7 & \color{green}-1& \color{orange}9
+\end{bmatrix}
+\begin{bmatrix} x_1 \\x_2\\x_3\\x_4
+\end{bmatrix}
+$$
+把矩陣相乘的結果表示為每個 vector 和 xi 的乘積相加的 linear combination
+$$
+\mathbf{A}\vec{x} = \begin{bmatrix}\color{red}\vec{v_1} & \color{blue}\vec{v_2} & \color{green}\vec{v_3} & \color{orange}\vec{v_4}\end{bmatrix} \begin{bmatrix} x_1 \\x_2\\x_3\\x_4
+\end{bmatrix} = x_1\vec{v_1} + x_2\vec{v_2} +x_3\vec{v_4} +x_4\vec{v_4}
+$$
+
+
+### Null space of a matrix 
+
+* https://youtu.be/jCwRV1QL_Xs
+
+假設有一個 matrix A: m × n，和 vector x 相乘皆為零向量，我們稱之為 **homogeneous equation**
+$$
+\begin{align}
+&\mathbf{A}: m\times n \\
+&\mathbf{A}\vec{x} = \mathbf{0}\\
+
+\end{align}
+$$
+
+
+現在我們想知道所有能夠符合這個 equation 的 x 集合，能不能構成一個 valid 的 subspace ?
+$$
+\mathbf{N} = \begin{Bmatrix} \vec{x} \in \mathbb{R}^n \mid \mathbf{A}\vec{x} = \mathbf{0}\end{Bmatrix}
+$$
+答案是可以的，他符合 subspace 的三項條件
+
+* x 包含 0向量
+* x 符合加法封閉 (closure under addition)
+* x 符合乘法封閉 (closure under scalar multiplication)
+
+$$
+\begin{align}
+1. \,\,\, &\mathbf{A}\mathbf{0}=\mathbf{0}, \mathbf{0} \in N\\\\
+2. \,\,\, &v_1, v_2 \in N, \,\mathbf{A}v_1 = \mathbf{0},\, \mathbf{A}v_2 = \mathbf{0} \\ & \mathbf{A}(v_1+v_2) = \mathbf{A}v_1+\mathbf{A}v_2 = \mathbf{0 + 0 = 0}\\\\
+3. \,\,\, &v_1 \in N, c \in \mathbb{R}\\
+&\mathbf{A}(cv_1) = c(\mathbf{A}v_1) = c\mathbf{0}= \mathbf{0}
+\end{align}
+$$
+
+我們稱這個 subspace N 為 **A 的 NullSpace**
+$$
+\mathbf{N} = N(\mathbf{A}) = \text{Nullspace of } \mathbf{A}
+$$
+
+
+### Calculating the null space of a matrix
+
+* https://youtu.be/qvyboGryeA8
+
+我們來試著計算隨便一個 matrix A 他的 nullspace 為何
+$$
+\mathbf{A} = \begin{bmatrix} 1&1&1&1 \\ 1&2&3&4 \\ 4&3&2&1\end{bmatrix} 
+\begin{bmatrix} x_1\\x_2\\x_3\\x_4\end{bmatrix} =
+\begin{bmatrix} 0\\0\\0\end{bmatrix}
+$$
+也就是解決 equation
+$$
+\begin{align}
+x_1+x_2+x_3+x_4&=0\\
+x_1+2x_2+3x_3+4x_4&=0\\
+4x_1+3x_2+2x_3+x_4&=0
+\end{align}
+$$
+可以利用 Reduced row echelon form 來解
+$$
+\begin{bmatrix}\begin{array}{cccc|c} 1&1&1&1&0 \\ 1&2&3&4&0 \\ 4&3&2&1&0\end{array}\end{bmatrix}
+\Rightarrow
+\begin{bmatrix}\begin{array}{cccc|c} 1&1&1&1&0 \\ 0&1&2&3&0 \\ 0&1&2&3&0\end{array}\end{bmatrix}
+\Rightarrow
+\begin{bmatrix}\begin{array}{cccc|c} 1&0&-1&-2&0 \\ 0&1&2&3&0 \\ 0&0&0&0&0\end{array}\end{bmatrix}
+$$
+再轉回 equation
+$$
+\begin{align}
+x_1 -x_3-2x_4&=0  \Rightarrow \color{red} x_1=x_3+2x_4\\
+x_2+2x_3+3x_4&=0 \Rightarrow \color{red} x_2=-2x_3-3x_4
+\end{align}
+$$
+最後得出一個 linear combination，其中 x3 和 x4 可以為任何實數，來拖移兩個向量在 R4 nullspace 移動
+$$
+\begin{bmatrix} x_1\\x_2\\x_3\\x_4\end{bmatrix}=
+x_3\begin{bmatrix} 1\\-2\\1\\0 \end{bmatrix}+
+x_4\begin{bmatrix} 2\\-3\\0\\1 \end{bmatrix}
+$$
+也就是這個 nullspace 是由這兩個向量來 span 而成的
+
+其實也可以發現，要求得 N(A) 跟求得 N(rref(A)) 的 nullspace 是一樣的
+$$
+N(\mathbf{A}) = span\left(\begin{bmatrix}1\\-2\\1\\0\end{bmatrix}, \begin{bmatrix}2\\-3\\0\\1\end{bmatrix}\right)= N(rref(\mathbf{A}))
+$$
+
+
+### Null space's relation to linear independence
+
+* https://youtu.be/-fKh6SNEPr4
+
+當 matrix A 為 m × n 時，其 nullspace 一定為 n 個 components 的 vector
+$$
+N(\mathbf{A}) = \begin{Bmatrix} \vec{x} \in \mathbb{R}^n \mid \mathbf{A}\vec{x}=\vec{0}\end{Bmatrix}
+$$
+得出來的 0 矩陣會有 m 個 components
+$$
+\mathbf{A}_{m \times n} = \begin{bmatrix} \vec{v_1} & \vec{v_2} & \cdots & \vec{v_n} \end{bmatrix}\begin{bmatrix} x_1\\x_2\\\vdots \\ x_n \end{bmatrix} = \begin{bmatrix} 0_1\\0_2\\\vdots \\ 0_m \end{bmatrix}
+$$
+
+
+我們將上面的運算拆出來變成 linear combination 的形式
+$$
+x_1\vec{v_1} + x_2\vec{v_2} + \cdots + x_n\vec{v_n} = \vec{0}
+$$
+
+
+這時我們思考，若 v1 到 vn 要 linear independence ，那 x1 到 xn 必須都為 0
+
+若 x1 到 xn 都為 0，代表這個 linear combination 只有唯一解
+
+也就是說，A 的 nullspace 在 v1 到 vn 皆為 linear independence 下只有 0 矩陣而已
+$$
+v_1,v_2,\cdots,v_n \text{ L.I} \iff x_1, x_2,\cdots,x_n =0 \iff N(\mathbf{A}) = \begin{Bmatrix} \vec{0} \end{Bmatrix} 
+$$
 
 

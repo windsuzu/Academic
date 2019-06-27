@@ -1,6 +1,6 @@
 # Table of contents
 
-* [About](README.md)
+* [Log](README.md)
 
 ## Discrete mathematics
 
