@@ -9,5 +9,5 @@
 * (25) vectors angle, normal vectors, cross product, plane equation, distance...
 * (27) linear system, null space
 
-
+* (28) column space, null space, basis
 

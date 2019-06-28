@@ -993,4 +993,226 @@ $$
 v_1,v_2,\cdots,v_n \text{ L.I} \iff x_1, x_2,\cdots,x_n =0 \iff N(\mathbf{A}) = \begin{Bmatrix} \vec{0} \end{Bmatrix} 
 $$
 
+### Column space of a matrix
+
+* https://youtu.be/st6D5OdFV9M
+
+我們已經知道 m × n 代表 Matrix A 有 n 個 column vector，每個都在 Rm 空間
+$$
+\mathbf{A}_{m \times n} = \begin{bmatrix} \vec{v_1} & \vec{v_2} & \cdots & \vec{v_n} \end{bmatrix}
+, \vec{v_1}, \vec{v_2},\cdots, \vec{v_n}\in \mathbb{R}^m
+$$
+而 Column space 指的就是由這 n 個 column vector 所 span 的空間
+$$
+C(\mathbf{A}) = span\left( \vec{v_1}, \vec{v_2},\cdots, \vec{v_n} \right)
+$$
+我們也知道 span 出來的空間符合 subspace 的三大條件
+$$
+\begin{align}
+\vec{a} &\in C(\mathbf{A})\\
+\vec{a} &= c_1\vec{v_1} + c_2\vec{v_2} + \cdots + c_n\vec{v_n}\\\\
+1.\,\, &\vec{a} \text{ contains zero vector}\\
+2.\,\, &s\vec{a} = sc_1\vec{v_1} + sc_2\vec{v_2} + \cdots + sc_n\vec{v_n},\,\, s\vec{a} \in C(\mathbf{A})\\
+3.\,\, &\vec{b} = b_1\vec{v_1} + b_2\vec{v_2} + \cdots + 	b_n\vec{v_n},\,\, \vec{b} \in C(\mathbf{A})\\
+&\vec{a}+\vec{b} = (c_1+b_1)\vec{v_1} + (c_2+b_2)\vec{v_2} + \cdots + (c_n+b_n)\vec{v_n} \in C(\mathbf{A})
+\end{align}
+$$
+我們可以用下面 Set 的方式來思考 Column space
+
+Column space 就是 matrix A 和任何可以與他相乘的 vector x 所生成的所有向量集合
+
+> vector x 必須要為 n 個 components 這樣才可以相乘
+
+$$
+\begin{Bmatrix}\mathbf{A}\vec{x}\mid\vec{x}\in\mathbb{R}^n  \end{Bmatrix} \mid
+\mathbf{A}\vec{x}= x_1\vec{v_1} + x_2\vec{v_2} + \cdots + x_n\vec{v_n}
+$$
+
+可以表示成
+$$
+\begin{Bmatrix}x_1\vec{v_1} + x_2\vec{v_2} + \cdots + x_n \mid x_1,x_2,\cdots,x_n \in\mathbb{R}  \end{Bmatrix} 
+= span\left( \vec{v_1}, \vec{v_2},\cdots, \vec{v_n} \right)
+= C(\mathbf{A})
+$$
+
+
+舉個例子，若向量 b1 不在 A 的 column space 裡，那 Ax = b1 是永遠不會有解的
+
+相反，若向量 b2 他存在於 A 的 column space 裡，那 Ax = b2 將至少會有一個解
+$$
+\begin{align}
+\vec{b_1} \notin C(\mathbf{A}) &\mid \mathbf{A}\vec{x} = \vec{b_1} \text{ has no solution}\\
+
+\vec{b_2} \in C(\mathbf{A}) &\mid \mathbf{A}\vec{x} = \vec{b_2} \text{ has a least one solution}\\
+\end{align}
+$$
+
+
+### Null space and column space basis
+
+* https://youtu.be/_uTAdf_AsfQ
+
+現在要找出下面 matrix A 的 column space 和 null space
+$$
+\mathbf{A}= \begin{bmatrix} 1&1&1&1\\2&1&4&3\\ 3&4&1&2\end{bmatrix}
+$$
+我們可以非常輕鬆求得他的 column space 等於每個 column vector span 而成的空間
+
+但他是否為這個空間的 basis 呢 ? (要為 basis 必須要 linear independence)
+$$
+C(\mathbf{A}) = span\left(
+\begin{bmatrix}1\\2\\3\end{bmatrix}, 
+\begin{bmatrix}1\\1\\4\end{bmatrix},
+\begin{bmatrix}1\\4\\1\end{bmatrix},
+\begin{bmatrix}1\\3\\2\end{bmatrix} \right)
+$$
+要知道 matrix A 有沒有 linear independence 只要看 null space 是否只有包含 0 向量即可
+$$
+x_1\vec{v_1}+ x_2\vec{v_2} + \cdots + x_n\vec{v_n} = 0 \mid x_1,x_2,\cdots,x_n = 0 \iff \mathbf{A} \text{ is L.I.}\\
+A\vec{x}=0, \vec{x} = \begin{Bmatrix}\vec{0} \end{Bmatrix}
+$$
+要求 A 的 null space 等於求 rref(A) 的 null space
+$$
+rref(\mathbf{A})= \begin{bmatrix} 1&0&3&2\\0&1&-2&-1\\ 0&0&0&0\end{bmatrix}
+ \begin{bmatrix} x_1\\x_2\\x_3\\x_4\end{bmatrix} =
+  \begin{bmatrix} 0\\0\\0\end{bmatrix}
+$$
+將矩陣列回 equation
+$$
+x_1+3x_3+2x_4=0 \Rightarrow \color{red}x_1=-3x_3-2x_4\\ 
+x_2-2x_3-x_4=0 \Rightarrow \color{red}x_2 = 2x_3+x_4\\
+$$
+並且利用 free variables 來表示 null space 空間
+$$
+\begin{bmatrix} x_1\\x_2\\x_3\\x_4\end{bmatrix} =
+x_3\begin{bmatrix} -3\\2\\1\\0\end{bmatrix} +
+x_4\begin{bmatrix} -2\\1\\0\\1\end{bmatrix}
+$$
+至此，我們可以得到 null space 為下，而且並不是只含有 0 向量
+$$
+N(\mathbf{A}) = N(rref(\mathbf{A}))=span\left(\begin{bmatrix} -3\\2\\1\\0\end{bmatrix},\begin{bmatrix} -2\\1\\0\\1\end{bmatrix}\right)
+$$
+所以 A 不為 linear independence，也就是剛剛的 column space 不為 basis
+
+要得到 basis 我們要從剛剛的 column space 刪除多餘的 vectors
+$$
+\begin{align}
+x_1 &= -3x_3-2x_4\\
+x_2 &= 2x_3+x_4
+\end{align}
+$$
+透過剛剛求得的 equation，我們知道 x1 和 x2 都可以由 x3 和 x4 組成，所以 x3 和 x4 是多餘的
+$$
+\text{basis of } C(\mathbf{A}) = span\left(\vec{x_1},\vec{x_2} \right) = span\left(
+\begin{bmatrix}1\\2\\3\end{bmatrix}, 
+\begin{bmatrix}1\\1\\4\end{bmatrix}\right)
+$$
+
+
+### Visualizing a column space as a plane in R3
+
+* https://youtu.be/EGNlXtjYABw
+
+從上面的例子我們知道兩個 R3 vector 所 span 出來的為**三維空間**中的一個**平面** 
+
+那我們要怎麼找出平面呢 ? 
+
+#### 方法一
+
+* 先找到 normal vector (可以由 (1, 2, 3) 和 (1, 1, 4) 的 Cross product 求得！)
+* 再找到任一點向量 (x, y, z) 和 (1, 2, 3) 或 (1, 1, 4) 相減得到一條 **躺在該平面上的向量**
+* 最後該向量跟 normval vector 會垂直，所以 dot product 為 0
+* 以此找到 plane 的 equation
+
+$$
+\vec{n} \cdot (\vec{x} - \begin{bmatrix}1\\2\\3\end{bmatrix}) = \vec{0}
+$$
+
+來找 normal vector n
+$$
+\vec{n} =
+\begin{bmatrix}1\\2\\3\end{bmatrix}\times
+\begin{bmatrix}1\\1\\4\end{bmatrix} = 
+\begin{bmatrix}8-3\\-(4-3)\\1-2\end{bmatrix} =
+\begin{bmatrix}5\\-1\\-1\end{bmatrix}
+$$
+接著代回上面式子
+$$
+\begin{bmatrix}5\\-1\\-1\end{bmatrix} \cdot
+\begin{bmatrix}x-1\\y-2\\z-3\end{bmatrix}=0
+$$
+即可得到平面方程式
+$$
+\begin{align}
+&5(x-1)-1(y-2)-1(z-3)=0\\
+\Rightarrow\,\,&5x-5-y+2-z+3=0\\
+\Rightarrow\,\,&5x-y-z=0 \in C(\mathbf{A})
+\end{align}
+$$
+
+
+#### 方法二
+
+我們知道，Column space 裡的任何一個解 (vector b) 都應該在該平面上
+$$
+C(\mathbf{A}) = 
+\begin{Bmatrix} \mathbf{A}\vec{x}\mid\ \vec{x}\in \mathbb{R}^n \end{Bmatrix}=
+\begin{Bmatrix} \vec{b}\mid\ \mathbf{A}\vec{x} = \vec{b} \text{ AND } \vec{x} \in \mathbb{R}^n \end{Bmatrix}
+$$
+我們又知道，要解決 Ax=b 可以轉換為 [A|b] 的矩陣來求 reduced row echelon form
+$$
+\vec{b} = \begin{bmatrix} x\\y\\z\end{bmatrix},
+\mathbf{A}\vec{x}=\vec{b} \Rightarrow
+\begin{bmatrix} \begin{array}{cccc|c} 1&1&1&1&x\\2&1&4&3&y\\3&4&1&2&z \end{array} \end{bmatrix} \rightarrow
+\begin{bmatrix} \begin{array}{cccc|c} 1&1&1&1&x\\0&1&-2&-1&2x-y\\0&0&0&0&5x-y-z \end{array} \end{bmatrix}
+$$
+要滿足 Ax=b 的 b 為 valid vector，那最後一行的 5x - y - z 必須要等於 0 才行，所以我們得到
+$$
+5x-y-z = 0 \in C(\mathbf{A})
+$$
+
+
+### Any subspace basis has same number of elements
+
+* https://youtu.be/Zn2K8UIT8r4 (詳細證明)
+
+下面用矛盾證明 subspace 的 basis 所含的 elements 數量皆相同
+$$
+\begin{align}
+\mathbf{A} &= \begin{Bmatrix} a_1,a_2,\cdots,a_n\end{Bmatrix} \text{ is basis of } \mathbf{V}\\
+\mathbf{B} &= \begin{Bmatrix} b_1,b_2,\cdots,b_m\end{Bmatrix} \text{ spans } \mathbf{V} \mid m<n\\
+\end{align}
+$$
+若把 a1, a2 依序帶入 B set 中取代 b1, b2 ，表面上可以維持 B spans V
+
+而且取代時不可以把原本在 A set 的元素取代掉，因為 A set 的元素之間是 linear independence 的
+$$
+\begin{align}
+&\mathbf{B_1} = \begin{Bmatrix} a_1, b_2,b_3, \cdots, b_m\end{Bmatrix} \text{ spans }\mathbf{V}\\
+&\mathbf{B_2} = \begin{Bmatrix} a_1, a_2,b_3, \cdots, b_m\end{Bmatrix} \text{ spans }\mathbf{V}\\
+&\vdots\\
+&\mathbf{B_m} = \begin{Bmatrix} a_1, a_2,a_3, \cdots, a_m\end{Bmatrix} \text{ spans }\mathbf{V}\\
+
+\end{align}
+$$
+但是我們知道 m < n ， A 又可以表示成 Bm 的延伸
+$$
+\mathbf{A} = \begin{Bmatrix} \color{red}{a_1,a_2,\cdots,a_m}\color{black},\cdots a_n\end{Bmatrix} \text{ is basis of } \mathbf{V}
+$$
+我們知道 A 已經確定是 span V 的最小組合了，但卻又能用 m 個 a 元素來 span V，產生矛盾
+
+因此，不可能有比 basis 更少的元素組合可以 span subspace
+
+而且，basis 也不能有多餘的元素出現在裡面
+
+**綜合在一起，同一個 subspace 底下的任何 basis 都擁有一個數量的 elements**
+
+> 我們又將這些 basis 共同擁有的元素數量，稱作 dimension
+> $$
+> Dim(\mathbf{A}) = n
+> $$
+
+
+
+### Dimension of the null space or nullity
 
