@@ -717,7 +717,7 @@ A=\begin{bmatrix}
 $$
 將矩陣運算至 Reduced Row-echelon form
 
-* 紅色的為 Leading 1s 只在該列有他一個 1 存在
+* 紅色的為 Leading 1s 只在該列有他一個 1 存在，該元素又稱為 pivot value
 * 而藍色的為 free variables
 
 $$
@@ -1120,8 +1120,8 @@ $$
 #### 方法一
 
 * 先找到 normal vector (可以由 (1, 2, 3) 和 (1, 1, 4) 的 Cross product 求得！)
-* 再找到任一點向量 (x, y, z) 和 (1, 2, 3) 或 (1, 1, 4) 相減得到一條 **躺在該平面上的向量**
-* 最後該向量跟 normval vector 會垂直，所以 dot product 為 0
+* 再從任一點向量 (x, y, z) 和 (1, 2, 3) 或 (1, 1, 4) 相減得到一條 **躺在該平面上的向量**
+* 最後因為該向量跟 normval vector 會垂直，所以 dot product 為 0
 * 以此找到 plane 的 equation
 
 $$
@@ -1215,4 +1215,99 @@ $$
 
 
 ### Dimension of the null space or nullity
+
+* https://youtu.be/abYAUqs_n6I
+
+假設我們要找出 matrix B 的 nullspace
+$$
+\mathbf{B} = \begin{bmatrix}1&1&2&3&2\\1&1&3&1&4\end{bmatrix}
+$$
+我們知道只要將 B 轉為 reduced row echelon form
+$$
+rref(\mathbf{B})= \begin{bmatrix}1&1&0&7&-2\\0&0&1&-2&2\end{bmatrix} 
+\begin{bmatrix} x_1\\x_2\\x_3\\x_4\\x_5\end{bmatrix} = 
+ \begin{bmatrix}0\\0\end{bmatrix}
+$$
+再利用 equation 就可以找出 span null space 的向量集
+$$
+x_1+x_2+7x_4-2x_5=0 \Rightarrow \color{red}{x_1=-x_2-7x_4+2x_5}\\
+x_3-2x_4+2x_5=0 \Rightarrow \color{red}{x_3=2x_4-2x_5}\\
+\begin{bmatrix} x_1\\x_2\\x_3\\x_4\\x_5\end{bmatrix} = 
+x_2\begin{bmatrix} -1\\1\\0\\0\\0\end{bmatrix}+
+x_4\begin{bmatrix} -7\\0\\2\\1\\0\end{bmatrix}+
+x_5\begin{bmatrix} 2\\0\\-2\\0\\1\end{bmatrix}
+$$
+所以 N(B) =
+$$
+N(\mathbf{B}) = N(rref(\mathbf{B})) = span\left(
+\begin{bmatrix}-1\\1\\0\\0\\0\end{bmatrix},
+\begin{bmatrix}-7\\0\\2\\1\\0\end{bmatrix},
+\begin{bmatrix}2\\0\\-2\\0\\1\end{bmatrix}
+\right) = span(\vec{v_1},\vec{v_2},\vec{v_3})
+$$
+而且這三個向量 linear independent，所以為 N(B) 的 basis
+
+然後因為找到 basis 了，所以 N(B) 的 dimension 為 3，又可以稱作 nullity = 3
+
+> 🤷‍♂️ Nullity = reduced row echelon form 的 non-pivot column 數量
+
+
+
+### Dimension of the column space or rank
+
+* https://youtu.be/JUgrBkPteTg
+
+我們可以將 matrix A 的 column 分為五等份，而 column space 即為這五個 column 所 span 而成
+$$
+\mathbf{A} = \begin{bmatrix}1&0&-1&0&4\\2&1&0&0&9\\-1&2&5&1&-5\\1&-1&-3&-2&9\end{bmatrix},
+C(\mathbf{A}) = span\left(
+\begin{bmatrix}-1\\2\\-1\\1\end{bmatrix},
+\begin{bmatrix}0\\1\\2\\-1\end{bmatrix},
+\begin{bmatrix}-1\\0\\5\\-3\end{bmatrix},
+\begin{bmatrix}0\\0\\1\\-2\end{bmatrix},
+\begin{bmatrix}4\\9\\-5\\9\end{bmatrix}
+\right)
+$$
+但我們並不知道他們五個是否 linear independent，即是否為 basis of column space
+
+這邊提供一個方法找出 column space 的 basis 並且得知他的 dimension 也就是 rank
+
+* 先將 A 化簡為 reduced row echelon form
+
+* 找到 rref 的 pivot columns
+* 這些 column 對應回 A ，即是 C(A) 的 basis
+
+$$
+rref(\mathbf{A}) = \begin{bmatrix}
+\color{red}1&\color{blue}0&-1&\color{green}0&4\\
+\color{red}0&\color{blue}1&2&\color{green}0&1\\
+\color{red}0&\color{blue}0&0&\color{green}1&-3\\
+\color{red}0&\color{blue}0&0&\color{green}0&0\end{bmatrix}
+$$
+
+因為 1, 2, 4 行為 pivot column ，所以對應回 A 的 1, 2, 4 行即為 C(A) 的 basis
+$$
+C(\mathbf{A})= span\left(
+\begin{bmatrix}-1\\2\\-1\\2\end{bmatrix},
+\begin{bmatrix}0\\1\\2\\-1\end{bmatrix},
+\begin{bmatrix}0\\0\\1\\-2\end{bmatrix}
+\right)
+$$
+
+
+> 🤷‍♂️ Dimension = reduced row echelon form 的 pivot column 數量
+
+
+
+以下解釋了為何 rref(A) 的 pivot column 會等於 C(A) 的 basis
+
+> Showing relation between basis cols and pivot cols
+>
+> * https://youtu.be/BfVjTOjvI30
+
+
+
+> Showing that the candidate basis does span C(A)
+>
+> * https://youtu.be/CkQOCnLWPUA
 
