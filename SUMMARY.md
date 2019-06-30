@@ -6,3 +6,5 @@
 
 * [Vectors and spaces](discrete-mathematics/vectors-and-spaces.md)
 
+* [Matrix transformations](discrete-mathematics/matrix-transformations.md)
+

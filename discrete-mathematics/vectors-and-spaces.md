@@ -946,8 +946,8 @@ $$
 再轉回 equation
 $$
 \begin{align}
-x_1 -x_3-2x_4&=0  \Rightarrow \color{red} x_1=x_3+2x_4\\
-x_2+2x_3+3x_4&=0 \Rightarrow \color{red} x_2=-2x_3-3x_4
+x_1 -x_3-2x_4&=0  \Rightarrow \color{red}{x_1=x_3+2x_4}\\
+x_2+2x_3+3x_4&=0 \Rightarrow \color{red}{x_2=-2x_3-3x_4}
 \end{align}
 $$
 最後得出一個 linear combination，其中 x3 和 x4 可以為任何實數，來拖移兩個向量在 R4 nullspace 移動
@@ -1079,8 +1079,8 @@ rref(\mathbf{A})= \begin{bmatrix} 1&0&3&2\\0&1&-2&-1\\ 0&0&0&0\end{bmatrix}
 $$
 將矩陣列回 equation
 $$
-x_1+3x_3+2x_4=0 \Rightarrow \color{red}x_1=-3x_3-2x_4\\ 
-x_2-2x_3-x_4=0 \Rightarrow \color{red}x_2 = 2x_3+x_4\\
+x_1+3x_3+2x_4=0 \Rightarrow \color{red}{x_1=-3x_3-2x_4}\\ 
+x_2-2x_3-x_4=0 \Rightarrow \color{red}{x_2 = 2x_3+x_4}\\
 $$
 並且利用 free variables 來表示 null space 空間
 $$
