@@ -114,7 +114,7 @@ $$
 T(c\vec{a}) = T((ca_1,ca_2)) = (ca_1+ca_2, 3ca_1)=c(a_1+a_2,3a_1)=cT(\vec{a})
 $$
 
-
+---
 
 另外舉例一個不符合 linear transformation 的 T function
 $$
@@ -195,7 +195,7 @@ x\begin{bmatrix}\color{green}a\\\color{green}c\end{bmatrix} +
 y\begin{bmatrix}\color{red}b\\\color{red}d\end{bmatrix} =
 \begin{bmatrix}\color{green}{a}x+\color{red}{b}y\\\color{green}{c}x+\color{red}{d}y\end{bmatrix}
 $$
-如此一來，就有代表 transformation 的 matrix A 和要被我們轉換的 vector v
+如此一來，代表 transformation 的 matrix A 和要被我們轉換的 vector v
 
 Av 即為轉換後的結果：
 $$
@@ -205,4 +205,141 @@ $$
 \begin{bmatrix}a&b\\c&d\end{bmatrix}
 \begin{bmatrix}x\\y\end{bmatrix} =
 \begin{bmatrix}ax+by\\cx+dy\end{bmatrix}
+$$
+
+
+
+### Matrix vector products as linear transformations
+
+Transformation 可以化為矩陣 A 乘以被轉換的 vector x
+$$
+T: \mathbb{R}^n\to\mathbb{R}^m\\
+T(\vec{x}) = \mathbf{A\vec{x}}\mid \mathbf{A}\vec{x} \in \mathbb{R}^m
+$$
+舉個例子
+$$
+\mathbf{B} = \begin{bmatrix}2&-1\\3&4\end{bmatrix}, T: \mathbb{R}^2 \to \mathbb{R}^2\\
+T(\vec{x}) = \mathbf{B}\vec{x} = 
+\begin{bmatrix}2&-1\\3&4\end{bmatrix}
+\begin{bmatrix}x_1\\x_2\end{bmatrix}=
+\begin{bmatrix}2x_1-x_2\\3x_1+4x_2\end{bmatrix}
+$$
+這個結果等同於
+$$
+T\left( x_1, x_2\right) = \left(2x_1-x_2, 3x_1+4x_2\right)
+$$
+
+
+接著我們來測試一下，化為 matrix product 的 linear transformation 還有沒有符合兩大條件呢
+
+* 加法成立
+
+$$
+\begin{align}
+\mathbf{A}(\vec{a}+\vec{b}) &= 
+\begin{bmatrix}\vec{v_1}&\vec{v_2}&\cdots&\vec{v_n}\end{bmatrix}
+\begin{bmatrix}a_1+b_1\\a_2+b_2\\\vdots\\a_n+b_2\end{bmatrix}\\
+
+&=(a_1+b_1)\vec{v_1}+(a_2+b_2)\vec{v_2}+\cdots+(a_n+b_n)\vec{v_n}\\
+&=a_1\vec{v_1}+b_1\vec{v_1}+a_2\vec{v_2}+b_2\vec{v_2}+\cdots+a_n\vec{v_n}+b_n\vec{v_n}\\
+&=(a_1\vec{v_1}+a_2\vec{v_2}+\cdots+a_n\vec{v_n})+(b_1\vec{v_1}+b_2\vec{v_2}+\cdots+b_n\vec{v_n})\\
+&=\mathbf{A}\vec{a} + \mathbf{A}\vec{b}
+\end{align}
+$$
+
+* 乘法成立
+
+$$
+\begin{align}
+\mathbf{A}(c\vec{a}) &=
+\begin{bmatrix}\vec{v_1}&\vec{v_2}&\cdots&\vec{v_n}\end{bmatrix}
+\begin{bmatrix}ca_1\\ca_2\\\vdots\\ca_n\end{bmatrix} \\&=
+ca_1\vec{v_1}+ ca_2\vec{v_2}+ \cdots + ca_n\vec{v_n} \\&=
+c(a_1\vec{v_1}+ a_2\vec{v_2}+ \cdots + a_n\vec{v_n}) \\&=
+c\mathbf{A}\vec{a}
+\end{align}
+$$
+
+這證明，Matrix 和 vector 相乘所代表的 transformation 永遠是 **linear transformation**
+
+
+
+### Linear transformations as matrix vector products
+
+上面我們讓矩陣和 linear transformation 連結在一起
+
+現在我們嘗試來讓 linear transformation 轉換為 matrix 和 vector 的 product
+
+
+
+首先要先認識何為 Identity Matrix
+
+Identity matrix 用 In 來表示，是一個 n × n 的矩陣，並且只有在對角線上有 1
+$$
+\mathbf{I_n} = \begin{bmatrix} 
+1&0&0&\cdots&0 \\ 0&1&0&\cdots&0 \\ 0&0&1&\cdots&0\\\vdots&\vdots&\vdots&\ddots&\vdots\\0&0&0&0&1\end{bmatrix},
+\mathbf{I_2}=\begin{bmatrix} 1&0\\0&1\end{bmatrix},
+\mathbf{I_3}=\begin{bmatrix} 1&0&0\\0&1&0\\0&0&1\end{bmatrix}, \cdots
+$$
+Identity matrix 乘以任何 vector 都會維持 vector 本身
+$$
+\mathbf{I_n} \vec{x} = \vec{x} \mid \mathbf{I_2}\vec{x} =
+\begin{bmatrix} 1&0\\0&1\end{bmatrix}
+\begin{bmatrix} x_1\\x_2\end{bmatrix}=
+\begin{bmatrix} x_1\\x_2\end{bmatrix}
+$$
+並且我們會給予 Identity matrix 每一 column vector 一個 e 的代號
+
+而這些 column vector 不只 span Rn 空間，而且為 linear independence，還是 unit vectors
+
+所以又稱為 stardard basis for Rn
+$$
+\mathbf{I_n} = 
+\begin{bmatrix}\vec{e_1}&\vec{e_2}&\cdots&\vec{e_n}\end{bmatrix}\\
+\begin{Bmatrix}\vec{e_1}&\vec{e_2}&\cdots&\vec{e_n} \end{Bmatrix} 
+\to \text{ standard basis for } \mathbb{R}^n
+$$
+好了！現在幾乎所有 vector 都可以用 e 來表達
+$$
+\vec{x}=\begin{bmatrix}x_1\\x_2\\\vdots\\x_n\end{bmatrix}=
+x_1\vec{e_1} + x_2\vec{e_2} + \cdots + x_n\vec{e_n} = \mathbf{I_n}\vec{x} = 
+\begin{bmatrix}x_1\\0\\\vdots\\0\end{bmatrix}+
+\begin{bmatrix}0\\x_2\\\vdots\\0\end{bmatrix}+ \cdots +
+\begin{bmatrix}0\\0\\\vdots\\x_n\end{bmatrix}
+$$
+接下來我們將 x 代入 transformation，
+$$
+\begin{align}
+T(\vec{x}) &= T(x_1\vec{e_1} + x_2\vec{e_2} + \cdots + x_n\vec{e_n})\\
+&= T(x_1\vec{e_1}) + T(x_2\vec{e_2}) + \cdots + T(x_n\vec{e_n}) \\
+&= x_1T(\vec{e_1}) + x_2T(\vec{e_2}) + \cdots + x_nT(\vec{e_n}) \\
+&= \begin{bmatrix}T(\vec{e_1})&T(\vec{e_2})& \cdots&T(\vec{e_n})\end{bmatrix}
+\begin{bmatrix} x_1\\x_2\\\vdots\\x_n\end{bmatrix}
+\end{align}
+$$
+上面證明，**所有的 linear transformation 都可以用 matrix vector product 表示**
+
+舉一個例子
+$$
+T:\mathbb{R}^2 \to \mathbb{R}^3\mid T(x_1,x_2) = (x_1+3x_2, 5x_2-x_1,4x_1+x_2)
+$$
+
+可以表示成等式
+$$
+T\left(\begin{bmatrix}x_1\\x_2\end{bmatrix}\right) = 
+\begin{bmatrix}x_1+3x_2\\ 5x_2-x_1\\ 4x_1+x_2\end{bmatrix}
+$$
+我們可以先用 Identity matrix 表達 vector 並且進行 transform
+$$
+\begin{align}
+T(\mathbf{I_2}) &= 
+\begin{bmatrix}T\left(\begin{bmatrix}1\\0\end{bmatrix}\right) & T\left(\begin{bmatrix}0\\1\end{bmatrix}\right)\end{bmatrix}\\
+&=\begin{bmatrix}1&3\\-1&5\\4&1\end{bmatrix}
+\end{align}
+$$
+而 x 的 transformation 就可以表達成 matrix vector product
+$$
+T\left(\begin{bmatrix}x_1\\x_2\end{bmatrix}\right) =
+\begin{bmatrix}1&3\\-1&5\\4&1\end{bmatrix}
+\begin{bmatrix}x_1\\x_2\end{bmatrix}
 $$
