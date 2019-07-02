@@ -5,6 +5,7 @@
 ### Added
 
 * (01) linear transformation with matrix
+* (02) image, preimage, kernel
 
 
 

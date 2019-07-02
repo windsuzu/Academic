@@ -4,7 +4,13 @@
 
 ## Discrete mathematics
 
+### Vectors and Spaces
+
 * [Vectors and spaces](discrete-mathematics/vectors-and-spaces.md)
 
-* [Matrix transformations](discrete-mathematics/matrix-transformations.md)
+
+
+### Matrix transformations
+
+* [Functions and linear transformations](discrete-mathematics/functions-and-linear-transformations.md)
 

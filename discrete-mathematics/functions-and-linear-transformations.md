@@ -1,8 +1,8 @@
-# Matrix Transformations
-
 ## Functions and linear transformations
 
 ###  formal understanding of functions
+
+* https://youtu.be/BQMyeQOLvpg
 
 我們都知道 function 的表示如下
 $$
@@ -47,6 +47,8 @@ $$
 
 ### Vector Transformation
 
+* https://youtu.be/gAbadNuQEjI
+
 我們可以將 function apply 到 vector 上面，這時候雖然做的事情一樣，不過我們稱為 transformations
 $$
 f: \mathbb{R}^n \to \mathbb{R}^m
@@ -62,8 +64,9 @@ $$
 f\left(\begin{bmatrix} 1\\1\\1\end{bmatrix}\right) = \begin{bmatrix} 3\\3\end{bmatrix}
 $$
 
-
 ### Linear transformations
+
+* https://youtu.be/4PCktDZJH8E
 
 我們將給予 vector transformation 一個新名詞，叫作 **linear transformation**
 
@@ -211,6 +214,8 @@ $$
 
 ### Matrix vector products as linear transformations
 
+* https://youtu.be/ondmopWLiEg
+
 Transformation 可以化為矩陣 A 乘以被轉換的 vector x
 $$
 T: \mathbb{R}^n\to\mathbb{R}^m\\
@@ -265,6 +270,8 @@ $$
 
 
 ### Linear transformations as matrix vector products
+
+* https://youtu.be/PErhLkQcpZ8
 
 上面我們讓矩陣和 linear transformation 連結在一起
 
@@ -343,3 +350,264 @@ T\left(\begin{bmatrix}x_1\\x_2\end{bmatrix}\right) =
 \begin{bmatrix}1&3\\-1&5\\4&1\end{bmatrix}
 \begin{bmatrix}x_1\\x_2\end{bmatrix}
 $$
+
+
+
+### Image of a subset under a transformation
+
+* https://youtu.be/MIAmN5kgp3k
+
+我們來將 3 個向量所圍起來的三角形，進行 linear transformation，這三個向量分別為
+$$
+x_0 = \begin{bmatrix}-2\\-2\end{bmatrix}, 
+x_1 = \begin{bmatrix}-2\\2\end{bmatrix}, 
+x_2 = \begin{bmatrix}2\\-2\end{bmatrix}
+$$
+而三角形 S = {L1, L2, L3} 分別為
+$$
+\begin{align}
+L_1 &= \begin{Bmatrix} \vec{x_0} + t(x_1-x_0) \mid 0 \le t \le 1\end{Bmatrix}\\
+L_2 &= \begin{Bmatrix} \vec{x_2} + t(x_0-x_2) \mid 0 \le t \le 1\end{Bmatrix}\\
+L_3 &= \begin{Bmatrix} \vec{x_1} + t(x_2-x_1) \mid 0 \le t \le 1\end{Bmatrix}\\
+\mathbf{S} &= \begin{Bmatrix} L_1, L_2, L_3 \end{Bmatrix} 
+\end{align}
+$$
+![](../.gitbook/assets/transaction_before.jpg)
+
+我們現在使用 matrix 來定義 transformation 為
+$$
+T(\vec{x}) = \begin{bmatrix}1&-1\\2&0\end{bmatrix}\begin{bmatrix}x_1\\x_2\end{bmatrix}
+$$
+那對這些 L1, L2, L3 進行 transformation 會怎麼樣呢
+$$
+\begin{align}
+T(L_1) &= \begin{Bmatrix} T(\vec{x_0}+t(\vec{x_1}-\vec{x_0})) \mid 0 \le t \le 1\end{Bmatrix} \\
+&= \begin{Bmatrix} T(\vec{x_0})+T(t(\vec{x_1}-\vec{x_0})) \mid 0 \le t \le 1\end{Bmatrix}\\
+&= \begin{Bmatrix} T(\vec{x_0})+tT(\vec{x_1}-\vec{x_0}) \mid 0 \le t \le 1\end{Bmatrix} \\
+&= \begin{Bmatrix} T(\vec{x_0})+t(T(\vec{x_1})-T(\vec{x_0})) \mid 0 \le t \le 1\end{Bmatrix}
+\end{align}
+$$
+我們成功的將 L 直線的 transformation 轉為每個 vector 的 transformation
+
+所以我們可以把每個 vector 的 transformation 算出來，再放回我們拆好的式子裡
+$$
+T(\vec{x_0})=
+\begin{bmatrix}1&-1\\2&0\end{bmatrix}
+\begin{bmatrix}-2\\-2\end{bmatrix}=
+\begin{bmatrix}0\\-4\end{bmatrix}\\
+
+T(\vec{x_1})=
+\begin{bmatrix}1&-1\\2&0\end{bmatrix}
+\begin{bmatrix}-2\\2\end{bmatrix}=
+\begin{bmatrix}-4\\-4\end{bmatrix}\\
+
+T(\vec{x_2})=
+\begin{bmatrix}1&-1\\2&0\end{bmatrix}
+\begin{bmatrix}2\\-2\end{bmatrix}=
+\begin{bmatrix}4\\4\end{bmatrix}
+$$
+
+接著再把這些已經 transform 的 vector 代回 T(L) 的式子中，即可得到 L1, L2, L3
+
+![](../.gitbook/assets/transaction_after.jpg)
+
+我們稱這些經過 transformation 的直線或三角形為 **Image of  XXX under T**
+$$
+T(L_0) \text{ is the image of } L_0 \text{ under } T \\
+T(S) \text{ is the image of } S \text{ under } T
+$$
+
+### Image of a transformation
+
+* https://youtu.be/hZ827mfh1Jo
+
+上面我們將 subset of vectors 轉換成另一個 subset 很成功，
+
+那麼將 subspace 轉換成另一個 subspace 得到的 image 還能符合 subspace 的條件嗎？
+$$
+\mathbf{V} \text{ subspace in } \mathbb{R}^n \\
+\begin{align}
+\vec{a}, \vec{b} \in \mathbf{V} &\Rightarrow \vec{a} +\vec{b} \in \mathbf{V} \\
+&\Rightarrow c\vec{a} \in \mathbf{V} \\
+&\Rightarrow \vec{0} \in \mathbf{V}
+\end{align}
+$$
+我們定義好 Transformation 和代表他的 matrix ，並把 a, b vector 帶進來看看
+$$
+T: \mathbb{R}^n \to \mathbb{R}^m\\
+T(\mathbf{V}): \text{ image of }\mathbf{V} \text{ under } T \\
+
+\begin{align}
+&T(\vec{a}), T(\vec{b}) \in T(\mathbf{V})\\
+\text{OK! }\,\,&T(\vec{a})+T(\vec{b}) = T(\color{red}{\vec{a}+\vec{b}}) \in T(\mathbf{V})\\
+\text{OK! }\,\,&cT(\vec{a}) = T(\color{red}{c\vec{a}}) \in T(\mathbf{V})
+\end{align}
+$$
+因為 a+b 和 ca 都已經屬於 subspace V 了，所以在轉換後依然為合理的 subspace
+
+
+
+那如果將整個 Rn 轉換到 Rm 呢？
+$$
+\begin{align}
+&T:\mathbb{R}^n \to \mathbb{R}^m \\
+&T(\mathbb{R}^n): \text{ image of } \mathbb{R}^n \text{ under }T =
+\color{blue}{
+\begin{Bmatrix}
+T(\vec{x}) \mid \vec{x} \in \mathbb{R}^n
+\end{Bmatrix}
+}= \text{Range of } T
+\end{align}
+$$
+![](../.gitbook/assets/image_of_transformation.jpg)
+
+我們把整個轉換過去的 T(Rn) 稱為 **range of T** 或者是 **Image of T** 然後標記為 **Im(T)**
+
+所以我們可以把 transformation 如此表示
+$$
+\begin{align}
+T(\vec{x}) &= \mathbf{A}\vec{x} = 
+\begin{Bmatrix} \mathbf{A}\vec{x} \mid \vec{x} \in \mathbb{R}^n \end{Bmatrix}\\
+&= \begin{bmatrix} \vec{a_1} &\vec{a_2}&\cdots&\vec{a_n}\end{bmatrix}
+\begin{bmatrix} x_1 \\x_2\\ \vdots \\x_n\end{bmatrix} =
+x_1\vec{a_1}+x_2\vec{a_2}+\cdots+x_n\vec{a_n} \\
+&= span(\vec{a_1}, \vec{a_2}, \cdots,\vec{a_n}) \\
+&= \text{Column space of } \mathbf{A}\\
+&= C(\mathbf{A})
+\end{align}
+$$
+原來 transformation 可以表示為 matrix A 和 vector x 的乘積，而且還是 matrix A 的 column space 
+
+
+
+### Preimage of a set
+
+* https://youtu.be/zVsGtU8lIWs
+
+我們已經知道整個 Rn 轉換過去的 subset 叫作 Image of Rn under T
+
+那我們現在想要從 co-domain 來得知有哪些 domain 轉換過去，要怎麼表示？
+
+![](../.gitbook/assets/preimage.jpg)
+
+我們想知道 X 底下有哪些 subset 可以 transform 到 Y 底下的 S subset，我們可以這樣表示
+$$
+T^{-1}(\mathbf{S}) =
+\begin{Bmatrix} \vec{x} \in \mathbf{X} \mid T(\vec{x}) \in \mathbf{S}\end{Bmatrix} \\
+T^{-1}(\mathbf{S}) : \text{ Preimage of }\mathbf{S} \text{ under } T
+$$
+
+> 問個有趣問題，那麼 preimage 經過 transformation 會變為什麼呢
+> $$
+> T(T^{-1}(\mathbf{S})) \subseteq S
+> $$
+> => 會屬於 S 的 subset ，不一定要對到所有 S
+
+
+
+### Preimage and kernel
+
+* https://youtu.be/6yrPU8rYOhs
+
+我們來舉個例子從 image subset 以及 transformation matrix 來找出 preimage x
+$$
+T(\vec{x}) = \mathbf{A}\vec{x} =
+\begin{bmatrix} 1&3\\2&6 \end{bmatrix}
+\begin{bmatrix} x_1\\x_2 \end{bmatrix},
+\mathbf{S} =  
+\begin{Bmatrix} \begin{bmatrix} 0\\0 \end{bmatrix}, \begin{bmatrix} 1\\2 \end{bmatrix} \end{Bmatrix}
+$$
+白話來說就是，在二維空間中，有哪些東西經過 transform 會變成 [0, 0] 或者是 [1, 2]
+$$
+\begin{align}
+T^{-1}(\mathbf{S}) 
+&= \text{preimage of }\mathbf{S} \text{ under } T\\
+&= \begin{Bmatrix} \vec{x} \in \mathbb{R^2}\mid T(\vec{x}) \in \mathbf{S} \end{Bmatrix}\\
+&= \begin{Bmatrix} \vec{x} \in \mathbb{R^2}\mid 
+\mathbf{A}\vec{x} = \begin{bmatrix}0\\0\end{bmatrix} \text{ or } 
+\mathbf{A}\vec{x} = \begin{bmatrix}1\\2\end{bmatrix}
+\end{Bmatrix}
+
+\end{align}
+$$
+等於要解出以下方程式，我們以找出 [0, 0] 的 preimage 為例
+$$
+\begin{align}
+&\begin{bmatrix} 1&3\\2&6 \end{bmatrix}
+\begin{bmatrix} x_1\\x_2 \end{bmatrix} =
+\begin{bmatrix} 0\\0 \end{bmatrix}\\
+\Rightarrow \,\,\,&
+\begin{bmatrix}\begin{array}{cc|c}  1&3&0\\2&6&0 \end{array}\end{bmatrix}\\
+\Rightarrow \,\,\,&
+\begin{bmatrix}\begin{array}{cc|c}  1&3&0\\0&0&0 \end{array}\end{bmatrix}\\
+\Rightarrow \,\,\,&
+x_1 +3x_2 = 0\\
+\Rightarrow \,\,\,&
+x_1 = -3x_2\\
+\Rightarrow \,\,\,&
+\begin{bmatrix} x_1\\x_2 \end{bmatrix} =
+\begin{bmatrix} -3x_2\\x_2 \end{bmatrix} =
+\begin{Bmatrix} t\begin{bmatrix} -3\\1 \end{bmatrix} \mid x_2=t, t\in \mathbb{R}\end{Bmatrix}
+\end{align}
+$$
+也就是 t(-3, 1) 的這條直線 (subset) 上任何一點，經過 transformation 就會回到原點
+
+![](../.gitbook/assets/kernel.jpg)
+
+像這樣有 subset 經過 transformation 後回到原點的現象，我們稱這個 subset 為 **kernel of T**
+$$
+ker(T) = \begin{Bmatrix} \vec{x} \in \mathbb{R}^2 \mid T(\vec{x}) = 
+\begin{Bmatrix}\vec{0}\end{Bmatrix}
+\end{Bmatrix} \\
+$$
+而有趣的是，他跟 A 的 null space 是一樣的
+$$
+T(\vec{x}) = \mathbf{A}\vec{x}\\
+ker(T) = N(\mathbf{A})
+$$
+
+
+
+### Sums and scalar multiples of linear transformations
+
+* https://youtu.be/wHuY97vss18
+
+Linear transformation 利用 matrix 表達也能夠使用相同的 properties
+$$
+\begin{align}
+S&: \mathbb{R}^n \to \mathbb{R}^m, T: \mathbb{R}^n \to \mathbb{R}^m\\
+
+Def&: (S+T)(\vec{x}) = S(\vec{x})+T(\vec{x})\\
+&:(S+T) \text{ still is } \mathbb{R}^n \to \mathbb{R}^m\\\\
+Def&: (cS)(\vec{x}) = c(S(\vec{x}))\\
+&: (cS) \text{ still is } \mathbb{R}^n \to \mathbb{R}^m
+
+\end{align}
+$$
+這些 properties 在改變成 matrix 表示時也可以使用
+
+* 加法
+
+$$
+\begin{align}
+(S+T)(\vec{x}) &= S(\vec{x})+T(\vec{x})\\
+&=\mathbf{A}\vec{x} + \mathbf{B}\vec{x}\\
+&= (\mathbf{A}+\mathbf{B})\vec{x}\\
+&= \begin{bmatrix}\vec{a_1}+\vec{b_1}&\vec{a_2}+\vec{b_2}&\cdots&\vec{a_n}+\vec{b_n}\end{bmatrix}
+\begin{bmatrix}x_1\\x_2\\\vdots\\x_n\end{bmatrix}
+\end{align}
+$$
+
+* 乘法
+
+$$
+\begin{align}
+(cS)(\vec{x}) &= c(S(\vec{x}))\\
+&= c\mathbf{A}\vec{x}\\
+&= c(x_1\vec{a_1}+x_2\vec{a_2}+\cdots+x_n\vec{a_n}) \\
+&= x_1c\vec{a_1} + x_2c\vec{a_2} + \cdots + x_nc\vec{a_n} \\
+&= \begin{bmatrix}c\vec{a_1} & c\vec{a_2} &\cdots&c\vec{a_n}\end{bmatrix}
+\begin{bmatrix}x_1\\x_2\\\vdots\\x_n\end{bmatrix}
+\end{align}
+$$
+
