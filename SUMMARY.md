@@ -14,3 +14,5 @@
 
 * [Functions and linear transformations](discrete-mathematics/functions-and-linear-transformations.md)
 
+* [Linear transformation examples](discrete-mathematics/linear-transformation-examples.md)
+
