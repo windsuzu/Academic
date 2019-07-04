@@ -16,3 +16,4 @@
 
 * [Linear transformation examples](discrete-mathematics/linear-transformation-examples.md)
 
+* [Transformations and matrix multiplication](discrete-mathematics/transformations-and-matrix-multiplication.md)
