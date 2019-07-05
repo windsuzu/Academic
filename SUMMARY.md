@@ -13,7 +13,7 @@
 ### Matrix transformations
 
 * [Functions and linear transformations](discrete-mathematics/functions-and-linear-transformations.md)
-
 * [Linear transformation examples](discrete-mathematics/linear-transformation-examples.md)
-
 * [Transformations and matrix multiplication](discrete-mathematics/transformations-and-matrix-multiplication.md)
+* [Inverse functions and transformations](discrete-mathematics/inverse-functions-and-transformations.md)
+

@@ -8,6 +8,7 @@
 * (02) image, preimage, kernel
 * (03) linear transformation examples, unit vectors, projections
 * (04) linear transformation and matrix multiplication
+* (05) inverse function, onto, one-to-one
 
 
 
