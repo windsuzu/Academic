@@ -223,3 +223,309 @@ f:X\to Y \text{ invertible} \iff
 $$
 
 
+
+### Determining whether a transformation is onto
+
+* https://youtu.be/eR8vEdJTvd0
+
+前面都是直接用定義和圖案來觀察 transformation 是否符合 onto，
+
+我們知道 transformation 還可以轉為 matrix vector product
+
+![](../.gitbook/assets/matrix_transformation.jpg)
+$$
+\begin{align}
+&\vec{x} \in \mathbb{R}^n \\
+&T(\vec{x}) = \mathbf{A}\vec{x}  = \vec{b} \in \mathbb{R}^m
+\end{align}
+$$
+
+
+用 matrix 來表示 transformation 時的 onto 定義為
+$$
+\begin{align}
+&\text{for every }\vec{b} \in \mathbb{R}^m \\
+&\exist \text{ at least one solution } \vec{x} \text{ to } \mathbf{A}\vec{x} = \vec{b}\\
+&\text{where } \vec{x} \in \mathbb{R}^n
+\end{align}
+$$
+我們知道 Ax 相乘其實就是 A 的 linear combination
+
+而這個 combination 將會生成任意的 b in Rm
+$$
+\begin{align}
+&\mathbf{A} = \begin{bmatrix} \vec{a_1}&\vec{a_2}&\cdots&\vec{a_n} \end{bmatrix},
+\vec{x} = \begin{bmatrix}x_1\\x_2\\\vdots\\x_n\end{bmatrix} \\
+&\mathbf{A}\vec{x} = x_1\vec{a_1} + x_2\vec{a_2} + \cdots + x_n\vec{a_n}
+\end{align}
+$$
+所以要能夠滿足 onto Rm ，代表 A 的 column space 必須要能夠 span Rm
+$$
+\begin{align}
+span(\vec{a_1},\vec{a_2}, \cdots, \vec{a_n} ) &= \mathbb{R}^m \\
+C(\mathbf{A}) &= \mathbb{R}^m
+\end{align}
+$$
+若 Ax 沒有 span 整個 Rm，代表沒有 onto
+
+要出現這種情形，在代表 Ax = b 的 [A | b] 化簡為 [R (rref) | c] 時
+
+會有一行全為 0 但結果不為 0 (no solution)
+$$
+\begin{bmatrix}\begin{array}{c|c}  &b_1 \\\mathbf{A}&\vdots\\&b_n\end{array}\end{bmatrix}
+= 
+\begin{bmatrix}\begin{array}{cccc|c}  
+1&0&\cdots&0& \\
+0&1&\cdots&0&\\
+0&0&\cdots&0&2b_1+3b_2+\cdots\end{array}\end{bmatrix} = \text{Can't span } \mathbb{R}^m
+$$
+
+
+若 Ax 可以 span 整個 Rm，代表 onto
+
+要出現這種情形，代表 rref(A) 必須在每一個 row 都出現 pivot entry，也就是每一行都是 pivot column
+$$
+\begin{align}
+T \text{ is Onto} &\iff C(\mathbf{A}) = \mathbb{R}^m\\
+&\iff m \text{ pivot entries} \\
+&\iff m \text{ pivot columns} \\
+&\iff \text{Rank}(\mathbf{A}) = \text{dim}(C(\mathbf{A})) = m
+\end{align}
+$$
+
+
+在矩陣上就是 A 變到 rref(A) 之後，每一個 row 都有一個 leading one
+$$
+\begin{align}
+&\mathbf{A} = &&\begin{bmatrix} \vec{a_1}&\vec{a_2}&\cdots&\vec{a_m}\end{bmatrix}\\\\
+&\downarrow \text{rref}(\mathbf{A}) &&\downarrow\\\\
+&\mathbf{R} = &&\begin{bmatrix} 
+1_1&0&\cdots&0\\
+0&1_2&\cdots&0\\
+0&0&\cdots&1_m\\
+\end{bmatrix} \Rightarrow \text{span}(\mathbb{R}^m) \Rightarrow \text{Onto}
+\end{align}
+$$
+
+
+舉個例子，來確認 S 這個 transformation 是否符合 onto
+$$
+S = \mathbb{R}^2 \to \mathbb{R}^3, S(\vec{x}) = 
+\begin{bmatrix} 1&2\\3&4\\5&6\end{bmatrix}
+\vec{x}
+$$
+我們將 S matrix 化簡為 rref，發現只有 2 pivot entries
+$$
+\begin{bmatrix} 1&2\\3&4\\5&6\end{bmatrix} \to
+\begin{bmatrix} 1&2\\0&2\\0&4\end{bmatrix} \to
+\begin{bmatrix} 1&2\\0&1\\0&4\end{bmatrix} \to
+\begin{bmatrix} 1&0\\0&1\\0&0\end{bmatrix} \Rightarrow
+\text{rank}\left(\begin{bmatrix} 1&2\\3&4\\5&6\end{bmatrix} \right) = 2
+$$
+所以 S rank 為 2，S 不是 onto，也代表 S 不可能是 invertible
+
+
+
+### Exploring the solution set of Ax = b
+
+* https://youtu.be/1PsNIzUJPkc
+
+我們來看一個 linear transformation
+$$
+\begin{align}
+&T: \mathbb{R}^2 \to \mathbb{R}^2 \\
+&T(\vec{x}) = \begin{bmatrix} 1&-3\\-1&3 \end{bmatrix}
+\begin{bmatrix} x_1\\x_2 \end{bmatrix} =
+\begin{bmatrix} b_1\\b_2 \end{bmatrix} \\
+\Rightarrow 
+&\begin{bmatrix} \begin{array}{cc|c} 1 & -3 &b_1 \\-1&3&b_2 \end{array} \end{bmatrix} =
+\begin{bmatrix} \begin{array}{cc|c} 1 & -3 &b_1 \\0&0&b_1+b_2 \end{array} \end{bmatrix}
+\end{align}
+$$
+我們發現這個 transformation 已經不可能是 onto
+
+但我們可以知道，要讓 b 有結果， b1 + b2 必須等於 0
+$$
+b_1 + b_2 = 0 \rightarrow b_1 = -b_2
+$$
+![](../.gitbook/assets/linear_transformation_solution.jpg)
+
+也就是說任何 x 經過 T 一定要在 b1 = -b2 直線上的任何一點，才是有 solution
+
+因為只有變成這條直線，沒有 span 整個 R2 ，所以 T 當然是沒有 onto 的
+
+
+
+但我們可以找找看到底 domain 在哪裡
+
+首先必須先遵守 b1 + b2 = 0 的原則，並且從第一列我們得到解
+$$
+x_1-3x_2 = b_1 \\
+x_1 = b_1 + 3x_2
+$$
+也就是說只有 x vector (domain) 等於以下時，才會轉換到 b1 + b2 = 0 的直線上
+$$
+\vec{x} = \begin{bmatrix} x_1\\x_2 \end{bmatrix} =
+ \begin{bmatrix} b_1\\0 \end{bmatrix}+
+ x_2 \begin{bmatrix} 3\\1 \end{bmatrix}
+$$
+例如當 b 為 [5, -5] 時，domain 為
+$$
+\vec{x} = 
+\begin{bmatrix} 5\\0 \end{bmatrix}+
+ x_2 \begin{bmatrix} 3\\1 \end{bmatrix}
+$$
+![](../.gitbook/assets/linear_transformation_domain.jpg)
+
+淺藍色的直線就是我們的 x vector (domain)，上面的任何一點經過 T 都會 map 到 [5, -5]
+
+當 b = [4, -4] 時， domain 就是 [4, 0] + x2 * [3, 1]
+
+我們很好的 visualize 這個 transformation
+
+
+
+那若我們要 map 到 b = [0, 0] 會發生什麼事
+
+這時候 x 代表的就是 null space of A 了 ! 在這個例子就是 [3, 1] 乘以任何 scalar
+$$
+\begin{align}
+&\mathbf{A}\vec{x} = \vec{0} \\
+
+&\vec{x} = 
+\begin{bmatrix} 0\\0 \end{bmatrix}+
+ x_2 \begin{bmatrix} 3\\1 \end{bmatrix} \in N(\mathbf{A})
+\end{align}
+$$
+所以我們可以把 solution set 統整為某個 particular vector 和 null space 的組合
+$$
+\begin{align}
+&\text{Assuming } \mathbf{A}\vec{x} = \vec{b} \text{ has a solution} \\
+&\text{The solution set = }
+\begin{Bmatrix} \vec{x_p} \end{Bmatrix}\cup N(\mathbf{A})
+\end{align}
+$$
+
+> 會在之後證明
+
+
+
+而我們想要讓一個 transformation 能夠 one-to-one => 最多一個解
+
+那這個 solution set 裡面的 null space 是必要是 empty 、空向量、zero vector
+
+
+
+### Matrix condition for one-to-one transformation
+
+我們知道要求 null space of A 的方法
+$$
+N(\mathbf{A}) = \mathbf{A}\vec{x} = \vec{0} \\
+\begin{bmatrix} \mathbf{A} \mid \vec{0} \end{bmatrix} \Rightarrow
+\begin{bmatrix} \text{rref}(\mathbf{A}) \mid \vec{0} \end{bmatrix}
+$$
+我們會得到類似這樣的 homogeneous solution
+$$
+\vec{x} = a\vec{n_1} + b\vec{n_2} + \cdots + c\vec{n_n} \\
+N(\mathbf{A}) = \text{span}(\vec{n_1}, \vec{n_2}, \cdots, \vec{n_n})
+$$
+
+
+而要求得 b 有解，也就是要取得 inhomogeneous solution 的方法
+$$
+\mathbf{A}\vec{x} = \vec{b} \\
+\begin{bmatrix} \mathbf{A} \mid \vec{b} \end{bmatrix} \Rightarrow
+\begin{bmatrix} \text{rref}(\mathbf{A}) \mid \vec{b}' \end{bmatrix}
+$$
+我們會得到 particular solution + homogeneous solution
+$$
+\begin{align}
+\vec{x} &= \vec{b}' + a\vec{n_1} + b\vec{n_2} + \cdots + c\vec{n} \\
+&= \vec{x_p} + \vec{x_h}
+\end{align}
+$$
+
+
+現在我們來證明這個 claim
+$$
+\text{Any solution to the inhomogeneous system } \mathbf{A}\vec{x} = \vec{b} \\
+\text{ will take the form } \vec{x_p} + \vec{x_h}
+$$
+
+1. 將 xp + xh 帶入 A transformation，果然為 x 的解
+
+$$
+\begin{align}
+&\text{Is }\vec{x_p} + \vec{x_h} \text{ a solution to }\mathbf{A}\vec{x} = \vec{b} \text{ ?} \\\\
+&\mathbf{A}(\vec{x_p} + \vec{x_h}) =
+\mathbf{A}\vec{x_p} + \mathbf{A}\vec{x_h} = \vec{b}+\vec{0} = \vec{b}
+\end{align}
+$$
+
+> 因為 A*xp 為 Ax = b 的特定解，所以為 b 向量
+>
+> 因為 A*xh 為 Ax = 0 的解，所以為 0 向量
+
+
+
+2. 利用所有 x 來減掉 xp ，最後也可以導出 xp + xh 為 x 的解
+
+$$
+\begin{align}
+&\text{Is any solution }\vec{x} \text{ to }\mathbf{A}\vec{x}=\vec{b} 
+\text{ takes the form } \vec{x} = \vec{x_p} + \vec{x_h} \text{ ?} \\\\
+
+&\text{Assume }\vec{x} \text{ is any solution to }\mathbf{A}\vec{x} = \vec{b}\\
+&\mathbf{A}(\vec{x} - \vec{x_p}) = \mathbf{A}\vec{x} - \mathbf{A}\vec{x_p} = \vec{b} - \vec{b} = \vec{0}
+\end{align}
+$$
+
+也就是說
+$$
+(\vec{x}-\vec{x_p}) \text{ is a solution to }\mathbf{A}\vec{x} = \vec{0} \\
+(\vec{x}-\vec{x_p}) \text{ is a member of }N(\mathbf{A})\\
+(\vec{x}-\vec{x_p}) = \vec{x_h} \\
+\vec{x} = \vec{x_p} + \vec{x_h}
+$$
+
+
+證明完所有 x 皆可以化為 particular solution + homogeneous solution 後，我們來看 one-to-one
+$$
+\begin{align}
+\text{Under one-to-one condition:}\\
+\text{Any solution} &= 
+\begin{Bmatrix}\vec{x_p} + \vec{x_h}\mid \vec{x_h} \in N(\mathbf{A}) \end{Bmatrix} \text{ can only be 1 solution}\\
+&\Rightarrow N(\mathbf{A}) = \begin{Bmatrix} \vec{0} \end{Bmatrix}
+\end{align}
+$$
+也就是說
+$$
+\begin{bmatrix}\vec{a_1}&\vec{a_2}&\cdots&\vec{a_n}\end{bmatrix}
+\begin{bmatrix}x_1\\x_2\\\vdots\\x_n\end{bmatrix} =
+\begin{bmatrix}0\\0\\\vdots\\0\end{bmatrix} =
+x_1\vec{a_1} + x_2\vec{a_2} + \cdots+ x_n\vec{a_n} = \vec{0}
+$$
+因為只能有 0 向量，所以
+$$
+x_1, x_2, \cdots, x_n = 0
+$$
+好像似曾相識，代表在 one-to-one 時：
+$$
+\begin{align}
+C(\mathbf{A}) &= \text{span}(\vec{a_1}, \vec{a_2}, \cdots, \vec{a_n})\\
+&\Rightarrow \vec{a_1}, \vec{a_2}, \cdots, \vec{a_n} \text{ are linear independence}\\
+&\Rightarrow \vec{a_1}, \vec{a_2}, \cdots, \vec{a_n} \text{ are a basis for } C(\mathbf{A}) \\
+&\Rightarrow \text{dim}(C(\mathbf{A})) = n \\
+&\Rightarrow \text{Rank}(\mathbf{A}) = n
+\end{align}
+$$
+
+
+xh 也會變成空的，而 any solution 只對應到 particular solution，所以為 one-to-one
+$$
+\text{Any solution} = \begin{Bmatrix}\vec{x_p}\end{Bmatrix} 
+\Rightarrow
+\text{one-to-one}
+$$
+
+

@@ -9,6 +9,7 @@
 * (03) linear transformation examples, unit vectors, projections
 * (04) linear transformation and matrix multiplication
 * (05) inverse function, onto, one-to-one
+* (06) determine onto, one-to-one by transformation matrix
 
 
 
