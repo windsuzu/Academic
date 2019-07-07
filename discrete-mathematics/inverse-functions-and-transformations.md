@@ -268,7 +268,7 @@ C(\mathbf{A}) &= \mathbb{R}^m
 $$
 若 Ax 沒有 span 整個 Rm，代表沒有 onto
 
-要出現這種情形，在代表 Ax = b 的 [A | b] 化簡為 [R (rref) | c] 時
+**沒有 onto**，代表 Ax = b 的 [A | b] 化簡為 [R (rref) | c] 時
 
 會有一行全為 0 但結果不為 0 (no solution)
 $$
@@ -281,9 +281,10 @@ $$
 $$
 
 
+
 若 Ax 可以 span 整個 Rm，代表 onto
 
-要出現這種情形，代表 rref(A) 必須在每一個 row 都出現 pivot entry，也就是每一行都是 pivot column
+**有 onto**，代表 rref(A) 必須在每一個 row 都出現 pivot entry，也就是每一行都是 pivot column
 $$
 \begin{align}
 T \text{ is Onto} &\iff C(\mathbf{A}) = \mathbb{R}^m\\
@@ -322,7 +323,7 @@ $$
 \begin{bmatrix} 1&0\\0&1\\0&0\end{bmatrix} \Rightarrow
 \text{rank}\left(\begin{bmatrix} 1&2\\3&4\\5&6\end{bmatrix} \right) = 2
 $$
-所以 S rank 為 2，S 不是 onto，也代表 S 不可能是 invertible
+所以 S 的 rank 為 2，S 不是 onto，也代表 S 不可能是 invertible
 
 
 
@@ -412,11 +413,13 @@ $$
 
 而我們想要讓一個 transformation 能夠 one-to-one => 最多一個解
 
-那這個 solution set 裡面的 null space 是必要是 empty 、空向量、zero vector
+那這個 solution set 裡面的 null space 勢必要 empty 、空向量、zero vector
 
 
 
 ### Matrix condition for one-to-one transformation
+
+* https://youtu.be/M3FuL9qKTBs
 
 我們知道要求 null space of A 的方法
 $$
@@ -468,7 +471,7 @@ $$
 
 
 
-2. 利用所有 x 來減掉 xp ，最後也可以導出 xp + xh 為 x 的解
+2. 利用任何 x 來減掉 xp ，最後也可以導出 xp + xh 為 x 的解
 
 $$
 \begin{align}
@@ -498,7 +501,7 @@ $$
 &\Rightarrow N(\mathbf{A}) = \begin{Bmatrix} \vec{0} \end{Bmatrix}
 \end{align}
 $$
-也就是說
+也就是說要符合 one-to-one 的話，Ax = 0 (null space) 只能有 0
 $$
 \begin{bmatrix}\vec{a_1}&\vec{a_2}&\cdots&\vec{a_n}\end{bmatrix}
 \begin{bmatrix}x_1\\x_2\\\vdots\\x_n\end{bmatrix} =
@@ -529,3 +532,161 @@ $$
 $$
 
 
+
+### Simplifying conditions for invertibility
+
+* https://youtu.be/Yz2OosyMTmY
+
+現在來整理一下 invertible 的條件，並簡化 invertible 的敘述
+
+我們要知道以下這個 transformation 是否 invertible
+$$
+T: \mathbb{R}^n \to \mathbb{R}^m\\
+T(\vec{x}) = \mathbf{A} \vec{x} \,\, ( \mathbf{A} \text{ is } m \times n)
+$$
+我們要觀察他有沒有同時滿足 onto 和 one-to-one
+$$
+\begin{align}
+\text{If } T \text{ is invertible: }\\
+\text{onto } &&\Rightarrow \text{Rank}(\mathbf{A})= m \\ 
+\text{one-to-one } &&\Rightarrow \text{Rank}(\mathbf{A}) = n
+
+\end{align}
+$$
+所以 T 要為 invertible，代表他的 matrix A 必須要
+$$
+\text{Rank}(\mathbf{A}) = m = n
+$$
+也就是說 A 會是一個 n × n 的 square matrix
+
+而且 A 的 reduced row echelon form 會是一個 n 階的 identity matrix
+
+因為每一行都必須是 pivot column
+$$
+\mathbf{A} = \begin{bmatrix} \vec{a_1} & \vec{a_2} & \cdots & \vec{a_n}\end{bmatrix}_{n\times n}
+\\
+\text{rref}(\mathbf{A}) =  
+\begin{bmatrix} 1&0&\cdots&0\\ 0&1&\cdots&0\\0&0&\cdots&1\end{bmatrix}_{n \times n} =\mathbf{I_n}
+$$
+所以我們得到結論
+$$
+\begin{align}
+&T:\mathbb{R}^n\to \mathbb{R}^m \\
+&T(\vec{x}) = \mathbf{A}\vec{x} \mid \mathbf{A}_{m \times n }\\
+&T \text{ is invertible only if } \text{rref}(\mathbf{A}) = \mathbf{I_n}
+\end{align}
+$$
+
+
+### Showing that inverses are linear
+
+* https://youtu.be/mr9Tow8hpCg
+
+$$
+T: \mathbb{R}^n \to \mathbb{R}^n \mid T(\vec{x}) = \mathbf{A}\vec{x} \\
+\text{rref}(\mathbf{A}) = \mathbf{I_n}
+$$
+
+若 T 要 invertible ，那 T 和 inverse 的組合等於在 Rn 不變的 transformation
+
+![](../.gitbook/assets/invertible_transformation.jpg)
+$$
+\begin{align}
+T \text{ is invertible} \iff& \exist \text{ some }T^{-1} \text{ s.t.}\\
+&T^{-1} \circ T = \mathbf{I_{\mathbb{R}^n}} \\
+&T \circ T^{-1} = \mathbf{I_{\mathbb{R}^n}}
+\end{align}
+$$
+
+
+我們知道 T 已經是 **linear **transformation 了，現在想知道 inverse function 是不是 linear
+
+* Linear transformation 的第一條成立
+
+$$
+\begin{align}
+(T \circ T^{-1})(\vec{a} + \vec{b}) &= T(T^{-1}(\vec{a}+\vec{b})) \\
+&= T(\color{red}{T^{-1}(\vec{a})}) + T(\color{red}{T^{-1}(\vec{b})}) \\
+&= T(T^{-1}(\vec{a})+ T^{-1}(\vec{b})) 
+& \text{apply }T(\vec{x}+\vec{y}) = T(\vec{x})+T(\vec{y}) \\\\
+
+\color{red}{T^{-1}}T(T^{-1}(\vec{a}+\vec{b})) &= 
+\color{red}{T^{-1}}T(T^{-1}(\vec{a})+ T^{-1}(\vec{b})) 
+& \text{ multiply } T^{-1} \text{ to both side} \\
+(T^{-1}\circ T)(T^{-1}(\vec{a}+\vec{b})) &= 
+(T^{-1}\circ T)(T^{-1}(\vec{a})+ T^{-1}(\vec{b})) \\
+
+(\mathbf{I}_{\mathbb{R^n}})(T^{-1}(\vec{a}+\vec{b})) &= 
+(\mathbf{I}_{\mathbb{R^n}})(T^{-1}(\vec{a})+ T^{-1}(\vec{b}))\\
+
+T^{-1}(\vec{a}+\vec{b}) &= 
+T^{-1}(\vec{a})+ T^{-1}(\vec{b})
+\end{align}
+$$
+
+
+
+* Linear transformation 的第二條也成立
+
+$$
+\begin{align}
+(T\circ T^{-1})(c\vec{a}) &= c\vec{a} & 
+\text{apply } \vec{a} = (T\circ T^{-1})\vec{a}\\
+&= c(T \circ T^{-1})(\vec{a}) \\\\
+
+(T\circ T^{-1})(c\vec{a})
+&= c(T \circ T^{-1})(\vec{a})\\
+T(T^{-1}(c\vec{a}))
+&= \color{red}{cT(T^{-1}(\vec{a})) = T(cT^{-1}(\vec{a}))}
+& \text{apply }T(c\vec{x}) = cT(\vec{x})
+\\
+T^{-1}(T(T^{-1}(c\vec{a})))&= T^{-1}(T(cT^{-1}(\vec{a})))
+& \text{ multiply } T^{-1} \text{ to both side} \\
+
+(T^{-1}\circ T)(T^{-1}(c\vec{a})) &= 
+(T^{-1}\circ T)(cT^{-1}(\vec{a}))\\
+
+T^{-1}(c\vec{a})&=
+cT^{-1}(\vec{a})
+\end{align}
+$$
+
+
+
+我們可以確立當 T 是 linear 時， inverse 也會是 linear
+
+而且是 linear 就代表，inverse function 也能使用 matrix vector product 來表示！
+$$
+\begin{align}
+T&: \text{ linear transformation & invertible}\\
+\Rightarrow\,\, T^{-1}&: \text{ also linear transformation }
+\rightarrow T^{-1}(\vec{x}) = \mathbf{A}^{-1}\vec{x}
+\end{align}
+$$
+
+
+更厲害的是我們知道 T 和 inverse 的組合會得到 identity matrix of n
+$$
+(T^{-1} \circ T)(\vec{x})  = 
+\mathbf{A}^{-1}\mathbf{A}\vec{x} = 
+\mathbf{I_\mathbb{R^n}}\vec{x}  = 
+\mathbf{I_n}\vec{x}
+\\
+(T \circ T^{-1})(\vec{x})  = 
+\mathbf{A}\mathbf{A}^{-1}\vec{x} = 
+\mathbf{I_\mathbb{R^n}}\vec{x}  = 
+\mathbf{I_n}\vec{x}
+$$
+所以 matrix A 和他的 inverse matrix 也會得到 identity matrix of n
+$$
+\mathbf{A}^{-1}\mathbf{A} = \mathbf{A}\mathbf{A}^{-1} = \mathbf{I_n}
+$$
+
+> 可以說是 matrix multiplication 中，交換律 (commutative) 的例外
+> $$
+> AB \neq BA
+> $$
+
+
+
+要怎麼求出 A 的 inserse matrix，我們留到下一章節
