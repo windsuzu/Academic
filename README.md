@@ -11,6 +11,7 @@
 * (05) inverse function, onto, one-to-one
 * (06) determine onto, one-to-one by transformation matrix
 * (07) invertibility, inverse function and matrix
+* (08) find inverse matrix and matrix determinant
 
 
 

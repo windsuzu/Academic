@@ -17,3 +17,5 @@
 * [Transformations and matrix multiplication](discrete-mathematics/transformations-and-matrix-multiplication.md)
 * [Inverse functions and transformations](discrete-mathematics/inverse-functions-and-transformations.md)
 
+* [Finding inverses and determinants](discrete-mathematics/finding-inverses-and-determinants.md)
+
