@@ -325,3 +325,194 @@ $$
 $$
 
 所以 C = invertible
+
+
+
+### n x n determinant
+
+- https://youtu.be/H9BWRYJNIv4
+
+學會 3 × 3 之後，來試試看 n × n 的格式
+$$
+\mathbf{A}_{n \times n } = 
+\begin{bmatrix} a_{11} & a_{12} &\cdots &a_{1n}\\
+a_{21}  &\cdots&&a_{2n} \\ \vdots& &\ddots&\vdots \\
+a_{n1}&\cdots&\cdots&a_{nn}
+\end{bmatrix}
+$$
+我們定義一個矩陣 Aij 代表 A 去掉 i row 和 j column 時的樣子
+$$
+\begin{align}
+\text{Def: }\mathbf{A}_{ij}=  &(n-1) \times (n-1) \text{ matrix you get}\\
+& \text{ if you "ignore" the } i^{th} \text{ row and the } j^{th} \text{ column of }\mathbf{A}
+
+\end{align}
+$$
+看起來很抽象所以舉個例子
+$$
+\begin{align}
+\mathbf{A} &= \begin{bmatrix} 1&2&4\\2&-1&3\\4&0&1\end{bmatrix} \\
+
+\mathbf{A}_{11}&= \begin{bmatrix} -1 &3\\0&1\end{bmatrix}, 
+\mathbf{A}_{12}= \begin{bmatrix} 2&3\\4&1\end{bmatrix},
+\mathbf{A}_{13}= \begin{bmatrix} 2&-1\\4&0\end{bmatrix} \\
+\det(\mathbf{A}) &=a_{11} \cdot \mathbf{A}_{11} - a_{12} \cdot \mathbf{A}_{12} + a_{13} \cdot \mathbf{A}_{13}
+\end{align}
+$$
+
+
+接著就可以來定義 n × n 的 determinant:
+$$
+\det(\mathbf{A}_{n \times n}) = a_{11} \det(\mathbf{A_{11}}) - a_{12} \det(\mathbf{A_{12}})  +  a_{13} \det(\mathbf{A_{13}})  - + \cdots \pm a_{1n}\det(A_{1n})
+$$
+這個定義就是個 **recursive definition** ，可以一直往下 solve 到 2 × 2 matrix
+
+
+
+我們來試個 4 × 4 的例子
+$$
+\left\lvert \begin{matrix} 1&2&3&4\\1&0&2&0\\0&1&2&3\\2&3&0&0\end{matrix}\right\rvert
+= 1\left\lvert \begin{matrix} 0&2&0\\1&2&3\\3&0&0 \end{matrix} \right\rvert
+- 2\left\lvert \begin{matrix} 1&2&0\\0&2&3\\2&0&0 \end{matrix} \right\rvert
++ 3\left\lvert \begin{matrix} 1&0&0\\0&1&3\\2&3&0 \end{matrix} \right\rvert
+- 4\left\lvert \begin{matrix} 1&0&2\\0&1&2\\2&3&0 \end{matrix} \right\rvert
+$$
+接著可以往下 solve 3 × 3 的矩陣，等於
+$$
+\begin{align}
+1 \left(
+0\left\lvert \begin{matrix} 2&3\\0&0 \end{matrix} \right\rvert 
+-2 \left\lvert \begin{matrix} 1&3\\3&0 \end{matrix} \right\rvert 
++0 \left\lvert \begin{matrix} 1&2\\3&0 \end{matrix} \right\rvert \right) \\ 
+
+-2 \left(
+1\left\lvert \begin{matrix} 2&3\\0&0 \end{matrix} \right\rvert 
+-2 \left\lvert \begin{matrix} 0&3\\2&0 \end{matrix} \right\rvert 
++0 \left\lvert \begin{matrix} 0&2\\2&0 \end{matrix} \right\rvert \right) \\
+
++3 \left(
+1\left\lvert \begin{matrix} 1&3\\3&0 \end{matrix} \right\rvert 
+-0 \left\lvert \begin{matrix} 0&3\\2&0 \end{matrix} \right\rvert 
++0 \left\lvert \begin{matrix} 0&1\\2&3 \end{matrix} \right\rvert \right) \\
+
+-4 \left(
+1\left\lvert \begin{matrix} 1&2\\3&0 \end{matrix} \right\rvert 
+-0 \left\lvert \begin{matrix} 0&2\\2&0 \end{matrix} \right\rvert 
++2 \left\lvert \begin{matrix} 0&1\\2&3 \end{matrix} \right\rvert \right)
+\end{align}
+$$
+接著就可以解掉 2 × 2 的矩陣了！
+$$
+\begin{align}
+1 \left(
+0+(-2)\times(-9)+0 \right) \\ 
+
+-2 \left(0+(-2)\times(-6)+0 \right)\\
+
++3 \left(1\times(-9)-0+0\right) \\
+
+-4 \left(
+1 \times(-6) -0 +2 \times(-2) \right)
+\end{align}
+$$
+得到答案
+$$
+\begin{align}
+&1(18) -2 (12)+3(-9)-4(-6-4)\\
+=\,\,&18 -24-27 +40 \\
+=\,\,& 7
+\end{align}
+$$
+也就是說，這個矩陣是 invertible 的
+
+
+
+### Determinants along other rows/cols
+
+* https://youtu.be/nu87kfmwNfU
+
+其實求 determinant 不是只能展開第一列，可以從任何一列或一行來展開
+
+也就是說我們可以選擇很多 0 的那一列 (行) 來展開
+
+
+
+只是我們要注意展開的正負符號
+$$
+\left\lvert \begin{matrix}+&-&+&-&\cdots\\-&+&-&+&\cdots\\+&-&+&-&\cdots\\-&+&-&+&\cdots\\\vdots&\vdots&\vdots&\vdots&\ddots\end{matrix}\right\rvert
+$$
+其實就是在前面加上 row 和 column 判斷
+$$
+(-1)^{\text{row} + \text{column}}
+$$
+在第一列第一行的就是正號
+$$
+(-1)^{1+1} = (-1)^2 = 1
+$$
+
+
+我們以上面的例子來做看看，我們展開第二列，因為有兩個 0
+$$
+\left\lvert \begin{matrix} 1&2&3&4\\
+\color{red}{1}&\color{red}{0}&\color{red}{2}&\color{red}{0}
+\\0&1&2&3\\2&3&0&0\end{matrix}\right\rvert = 
+-1 \left\lvert \begin{matrix} 2&3&4\\1&2&3\\3&0&0\end{matrix}\right\rvert
+-2 \left\lvert \begin{matrix} 1&2&4\\0&1&3\\2&3&0\end{matrix}\right\rvert
+$$
+再來第一個 3 × 3 當然展開第三列，第二個我們展開第二列好了
+$$
+= -1\left(3\times \left\lvert \begin{matrix} 3&4\\2&3\end{matrix}\right\rvert\right)
+-2 \left(1\left\lvert \begin{matrix} 1&4\\2&0\end{matrix}\right\rvert
+-3\left\lvert \begin{matrix} 1&2\\2&3\end{matrix}\right\rvert
+\right)
+$$
+我們比剛剛更快的還要求到 determinant
+$$
+\begin{align}
+&= ((-1) \times 3) - (2\times(-8 +3))\\
+&= (-3) - (-10) \\
+&=7
+\end{align}
+$$
+
+
+### Rule of Sarrus of determinants
+
+* https://youtu.be/4xFIi0JF2AM
+
+這邊還有一個方法可以用來求 3 × 3 的 determinant ，叫作 **Rule of Sarrus**
+
+我們先將一般的 3 × 3 determinant 求出
+$$
+\begin{align}
+\left\lvert \begin{matrix} a&b&c\\d&e&f\\g&h&i \end{matrix}\right\rvert &= 
+a \left\lvert \begin{matrix} e&f\\h&i \end{matrix}\right\rvert -
+b \left\lvert \begin{matrix} d&f\\g&i \end{matrix}\right\rvert +
+c \left\lvert \begin{matrix} d&e\\g&h \end{matrix}\right\rvert \\
+&= a(ei-fh) - b(di-fg) + c(dh-eg)\\
+&= aei - afh -bdi + bfg +cdh - ceg \\
+&= \color{blue}{(aei+bfg+cdh)} + \color{red}{(-afh-bdi-ceg)}
+\end{align}
+$$
+仔細觀察，等於我們將矩陣多畫出兩行，然後將紅色部分 + 藍色部分
+
+![](../.gitbook/assets/sarrus.jpg)
+
+一樣來舉個例子
+$$
+\mathbf{A} = \begin{bmatrix} 1&2&4\\2&-1&3\\4&0&-1\end{bmatrix}
+$$
+
+$$
+\begin{align}
+\det(\mathbf{A}) &= 
+\left\lvert \begin{matrix} 1&2&4\\2&-1&3\\4&0&-1\end{matrix}\right\rvert
+\begin{matrix} 1&2\\2&-1\\4&0\end{matrix} \\\\
+&= 
+\color{red}{(1 \cdot (-1) \cdot(-1)) + (2\cdot3\cdot4) + (4\cdot2\cdot0)} 
+\color{blue}{- (4\cdot(-1)\cdot4) - (1\cdot3\cdot0) - (2\cdot2\cdot-1)} \\
+&= 1+24+0 +16-0+4 \\
+&= 45
+\end{align}
+$$
+

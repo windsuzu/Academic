@@ -12,6 +12,7 @@
 * (06) determine onto, one-to-one by transformation matrix
 * (07) invertibility, inverse function and matrix
 * (08) find inverse matrix and matrix determinant
+* (09) determinants, rule of Sarrus
 
 
 
