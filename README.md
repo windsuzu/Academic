@@ -13,6 +13,7 @@
 * (07) invertibility, inverse function and matrix
 * (08) find inverse matrix and matrix determinant
 * (09) determinants, rule of Sarrus
+* (11) determinants properties
 
 
 
