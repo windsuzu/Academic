@@ -8,10 +8,10 @@
 
 ![](../.gitbook/assets/function_intro.jpg)
 $$
-\begin{align}
+\begin{aligned}
 &f: X \to Y \\
 &f(a) = b
-\end{align}
+\end{aligned}
 $$
 還有 Identity function
 
@@ -34,18 +34,18 @@ $$
 
 ![](../.gitbook/assets/function_inverse.jpg)
 $$
-\begin{align}
+\begin{aligned}
 f&:X\to Y\\
 f^{-1}&:Y\to X
-\end{align}
+\end{aligned}
 $$
 所以一個 function 可逆我們定義為
 $$
-\begin{align}
+\begin{aligned}
 f:X\to Y \text{ invertible } \iff &\text{there exists } f^{-1}:Y\to X\\
 &\text{s.t. }f^{-1} \circ f =  \mathbf{I_x} \\
 &\text{and } f\circ f^{-1} = \mathbf{I_y}
-\end{align}
+\end{aligned}
 $$
 為什麼 function 和 inverse function 的組合會變成 Identity function
 
@@ -71,26 +71,26 @@ h: Y \to X
 $$
 也就是說
 $$
-\begin{align}
+\begin{aligned}
 g\circ f = \mathbf{I_x}\\
 f\circ g = \mathbf{I_y}\\\\
 
 h\circ f = \mathbf{I_x}\\
 f\circ h = \mathbf{I_y}\\
 
-\end{align}
+\end{aligned}
 $$
 現在我們將 g 表示為跟 identity function 的 composition
 
 沒有什麼問題，等於 g 讓 Y 變到 X 再變到 X 一樣
 $$
-\begin{align}
+\begin{aligned}
 g &= \mathbf{I_x}\circ g\\
 &=  (h\circ f)\circ g \\
 &= h \circ (f \circ g) \\
 &= h\circ \mathbf{I_y} \\
 &= h
-\end{align}
+\end{aligned}
 $$
 第二和三行：Ix 等於 h 和 f 的 composition ，而我們學過 transformation 是有 associative 的
 
@@ -130,10 +130,10 @@ $$
 
 我們將這個式子展開，發現 f 和 S 可以表示為 Iy ，因為先從 Y 到 X 再回 Y
 $$
-\begin{align}f(S(b)) &= (f \circ S)(b)\\
+\begin{aligned}f(S(b)) &= (f \circ S)(b)\\
 &= \mathbf{I_y} b\\
 &= b
-\end{align}
+\end{aligned}
 $$
 先把這個記起來，我們反過來看另外一邊
 
@@ -147,11 +147,11 @@ S(f(a)) = \text{ the unique solution to } f(x) = f(a) \Rightarrow x = a
 $$
 我們也將這個式子展開
 $$
-\begin{align}
+\begin{aligned}
 S(f(a)) &= (S \circ f)(a)\\
 &= \mathbf{I_x}a\\
 &= a
-\end{align}
+\end{aligned}
 $$
 我們發現 f 和 S 正是 invertible 的結果
 $$
@@ -215,11 +215,11 @@ $$
 
 所以為了滿足 f is invertible， f 必須要滿足 surjective 以及 injective 兩者
 $$
-\begin{align}
+\begin{aligned}
 f:X\to Y \text{ invertible} \iff
 &f \text{ is surjective & injective} \\
 &f \text{ is onto & one-to-one}
-\end{align}
+\end{aligned}
 $$
 
 
@@ -234,37 +234,37 @@ $$
 
 ![](../.gitbook/assets/matrix_transformation.jpg)
 $$
-\begin{align}
+\begin{aligned}
 &\vec{x} \in \mathbb{R}^n \\
 &T(\vec{x}) = \mathbf{A}\vec{x}  = \vec{b} \in \mathbb{R}^m
-\end{align}
+\end{aligned}
 $$
 
 
 用 matrix 來表示 transformation 時的 onto 定義為
 $$
-\begin{align}
+\begin{aligned}
 &\text{for every }\vec{b} \in \mathbb{R}^m \\
 &\exist \text{ at least one solution } \vec{x} \text{ to } \mathbf{A}\vec{x} = \vec{b}\\
 &\text{where } \vec{x} \in \mathbb{R}^n
-\end{align}
+\end{aligned}
 $$
 我們知道 Ax 相乘其實就是 A 的 linear combination
 
 而這個 combination 將會生成任意的 b in Rm
 $$
-\begin{align}
+\begin{aligned}
 &\mathbf{A} = \begin{bmatrix} \vec{a_1}&\vec{a_2}&\cdots&\vec{a_n} \end{bmatrix},
 \vec{x} = \begin{bmatrix}x_1\\x_2\\\vdots\\x_n\end{bmatrix} \\
 &\mathbf{A}\vec{x} = x_1\vec{a_1} + x_2\vec{a_2} + \cdots + x_n\vec{a_n}
-\end{align}
+\end{aligned}
 $$
 所以要能夠滿足 onto Rm ，代表 A 的 column space 必須要能夠 span Rm
 $$
-\begin{align}
+\begin{aligned}
 span(\vec{a_1},\vec{a_2}, \cdots, \vec{a_n} ) &= \mathbb{R}^m \\
 C(\mathbf{A}) &= \mathbb{R}^m
-\end{align}
+\end{aligned}
 $$
 若 Ax 沒有 span 整個 Rm，代表沒有 onto
 
@@ -286,18 +286,18 @@ $$
 
 **有 onto**，代表 rref(A) 必須在每一個 row 都出現 pivot entry，也就是每一行都是 pivot column
 $$
-\begin{align}
+\begin{aligned}
 T \text{ is Onto} &\iff C(\mathbf{A}) = \mathbb{R}^m\\
 &\iff m \text{ pivot entries} \\
 &\iff m \text{ pivot columns} \\
 &\iff \text{Rank}(\mathbf{A}) = \text{dim}(C(\mathbf{A})) = m
-\end{align}
+\end{aligned}
 $$
 
 
 在矩陣上就是 A 變到 rref(A) 之後，每一個 row 都有一個 leading one
 $$
-\begin{align}
+\begin{aligned}
 &\mathbf{A} = &&\begin{bmatrix} \vec{a_1}&\vec{a_2}&\cdots&\vec{a_m}\end{bmatrix}\\\\
 &\downarrow \text{rref}(\mathbf{A}) &&\downarrow\\\\
 &\mathbf{R} = &&\begin{bmatrix} 
@@ -305,7 +305,7 @@ $$
 0&1_2&\cdots&0\\
 0&0&\cdots&1_m\\
 \end{bmatrix} \Rightarrow \text{span}(\mathbb{R}^m) \Rightarrow \text{Onto}
-\end{align}
+\end{aligned}
 $$
 
 
@@ -333,7 +333,7 @@ $$
 
 我們來看一個 linear transformation
 $$
-\begin{align}
+\begin{aligned}
 &T: \mathbb{R}^2 \to \mathbb{R}^2 \\
 &T(\vec{x}) = \begin{bmatrix} 1&-3\\-1&3 \end{bmatrix}
 \begin{bmatrix} x_1\\x_2 \end{bmatrix} =
@@ -341,7 +341,7 @@ $$
 \Rightarrow 
 &\begin{bmatrix} \begin{array}{cc|c} 1 & -3 &b_1 \\-1&3&b_2 \end{array} \end{bmatrix} =
 \begin{bmatrix} \begin{array}{cc|c} 1 & -3 &b_1 \\0&0&b_1+b_2 \end{array} \end{bmatrix}
-\end{align}
+\end{aligned}
 $$
 我們發現這個 transformation 已經不可能是 onto
 
@@ -390,21 +390,21 @@ $$
 
 這時候 x 代表的就是 null space of A 了 ! 在這個例子就是 [3, 1] 乘以任何 scalar
 $$
-\begin{align}
+\begin{aligned}
 &\mathbf{A}\vec{x} = \vec{0} \\
 
 &\vec{x} = 
 \begin{bmatrix} 0\\0 \end{bmatrix}+
  x_2 \begin{bmatrix} 3\\1 \end{bmatrix} \in N(\mathbf{A})
-\end{align}
+\end{aligned}
 $$
 所以我們可以把 solution set 統整為某個 particular vector 和 null space 的組合
 $$
-\begin{align}
+\begin{aligned}
 &\text{Assuming } \mathbf{A}\vec{x} = \vec{b} \text{ has a solution} \\
 &\text{The solution set = }
 \begin{Bmatrix} \vec{x_p} \end{Bmatrix}\cup N(\mathbf{A})
-\end{align}
+\end{aligned}
 $$
 
 > 會在之後證明
@@ -442,10 +442,10 @@ $$
 $$
 我們會得到 particular solution + homogeneous solution
 $$
-\begin{align}
+\begin{aligned}
 \vec{x} &= \vec{b}' + a\vec{n_1} + b\vec{n_2} + \cdots + c\vec{n} \\
 &= \vec{x_p} + \vec{x_h}
-\end{align}
+\end{aligned}
 $$
 
 
@@ -458,11 +458,11 @@ $$
 1. 將 xp + xh 帶入 A transformation，果然為 x 的解
 
 $$
-\begin{align}
+\begin{aligned}
 &\text{Is }\vec{x_p} + \vec{x_h} \text{ a solution to }\mathbf{A}\vec{x} = \vec{b} \text{ ?} \\\\
 &\mathbf{A}(\vec{x_p} + \vec{x_h}) =
 \mathbf{A}\vec{x_p} + \mathbf{A}\vec{x_h} = \vec{b}+\vec{0} = \vec{b}
-\end{align}
+\end{aligned}
 $$
 
 > 因為 A*xp 為 Ax = b 的特定解，所以為 b 向量
@@ -474,13 +474,13 @@ $$
 2. 利用任何 x 來減掉 xp ，最後也可以導出 xp + xh 為 x 的解
 
 $$
-\begin{align}
+\begin{aligned}
 &\text{Is any solution }\vec{x} \text{ to }\mathbf{A}\vec{x}=\vec{b} 
 \text{ takes the form } \vec{x} = \vec{x_p} + \vec{x_h} \text{ ?} \\\\
 
 &\text{Assume }\vec{x} \text{ is any solution to }\mathbf{A}\vec{x} = \vec{b}\\
 &\mathbf{A}(\vec{x} - \vec{x_p}) = \mathbf{A}\vec{x} - \mathbf{A}\vec{x_p} = \vec{b} - \vec{b} = \vec{0}
-\end{align}
+\end{aligned}
 $$
 
 也就是說
@@ -494,12 +494,12 @@ $$
 
 證明完所有 x 皆可以化為 particular solution + homogeneous solution 後，我們來看 one-to-one
 $$
-\begin{align}
+\begin{aligned}
 \text{Under one-to-one condition:}\\
 \text{Any solution} &= 
 \begin{Bmatrix}\vec{x_p} + \vec{x_h}\mid \vec{x_h} \in N(\mathbf{A}) \end{Bmatrix} \text{ can only be 1 solution}\\
 &\Rightarrow N(\mathbf{A}) = \begin{Bmatrix} \vec{0} \end{Bmatrix}
-\end{align}
+\end{aligned}
 $$
 也就是說要符合 one-to-one 的話，Ax = 0 (null space) 只能有 0
 $$
@@ -514,13 +514,13 @@ x_1, x_2, \cdots, x_n = 0
 $$
 好像似曾相識，代表在 one-to-one 時：
 $$
-\begin{align}
+\begin{aligned}
 C(\mathbf{A}) &= \text{span}(\vec{a_1}, \vec{a_2}, \cdots, \vec{a_n})\\
 &\Rightarrow \vec{a_1}, \vec{a_2}, \cdots, \vec{a_n} \text{ are linear independence}\\
 &\Rightarrow \vec{a_1}, \vec{a_2}, \cdots, \vec{a_n} \text{ are a basis for } C(\mathbf{A}) \\
 &\Rightarrow \text{dim}(C(\mathbf{A})) = n \\
 &\Rightarrow \text{Rank}(\mathbf{A}) = n
-\end{align}
+\end{aligned}
 $$
 
 
@@ -546,12 +546,12 @@ T(\vec{x}) = \mathbf{A} \vec{x} \,\, ( \mathbf{A} \text{ is } m \times n)
 $$
 我們要觀察他有沒有同時滿足 onto 和 one-to-one
 $$
-\begin{align}
+\begin{aligned}
 \text{If } T \text{ is invertible: }\\
 \text{onto } &&\Rightarrow \text{Rank}(\mathbf{A})= m \\ 
 \text{one-to-one } &&\Rightarrow \text{Rank}(\mathbf{A}) = n
 
-\end{align}
+\end{aligned}
 $$
 所以 T 要為 invertible，代表他的 matrix A 必須要
 $$
@@ -570,11 +570,11 @@ $$
 $$
 所以我們得到結論
 $$
-\begin{align}
+\begin{aligned}
 &T:\mathbb{R}^n\to \mathbb{R}^m \\
 &T(\vec{x}) = \mathbf{A}\vec{x} \mid \mathbf{A}_{m \times n }\\
 &T \text{ is invertible only if } \text{rref}(\mathbf{A}) = \mathbf{I_n}
-\end{align}
+\end{aligned}
 $$
 
 
@@ -591,11 +591,11 @@ $$
 
 ![](../.gitbook/assets/invertible_transformation.jpg)
 $$
-\begin{align}
+\begin{aligned}
 T \text{ is invertible} \iff& \exist \text{ some }T^{-1} \text{ s.t.}\\
 &T^{-1} \circ T = \mathbf{I_{\mathbb{R}^n}} \\
 &T \circ T^{-1} = \mathbf{I_{\mathbb{R}^n}}
-\end{align}
+\end{aligned}
 $$
 
 
@@ -604,7 +604,7 @@ $$
 * Linear transformation 的第一條成立
 
 $$
-\begin{align}
+\begin{aligned}
 (T \circ T^{-1})(\vec{a} + \vec{b}) &= T(T^{-1}(\vec{a}+\vec{b})) \\
 &= T(\color{red}{T^{-1}(\vec{a})}) + T(\color{red}{T^{-1}(\vec{b})}) \\
 &= T(T^{-1}(\vec{a})+ T^{-1}(\vec{b})) 
@@ -621,7 +621,7 @@ $$
 
 T^{-1}(\vec{a}+\vec{b}) &= 
 T^{-1}(\vec{a})+ T^{-1}(\vec{b})
-\end{align}
+\end{aligned}
 $$
 
 
@@ -629,7 +629,7 @@ $$
 * Linear transformation 的第二條也成立
 
 $$
-\begin{align}
+\begin{aligned}
 (T\circ T^{-1})(c\vec{a}) &= c\vec{a} & 
 \text{apply } \vec{a} = (T\circ T^{-1})\vec{a}\\
 &= c(T \circ T^{-1})(\vec{a}) \\\\
@@ -648,7 +648,7 @@ T^{-1}(T(T^{-1}(c\vec{a})))&= T^{-1}(T(cT^{-1}(\vec{a})))
 
 T^{-1}(c\vec{a})&=
 cT^{-1}(\vec{a})
-\end{align}
+\end{aligned}
 $$
 
 
@@ -657,11 +657,11 @@ $$
 
 而且是 linear 就代表，inverse function 也能使用 matrix vector product 來表示！
 $$
-\begin{align}
+\begin{aligned}
 T&: \text{ linear transformation & invertible}\\
 \Rightarrow\,\, T^{-1}&: \text{ also linear transformation }
 \rightarrow T^{-1}(\vec{x}) = \mathbf{A}^{-1}\vec{x}
-\end{align}
+\end{aligned}
 $$
 
 

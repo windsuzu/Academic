@@ -10,13 +10,13 @@
 
 我們現在有 Rn, Rm, Rl 空間，以及 S 和 T 兩個 linear transformation function
 $$
-\begin{align}
+\begin{aligned}
 &S: X \to Y \mid X \subseteq \mathbb{R}^n, Y \subseteq \mathbb{R}^m \\
 &S(\vec{x}) = \mathbf{A}\vec{x} \mid \mathbf{A} \text{ is } m \times n \\\\
 
 &T: Y \to Z \mid Y \subseteq \mathbb{R}^m, Z \subseteq \mathbb{R}^l \\
 &T(\vec{x}) = \mathbf{B}\vec{x} \mid \mathbf{B} \text{ is } l \times m
-\end{align}
+\end{aligned}
 $$
 
 
@@ -32,23 +32,23 @@ $$
 * 條件一 OK
 
 $$
-\begin{align}
+\begin{aligned}
 T \circ S(\vec{x} + \vec{y}) &= T(S(\vec{x}+\vec{y}))\\
 &= T(S(\vec{x})+S(\vec{y}))\\
 &= T(S(\vec{x})) + T(S(\vec{y}))\\
 &= T \circ S(\vec{x}) + T \circ S(\vec{y})
-\end{align}
+\end{aligned}
 $$
 
 * 條件二 OK
 
 $$
-\begin{align}
+\begin{aligned}
 T \circ S(c\vec{x} ) &= T(S(c\vec{x})) \\
 &= T(cS(\vec{x})) \\
 &= cT(S(\vec{x})) \\
 &= c T \circ S(\vec{x})
-\end{align}
+\end{aligned}
 $$
 
 所以我們的確可以把 S 和 T 兩個 transformation 合併，用一個 matrix 來表達
@@ -114,7 +114,7 @@ $$
 $$
 所以 BA 會等於
 $$
-\begin{align}
+\begin{aligned}
 \mathbf{BA} &= \begin{bmatrix} 
 \mathbf{B}(\vec{a_1})&
 \mathbf{B}(\vec{a_2})&
@@ -133,7 +133,7 @@ $$
 \begin{bmatrix} 
 5&2&0&6\\-1&1&-2&4
 \end{bmatrix} 
-\end{align}
+\end{aligned}
 $$
 
 > 更詳細的運算過程可以去看影片
@@ -166,13 +166,13 @@ F(\vec{x}) = \mathbf{C}\vec{x}\\
 $$
 我們將轉移到 F 後，再轉移到 G ，最終轉移到 H，可以這樣寫
 $$
-\begin{align}
+\begin{aligned}
 ((H\circ G) \circ F)(\vec{x}) &=
 (H\circ G)(F(\vec{x})) \\&=
 H(G(F(\vec{x})))\\&=
 H(G\circ F(\vec{x})) \\&=
 (H\circ (G \circ F))(\vec{x}) 
-\end{align}
+\end{aligned}
 $$
 結果我們發現
 $$
@@ -201,7 +201,7 @@ $$
 $$
 試著乘乘看
 $$
-\begin{align}
+\begin{aligned}
 \mathbf{A}(\mathbf{B+C}) &= \mathbf{A}
 \begin{bmatrix}\vec{b_1}+\vec{c_1}& \vec{b_2}+\vec{c_2} & \cdots & \vec{b_n}+\vec{c_n}\end{bmatrix}\\
 &=
@@ -213,7 +213,7 @@ $$
 \begin{bmatrix}\mathbf{A}\vec{c_1}& \mathbf{A}\vec{c_2} & \cdots & \mathbf{A}\vec{c_n}\end{bmatrix} \\
 &=
 \mathbf{AB} + \mathbf{AC}
-\end{align}
+\end{aligned}
 $$
 所以**矩陣相乘是有分配律的 (HAS Distributive)**
 

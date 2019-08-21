@@ -39,7 +39,7 @@ $$
 $$
 現在我們將第二列元素都乘上 k 得到 A'， A' 的 determinant 會等於
 $$
-\begin{align}
+\begin{aligned}
 \lvert \mathbf{A'} \rvert &= 
 -kd\left\lvert\begin{matrix} b&c\\h&i \end{matrix}\right\rvert
 +ke\left\lvert\begin{matrix} a&c\\g&i \end{matrix}\right\rvert
@@ -48,7 +48,7 @@ $$
 +e\left\lvert\begin{matrix} a&c\\g&i \end{matrix}\right\rvert
 -f\left\lvert\begin{matrix} a&b \\ g&h\end{matrix}\right\rvert\right) \\
 &= k \lvert \mathbf{A}\rvert
-\end{align}
+\end{aligned}
 $$
 我們試著將他 generalize 成 n × n 矩陣
 $$
@@ -62,18 +62,18 @@ a_{n1} & a_{n2} & \cdots &a_{nn}
 $$
 假設我們從第 i 列展開，可以得到
 $$
-\begin{align}
+\begin{aligned}
 \det(\mathbf{A}) &= 
 (-1)^{i+1}a_{i1}\det(\mathbf{A}_{i1}) +
 (-1)^{i+2}a_{i2}\det(\mathbf{A}_{i2}) +
 \cdots +
 (-1)^{i+n}a_{in}\det(\mathbf{A}_{in}) \\
 &= \sum_{j=1}^{j=n}\left((-1)^{i+j}a_{ij}\det(\mathbf{A}_{ij}\right)
-\end{align}
+\end{aligned}
 $$
 現在第 i 列全部乘以 k 了，新的 A' 的 determinant 等於
 $$
-\begin{align}
+\begin{aligned}
 \det(\mathbf{A'}) &= 
 (-1)^{i+1}\color{red}{k}a_{i1}\det(\mathbf{A}_{i1}) +
 (-1)^{i+2}\color{red}{k}a_{i2}\det(\mathbf{A}_{i2}) +
@@ -82,7 +82,7 @@ $$
 &= \sum_{j=1}^{j=n}\left((-1)^{i+j}\color{red}{k}a_{ij}\det(\mathbf{A}_{ij}\right) \\
 &= \color{red}{k}\sum_{j=1}^{j=n}\left((-1)^{i+j}a_{ij}\det(\mathbf{A}_{ij}\right) \\
 &= \color{red}{k}\det(\mathbf{A})
-\end{align}
+\end{aligned}
 $$
 現在我們可以確定，當你對 matrix 的 n row 執行 multiplication by k
 
@@ -104,14 +104,14 @@ $$
 $$
 
 $$
-\begin{align}
+\begin{aligned}
 \det(\mathbf{X}) &= ax_2-bx_1 \\
 \det(\mathbf{Y}) &= ay_2-by_1 \\
 \det(\mathbf{Z}) &= a(x_2+y_2)-b(x_1+y_1) \\
 &=ax_2+ay_2-bx_1-by_1 \\
 &= (ax_2-bx_1)+(ay_2-by_1)\\
 &= \det(\mathbf{X}) + \det(\mathbf{Y})
-\end{align}
+\end{aligned}
 $$
 
 看起來是只有某一列不同，其他列完全相同的時候，他們的 determinant 才會有所關聯
@@ -142,12 +142,12 @@ a_{n1} &a_{n2} &\cdots& a_{nn}
 $$
 各別求出他們的 determinants
 $$
-\begin{align}
+\begin{aligned}
 \det(\mathbf{X}) = \sum_{j=1}^n(-1)^{i+j}x_j\det(\mathbf{A}_{ij}) \\
 \det(\mathbf{Y}) = \sum_{j=1}^n(-1)^{i+j}y_j\det(\mathbf{A}_{ij}) \\
 \det(\mathbf{Z}) = \sum_{j=1}^n(-1)^{i+j}(x_j +y_j)\det(\mathbf{A}_{ij}) 
 
-\end{align}
+\end{aligned}
 $$
 我們得知此時
 $$
@@ -170,10 +170,10 @@ $$
 
 我們先了解，當 matrix 交換任意兩列時，新產生的 matrix 的 determinant 將加上負號
 $$
-\begin{align}
+\begin{aligned}
 \mathbf{A} &= \begin{bmatrix} a&b\\c&d\end{bmatrix}, \det(\mathbf{A}) = x \\ 
 \mathbf{A'} &= \begin{bmatrix} c&d\\a&b\end{bmatrix}, \det(\mathbf{A'}) = -x \\
-\end{align}
+\end{aligned}
 $$
 
 
@@ -200,11 +200,11 @@ $$
 
 所以 S determinant 等於 A determinant 又等於負的 A determinant
 $$
-\begin{align}
+\begin{aligned}
 &\text{if row }i = \text{row }j \\ 
 & \mathbf{S} = \mathbf{A} \Rightarrow 
 \det(\mathbf{S}) = \det(\mathbf{A}) = -\det(\mathbf{A})
-\end{align}
+\end{aligned}
 $$
 什麼時候才會滿足負正相等，只有 0 的時候
 $$
@@ -215,11 +215,11 @@ $$
 我們可以統整一下
 $$
 \text{matrix invertible} \iff \text{rref is } \mathbf{I_n} \\
-\begin{align}
+\begin{aligned}
 \text{duplicate rows }&\Rightarrow \text{never get rref to } \mathbf{I_n} \\
 &\Rightarrow \text{not invertible} \\
 &\Rightarrow \det = 0
-\end{align}
+\end{aligned}
 $$
 
 
@@ -257,11 +257,11 @@ $$
 $$
 結果得到兩個 row 相同，兩個 row 相同意味著 det = 0
 $$
-\begin{align}
+\begin{aligned}
 \det(\mathbf{B}) &=
 \det\left(\begin{bmatrix} \vec{r_1}\\  \vec{r_2}\\\vdots \\ \vec{r_i} \\\vec{r_j}\\\vdots\\\vec{r_n}\end{bmatrix}\right) - 0\\
 &= \det(\mathbf{A})
-\end{align}
+\end{aligned}
 $$
 所以，當 matrix 做了任意的 row operation 時，他的 determinant 是不變的 !
 

@@ -26,7 +26,7 @@ T(\vec{x}) = \mathbf{S_1} \vec{x} \\
 $$
 也就是說，剛剛 A 在消去 row 2 和 row 3 的動作，其實就是
 $$
-\begin{align} 
+\begin{aligned} 
 &\begin{bmatrix} 
 \mathbf{S}\begin{bmatrix} 1\\-1\\1\end{bmatrix}&
 \mathbf{S}\begin{bmatrix} -1\\2\\1\end{bmatrix}&
@@ -36,7 +36,7 @@ $$
 = &\begin{bmatrix} 1&0&0\\1&1&0\\-1&0&1\end{bmatrix}
 \begin{bmatrix} 1&-1&-1\\-1&2&3\\1&1&4\end{bmatrix}
 =\,\,\begin{bmatrix} 1&-1&-1\\0&1&2\\0&2&5\end{bmatrix}
-\end{align}
+\end{aligned}
 $$
 
 
@@ -84,10 +84,10 @@ $$
 
 可以發現原來 S3 × S2 × S1 的 Product 就是 A 的 inverse matrix
 $$
-\begin{align}
+\begin{aligned}
 \mathbf{S_3S_2S_1A} &= \mathbf{I}\\
 \mathbf{A^{-1}A}&= \mathbf{I}
-\end{align}
+\end{aligned}
 $$
 
 
@@ -95,13 +95,13 @@ $$
 
 上面這樣做只是為了了解尋找 inverse matrix 的原理而已
 $$
-\begin{align}
+\begin{aligned}
 &\mathbf{A}&&\mathbf{I}\\
 &\mathbf{S_1A}&&\mathbf{S_1I}\\
 &\mathbf{S_2S_1A}&&\mathbf{S_2S_1I}\\
 &\mathbf{S_3S_2S_1A}&&\mathbf{S_3S_2S_1I}\\
 \Rightarrow\,\, &\mathbf{I}&&\mathbf{A^{-1}}\\
-\end{align}
+\end{aligned}
 $$
 我們同時對 matrix A 和 identity matrix 做同樣的 row operation transformation
 
@@ -198,13 +198,13 @@ T_2\left(\begin{bmatrix} c_1 \\ c_2 \end{bmatrix}\right) =
 $$
 第二列保留不變，第一列試著將 b 消為 0
 $$
-\begin{align}
+\begin{aligned}
 \begin{bmatrix} \begin{array}{cc|cc} a&b&1&0\\0&ad-bc&-c&a\end{array}\end{bmatrix}
 &\rightarrow
 \begin{bmatrix} \begin{array}{cc|cc} a(ad-bc)&(b)(ad-bc)-(ad-bc)(b)&ad-bc+bc&-ab\\0&ad-bc&-c&a\end{array}\end{bmatrix}\\
 &\rightarrow
 \begin{bmatrix} \begin{array}{cc|cc} a(ad-bc)&0&ad&-ab\\0&ad-bc&-c&a\end{array}\end{bmatrix}
-\end{align}
+\end{aligned}
 $$
 
 
@@ -215,14 +215,14 @@ T_3\left(\begin{bmatrix} c_1 \\ c_2 \end{bmatrix}\right) =
 $$
 於是我們得到
 $$
-\begin{align}
+\begin{aligned}
 \begin{bmatrix} \begin{array}{cc|cc} a(ad-bc)&0&ad&-ab\\0&ad-bc&-c&a\end{array}\end{bmatrix}
 &\rightarrow
 \begin{bmatrix} \begin{array}{cc|cc} 1&0&\frac{ad}{a(ad-bc)}&\frac{-ab}{a(ad-bc)}\\0&1&-\frac{c}{ad-bc}&\frac{a}{ad-bc}\end{array}\end{bmatrix} \\
 &\rightarrow
 \begin{bmatrix} \begin{array}{cc|cc} 1&0&\frac{d}{ad-bc}&\frac{-b}{ad-bc}\\0&1&-\frac{c}{ad-bc}&\frac{a}{ad-bc}\end{array}\end{bmatrix} = 
 \begin{bmatrix} \mathbf{I} \mid \mathbf{A^{-1}} \end{bmatrix}
-\end{align}
+\end{aligned}
 $$
 我們可以將 inverse matrix 進一步化簡，每個分母都是 ad - bc ，我們將他提出
 $$
@@ -313,7 +313,7 @@ $$
 $$
 
 $$
-\begin{align}
+\begin{aligned}
 \det(\mathbf{C}) &= 
 1\left\lvert\begin{matrix}-1&-3\\0&1\end{matrix}\right\rvert -
 2\left\lvert\begin{matrix}2&3\\4&1\end{matrix}\right\rvert +
@@ -321,7 +321,7 @@ $$
 &= 1 \cdot (-1) - 2\cdot(-10)+4\cdot(4) \\
 &= -1 +20 + 16 \\
 &= 35
-\end{align}
+\end{aligned}
 $$
 
 所以 C = invertible
@@ -342,22 +342,22 @@ a_{n1}&\cdots&\cdots&a_{nn}
 $$
 我們定義一個矩陣 Aij 代表 A 去掉 i row 和 j column 時的樣子
 $$
-\begin{align}
+\begin{aligned}
 \text{Def: }\mathbf{A}_{ij}=  &(n-1) \times (n-1) \text{ matrix you get}\\
 & \text{ if you "ignore" the } i^{th} \text{ row and the } j^{th} \text{ column of }\mathbf{A}
 
-\end{align}
+\end{aligned}
 $$
 看起來很抽象所以舉個例子
 $$
-\begin{align}
+\begin{aligned}
 \mathbf{A} &= \begin{bmatrix} 1&2&4\\2&-1&3\\4&0&1\end{bmatrix} \\
 
 \mathbf{A}_{11}&= \begin{bmatrix} -1 &3\\0&1\end{bmatrix}, 
 \mathbf{A}_{12}= \begin{bmatrix} 2&3\\4&1\end{bmatrix},
 \mathbf{A}_{13}= \begin{bmatrix} 2&-1\\4&0\end{bmatrix} \\
 \det(\mathbf{A}) &=a_{11} \cdot \mathbf{A}_{11} - a_{12} \cdot \mathbf{A}_{12} + a_{13} \cdot \mathbf{A}_{13}
-\end{align}
+\end{aligned}
 $$
 
 
@@ -379,7 +379,7 @@ $$
 $$
 接著可以往下 solve 3 × 3 的矩陣，等於
 $$
-\begin{align}
+\begin{aligned}
 1 \left(
 0\left\lvert \begin{matrix} 2&3\\0&0 \end{matrix} \right\rvert 
 -2 \left\lvert \begin{matrix} 1&3\\3&0 \end{matrix} \right\rvert 
@@ -399,11 +399,11 @@ $$
 1\left\lvert \begin{matrix} 1&2\\3&0 \end{matrix} \right\rvert 
 -0 \left\lvert \begin{matrix} 0&2\\2&0 \end{matrix} \right\rvert 
 +2 \left\lvert \begin{matrix} 0&1\\2&3 \end{matrix} \right\rvert \right)
-\end{align}
+\end{aligned}
 $$
 接著就可以解掉 2 × 2 的矩陣了！
 $$
-\begin{align}
+\begin{aligned}
 1 \left(
 0+(-2)\times(-9)+0 \right) \\ 
 
@@ -413,15 +413,15 @@ $$
 
 -4 \left(
 1 \times(-6) -0 +2 \times(-2) \right)
-\end{align}
+\end{aligned}
 $$
 得到答案
 $$
-\begin{align}
+\begin{aligned}
 &1(18) -2 (12)+3(-9)-4(-6-4)\\
 =\,\,&18 -24-27 +40 \\
 =\,\,& 7
-\end{align}
+\end{aligned}
 $$
 也就是說，這個矩陣是 invertible 的
 
@@ -468,11 +468,11 @@ $$
 $$
 我們比剛剛更快的還要求到 determinant
 $$
-\begin{align}
+\begin{aligned}
 &= ((-1) \times 3) - (2\times(-8 +3))\\
 &= (-3) - (-10) \\
 &=7
-\end{align}
+\end{aligned}
 $$
 
 
@@ -484,7 +484,7 @@ $$
 
 我們先將一般的 3 × 3 determinant 求出
 $$
-\begin{align}
+\begin{aligned}
 \left\lvert \begin{matrix} a&b&c\\d&e&f\\g&h&i \end{matrix}\right\rvert &= 
 a \left\lvert \begin{matrix} e&f\\h&i \end{matrix}\right\rvert -
 b \left\lvert \begin{matrix} d&f\\g&i \end{matrix}\right\rvert +
@@ -492,7 +492,7 @@ c \left\lvert \begin{matrix} d&e\\g&h \end{matrix}\right\rvert \\
 &= a(ei-fh) - b(di-fg) + c(dh-eg)\\
 &= aei - afh -bdi + bfg +cdh - ceg \\
 &= \color{blue}{(aei+bfg+cdh)} + \color{red}{(-afh-bdi-ceg)}
-\end{align}
+\end{aligned}
 $$
 仔細觀察，等於我們將矩陣多畫出兩行，然後將紅色部分 + 藍色部分
 
@@ -504,7 +504,7 @@ $$
 $$
 
 $$
-\begin{align}
+\begin{aligned}
 \det(\mathbf{A}) &= 
 \left\lvert \begin{matrix} 1&2&4\\2&-1&3\\4&0&-1\end{matrix}\right\rvert
 \begin{matrix} 1&2\\2&-1\\4&0\end{matrix} \\\\
@@ -513,6 +513,6 @@ $$
 \color{blue}{- (4\cdot(-1)\cdot4) - (1\cdot3\cdot0) - (2\cdot2\cdot-1)} \\
 &= 1+24+0 +16-0+4 \\
 &= 45
-\end{align}
+\end{aligned}
 $$
 

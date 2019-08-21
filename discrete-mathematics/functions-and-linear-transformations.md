@@ -77,28 +77,28 @@ $$
 
 $$
 T: \mathbb{R}^n \to \mathbb{R}^m \\
-\begin{align}
+\begin{aligned}
 \text{Linear transformation } \iff &\vec{a}, \vec{b} \in\mathbb{R}^n\\
 &T(\vec{a}+\vec{b}) = T(\vec{a})+T(\vec{b})\\
 &T(c\vec{a}) = cT(\vec{a}) \mid c\in \mathbb{R}
 
-\end{align}
+\end{aligned}
 $$
 
 舉個符合 linear transformation 的 T function
 $$
-\begin{align}
+\begin{aligned}
 &T: \mathbb{R}^2 \to \mathbb{R}^2\\
 &T(x_1, x_2) = (x_1+x_2, 3x_1) \\\\
 &\vec{a} = (a_1, a_2)\\
 &\vec{b} = (b_1, b_2)\\
-\end{align}
+\end{aligned}
 $$
 
 1. T(a + b) = T(a) + T(b)
 
 $$
-\begin{align}
+\begin{aligned}
 &\vec{a} + \vec{b} = (a_1+b_1, a_2+b_2)\\
 &\color{red}{T(\vec{a}+\vec{b})} = ((a_1+b_1)+(a_2+b_2), 3a_1+3b_1)\\\\
 
@@ -108,7 +108,7 @@ $$
 
 &T(\vec{a}+\vec{b}) = T(\vec{a})+T(\vec{b})
 
-\end{align}
+\end{aligned}
 $$
 
 2. T(ca) = cT(a)
@@ -121,12 +121,12 @@ $$
 
 另外舉例一個不符合 linear transformation 的 T function
 $$
-\begin{align}
+\begin{aligned}
 &T: \mathbb{R}^n \to \mathbb{R}^n\\
 &T\left(\begin{bmatrix}x_1\\x_2\end{bmatrix}\right) = \begin{bmatrix} x_1^2\\0\end{bmatrix}\\\\
 
 &\vec{a} = \begin{bmatrix}a_1\\a_2\end{bmatrix} \in \mathbb{R}^n
-\end{align}
+\end{aligned}
 $$
 
 這時我們試著 apply linear transformation 的第二個條件，很明顯他不符合第二項條件
@@ -240,7 +240,7 @@ $$
 * 加法成立
 
 $$
-\begin{align}
+\begin{aligned}
 \mathbf{A}(\vec{a}+\vec{b}) &= 
 \begin{bmatrix}\vec{v_1}&\vec{v_2}&\cdots&\vec{v_n}\end{bmatrix}
 \begin{bmatrix}a_1+b_1\\a_2+b_2\\\vdots\\a_n+b_2\end{bmatrix}\\
@@ -249,20 +249,20 @@ $$
 &=a_1\vec{v_1}+b_1\vec{v_1}+a_2\vec{v_2}+b_2\vec{v_2}+\cdots+a_n\vec{v_n}+b_n\vec{v_n}\\
 &=(a_1\vec{v_1}+a_2\vec{v_2}+\cdots+a_n\vec{v_n})+(b_1\vec{v_1}+b_2\vec{v_2}+\cdots+b_n\vec{v_n})\\
 &=\mathbf{A}\vec{a} + \mathbf{A}\vec{b}
-\end{align}
+\end{aligned}
 $$
 
 * 乘法成立
 
 $$
-\begin{align}
+\begin{aligned}
 \mathbf{A}(c\vec{a}) &=
 \begin{bmatrix}\vec{v_1}&\vec{v_2}&\cdots&\vec{v_n}\end{bmatrix}
 \begin{bmatrix}ca_1\\ca_2\\\vdots\\ca_n\end{bmatrix} \\&=
 ca_1\vec{v_1}+ ca_2\vec{v_2}+ \cdots + ca_n\vec{v_n} \\&=
 c(a_1\vec{v_1}+ a_2\vec{v_2}+ \cdots + a_n\vec{v_n}) \\&=
 c\mathbf{A}\vec{a}
-\end{align}
+\end{aligned}
 $$
 
 這證明，Matrix 和 vector 相乘所代表的 transformation 永遠是 **linear transformation**
@@ -316,13 +316,13 @@ x_1\vec{e_1} + x_2\vec{e_2} + \cdots + x_n\vec{e_n} = \mathbf{I_n}\vec{x} =
 $$
 接下來我們將 x 代入 transformation，
 $$
-\begin{align}
+\begin{aligned}
 T(\vec{x}) &= T(x_1\vec{e_1} + x_2\vec{e_2} + \cdots + x_n\vec{e_n})\\
 &= T(x_1\vec{e_1}) + T(x_2\vec{e_2}) + \cdots + T(x_n\vec{e_n}) \\
 &= x_1T(\vec{e_1}) + x_2T(\vec{e_2}) + \cdots + x_nT(\vec{e_n}) \\
 &= \begin{bmatrix}T(\vec{e_1})&T(\vec{e_2})& \cdots&T(\vec{e_n})\end{bmatrix}
 \begin{bmatrix} x_1\\x_2\\\vdots\\x_n\end{bmatrix}
-\end{align}
+\end{aligned}
 $$
 上面證明，**所有的 linear transformation 都可以用 matrix vector product 表示**
 
@@ -338,11 +338,11 @@ T\left(\begin{bmatrix}x_1\\x_2\end{bmatrix}\right) =
 $$
 我們可以先用 Identity matrix 表達 vector 並且進行 transform
 $$
-\begin{align}
+\begin{aligned}
 T(\mathbf{I_2}) &= 
 \begin{bmatrix}T\left(\begin{bmatrix}1\\0\end{bmatrix}\right) & T\left(\begin{bmatrix}0\\1\end{bmatrix}\right)\end{bmatrix}\\
 &=\begin{bmatrix}1&3\\-1&5\\4&1\end{bmatrix}
-\end{align}
+\end{aligned}
 $$
 而 x 的 transformation 就可以表達成 matrix vector product
 $$
@@ -365,12 +365,12 @@ x_2 = \begin{bmatrix}2\\-2\end{bmatrix}
 $$
 而三角形 S = {L1, L2, L3} 分別為
 $$
-\begin{align}
+\begin{aligned}
 L_1 &= \begin{Bmatrix} \vec{x_0} + t(x_1-x_0) \mid 0 \le t \le 1\end{Bmatrix}\\
 L_2 &= \begin{Bmatrix} \vec{x_2} + t(x_0-x_2) \mid 0 \le t \le 1\end{Bmatrix}\\
 L_3 &= \begin{Bmatrix} \vec{x_1} + t(x_2-x_1) \mid 0 \le t \le 1\end{Bmatrix}\\
 \mathbf{S} &= \begin{Bmatrix} L_1, L_2, L_3 \end{Bmatrix} 
-\end{align}
+\end{aligned}
 $$
 ![](../.gitbook/assets/transaction_before.jpg)
 
@@ -380,12 +380,12 @@ T(\vec{x}) = \begin{bmatrix}1&-1\\2&0\end{bmatrix}\begin{bmatrix}x_1\\x_2\end{bm
 $$
 那對這些 L1, L2, L3 進行 transformation 會怎麼樣呢
 $$
-\begin{align}
+\begin{aligned}
 T(L_1) &= \begin{Bmatrix} T(\vec{x_0}+t(\vec{x_1}-\vec{x_0})) \mid 0 \le t \le 1\end{Bmatrix} \\
 &= \begin{Bmatrix} T(\vec{x_0})+T(t(\vec{x_1}-\vec{x_0})) \mid 0 \le t \le 1\end{Bmatrix}\\
 &= \begin{Bmatrix} T(\vec{x_0})+tT(\vec{x_1}-\vec{x_0}) \mid 0 \le t \le 1\end{Bmatrix} \\
 &= \begin{Bmatrix} T(\vec{x_0})+t(T(\vec{x_1})-T(\vec{x_0})) \mid 0 \le t \le 1\end{Bmatrix}
-\end{align}
+\end{aligned}
 $$
 我們成功的將 L 直線的 transformation 轉為每個 vector 的 transformation
 
@@ -426,22 +426,22 @@ $$
 那麼將 subspace 轉換成另一個 subspace 得到的 image 還能符合 subspace 的條件嗎？
 $$
 \mathbf{V} \text{ subspace in } \mathbb{R}^n \\
-\begin{align}
+\begin{aligned}
 \vec{a}, \vec{b} \in \mathbf{V} &\Rightarrow \vec{a} +\vec{b} \in \mathbf{V} \\
 &\Rightarrow c\vec{a} \in \mathbf{V} \\
 &\Rightarrow \vec{0} \in \mathbf{V}
-\end{align}
+\end{aligned}
 $$
 我們定義好 Transformation 和代表他的 matrix ，並把 a, b vector 帶進來看看
 $$
 T: \mathbb{R}^n \to \mathbb{R}^m\\
 T(\mathbf{V}): \text{ image of }\mathbf{V} \text{ under } T \\
 
-\begin{align}
+\begin{aligned}
 &T(\vec{a}), T(\vec{b}) \in T(\mathbf{V})\\
 \text{OK! }\,\,&T(\vec{a})+T(\vec{b}) = T(\color{red}{\vec{a}+\vec{b}}) \in T(\mathbf{V})\\
 \text{OK! }\,\,&cT(\vec{a}) = T(\color{red}{c\vec{a}}) \in T(\mathbf{V})
-\end{align}
+\end{aligned}
 $$
 因為 a+b 和 ca 都已經屬於 subspace V 了，所以在轉換後依然為合理的 subspace
 
@@ -449,7 +449,7 @@ $$
 
 那如果將整個 Rn 轉換到 Rm 呢？
 $$
-\begin{align}
+\begin{aligned}
 &T:\mathbb{R}^n \to \mathbb{R}^m \\
 &T(\mathbb{R}^n): \text{ image of } \mathbb{R}^n \text{ under }T =
 \color{blue}{
@@ -457,7 +457,7 @@ $$
 T(\vec{x}) \mid \vec{x} \in \mathbb{R}^n
 \end{Bmatrix}
 }= \text{Range of } T
-\end{align}
+\end{aligned}
 $$
 ![](../.gitbook/assets/image_of_transformation.jpg)
 
@@ -465,7 +465,7 @@ $$
 
 所以我們可以把 transformation 如此表示
 $$
-\begin{align}
+\begin{aligned}
 T(\vec{x}) &= \mathbf{A}\vec{x} = 
 \begin{Bmatrix} \mathbf{A}\vec{x} \mid \vec{x} \in \mathbb{R}^n \end{Bmatrix}\\
 &= \begin{bmatrix} \vec{a_1} &\vec{a_2}&\cdots&\vec{a_n}\end{bmatrix}
@@ -474,7 +474,7 @@ x_1\vec{a_1}+x_2\vec{a_2}+\cdots+x_n\vec{a_n} \\
 &= span(\vec{a_1}, \vec{a_2}, \cdots,\vec{a_n}) \\
 &= \text{Column space of } \mathbf{A}\\
 &= C(\mathbf{A})
-\end{align}
+\end{aligned}
 $$
 原來 transformation 可以表示為 matrix A 和 vector x 的乘積，而且還是 matrix A 的 column space 
 
@@ -519,7 +519,7 @@ T(\vec{x}) = \mathbf{A}\vec{x} =
 $$
 白話來說就是，在二維空間中，有哪些東西經過 transform 會變成 [0, 0] 或者是 [1, 2]
 $$
-\begin{align}
+\begin{aligned}
 T^{-1}(\mathbf{S}) 
 &= \text{preimage of }\mathbf{S} \text{ under } T\\
 &= \begin{Bmatrix} \vec{x} \in \mathbb{R^2}\mid T(\vec{x}) \in \mathbf{S} \end{Bmatrix}\\
@@ -528,11 +528,11 @@ T^{-1}(\mathbf{S})
 \mathbf{A}\vec{x} = \begin{bmatrix}1\\2\end{bmatrix}
 \end{Bmatrix}
 
-\end{align}
+\end{aligned}
 $$
 等於要解出以下方程式，我們以找出 [0, 0] 的 preimage 為例
 $$
-\begin{align}
+\begin{aligned}
 &\begin{bmatrix} 1&3\\2&6 \end{bmatrix}
 \begin{bmatrix} x_1\\x_2 \end{bmatrix} =
 \begin{bmatrix} 0\\0 \end{bmatrix}\\
@@ -548,7 +548,7 @@ x_1 = -3x_2\\
 \begin{bmatrix} x_1\\x_2 \end{bmatrix} =
 \begin{bmatrix} -3x_2\\x_2 \end{bmatrix} =
 \begin{Bmatrix} t\begin{bmatrix} -3\\1 \end{bmatrix} \mid x_2=t, t\in \mathbb{R}\end{Bmatrix}
-\end{align}
+\end{aligned}
 $$
 也就是 t(-3, 1) 的這條直線 (subset) 上任何一點，經過 transformation 就會回到原點
 
@@ -574,7 +574,7 @@ $$
 
 Linear transformation 利用 matrix 表達也能夠使用相同的 properties
 $$
-\begin{align}
+\begin{aligned}
 S&: \mathbb{R}^n \to \mathbb{R}^m, T: \mathbb{R}^n \to \mathbb{R}^m\\
 
 Def&: (S+T)(\vec{x}) = S(\vec{x})+T(\vec{x})\\
@@ -582,32 +582,32 @@ Def&: (S+T)(\vec{x}) = S(\vec{x})+T(\vec{x})\\
 Def&: (cS)(\vec{x}) = c(S(\vec{x}))\\
 &: (cS) \text{ still is } \mathbb{R}^n \to \mathbb{R}^m
 
-\end{align}
+\end{aligned}
 $$
 這些 properties 在改變成 matrix 表示時也可以使用
 
 * 加法
 
 $$
-\begin{align}
+\begin{aligned}
 (S+T)(\vec{x}) &= S(\vec{x})+T(\vec{x})\\
 &=\mathbf{A}\vec{x} + \mathbf{B}\vec{x}\\
 &= (\mathbf{A}+\mathbf{B})\vec{x}\\
 &= \begin{bmatrix}\vec{a_1}+\vec{b_1}&\vec{a_2}+\vec{b_2}&\cdots&\vec{a_n}+\vec{b_n}\end{bmatrix}
 \begin{bmatrix}x_1\\x_2\\\vdots\\x_n\end{bmatrix}
-\end{align}
+\end{aligned}
 $$
 
 * 乘法
 
 $$
-\begin{align}
+\begin{aligned}
 (cS)(\vec{x}) &= c(S(\vec{x}))\\
 &= c\mathbf{A}\vec{x}\\
 &= c(x_1\vec{a_1}+x_2\vec{a_2}+\cdots+x_n\vec{a_n}) \\
 &= x_1c\vec{a_1} + x_2c\vec{a_2} + \cdots + x_nc\vec{a_n} \\
 &= \begin{bmatrix}c\vec{a_1} & c\vec{a_2} &\cdots&c\vec{a_n}\end{bmatrix}
 \begin{bmatrix}x_1\\x_2\\\vdots\\x_n\end{bmatrix}
-\end{align}
+\end{aligned}
 $$
 

@@ -206,11 +206,11 @@ $$
 $$
 這時可以驗證得到新的 unit vector u 的 length 等於 1
 $$
-\begin{align}
+\begin{aligned}
 \lVert\vec{u}\rVert &= \lVert\frac{1}{\lVert \vec{v} \rVert} \cdot \vec{v}\rVert\\
 &= \lVert \vec{v} \rVert\cdot\frac{1}{\lVert \vec{v} \rVert}\\
 &= 1
-\end{align}
+\end{aligned}
 $$
 
 > 因為 1/length 為 constant 所以可以 apply
@@ -264,12 +264,12 @@ Proj_L(\vec{x}) = c\vec{v}
 $$
 而我們發現不管是 cv 還是 v 都會跟淺藍色的直線 (x - cv) 垂直，也就是 Dot product 為 0
 $$
-\begin{align}
+\begin{aligned}
 &\vec{v} \cdot (\vec{x}-c\vec{v}) = 0\\
 &\vec{v}\cdot\vec{x}-c\vec{v}\cdot\vec{v}=0\\
 &\vec{v}\cdot\vec{x}=c\vec{v}\cdot\vec{v}\\
 &c = \frac{\vec{v}\cdot\vec{x}}{\vec{v}\cdot\vec{v}}
-\end{align}
+\end{aligned}
 $$
 所以我們的 projection 公式為
 $$
@@ -327,7 +327,7 @@ $$
 * 第一個條件成立
 
 $$
-\begin{align}
+\begin{aligned}
 Proj_L(\vec{a}+\vec{b}) &= 
 ((\vec{a}+\vec{b})\cdot\hat{u})\hat{u} \\
 &=
@@ -336,20 +336,20 @@ Proj_L(\vec{a}+\vec{b}) &=
 (\vec{a}\cdot\hat{u})\hat{u} + (\vec{b}\cdot\hat{u})\hat{u}\\
 &=
 Proj_L(\vec{a})+Proj_L(\vec{b})
-\end{align}
+\end{aligned}
 $$
 
 * 第二個條件成立
 
 $$
-\begin{align}
+\begin{aligned}
 Proj_L(c\vec{a}) &= 
 ((c\vec{a})\cdot\hat{u})\hat{u} \\
 &=
 c(\vec{a}\cdot\hat{u})\hat{u}\\
 &=
 cProj_L(\vec{a})
-\end{align}
+\end{aligned}
 $$
 
 我們可以開始嘗試將 projection 寫成 matrix
@@ -365,7 +365,7 @@ $$
 
 現在將 projection 的 transformation apply 到 I2 裡面
 $$
-\begin{align}
+\begin{aligned}
 \mathbf{A} &= 
 \begin{bmatrix} 
 \left(
@@ -387,7 +387,7 @@ u_2\begin{bmatrix}u_1\\u_2\end{bmatrix}
 \end{bmatrix}\\ 
 &=
 \begin{bmatrix}u_1^2&u_1u_2\\u_1u_2&u_2^2\end{bmatrix}
-\end{align}
+\end{aligned}
 $$
 太棒了，現在只要有任何 projection，就可以套用 A 和 vector 的 product 來解決
 
