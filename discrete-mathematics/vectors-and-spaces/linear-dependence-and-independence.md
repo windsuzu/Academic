@@ -1,4 +1,4 @@
-## Linear Dependence & Linear Independence
+# Linear dependence and independence
 
 * [https://youtu.be/CrV1xCWdY-g](https://youtu.be/CrV1xCWdY-g)
 
@@ -8,16 +8,11 @@
 
 > 例如使用 \(1, 0\) 和 \(0, 1\) 來 span 整個 R2 平面時，這兩個向量即為線性獨立
 
-
-
 而在 span 時，使用了 **多餘** 的向量，這個向量和本來就足夠的向量，形成了 _**Linear Dependence**_
 
 > 例如本來只用 \(1, 0\) 和 \(0, 1\) 已經可以 span R2 ，
 >
 > 但我又加了向量 \(1, 3\) 來形成 R2 平面， \(1, 3\) 和另外兩個向量即為線性依賴
-
-
----
 
 * [https://youtu.be/Alhcv5d\_XOs](https://youtu.be/Alhcv5d_XOs)
 * 正式一點的定義為
@@ -59,3 +54,4 @@ $$
 可以得到結果， v1 和 v2 為 linear independence !
 
 > 3 demension example: [https://youtu.be/9kW6zFK5E5c](https://youtu.be/9kW6zFK5E5c)
+

@@ -1,6 +1,6 @@
-# Linear Combination and Span
+# Linear combinations and spans
 
-* https://youtu.be/Qm_OS-8COwU
+* [https://youtu.be/Qm\_OS-8COwU](https://youtu.be/Qm_OS-8COwU)
 
 向量加上任意 **實數 scalar** 後，並且透過加法組合在一起時，產生一個 **線性** 的組合即為 _**Linear combination**_
 
@@ -16,7 +16,7 @@ $$
 \begin{bmatrix} 3\\ 12\end{bmatrix}
 $$
 
-因為 Vectors 可以與**任意**實數相乘，產生的 linear combination 就可以任意表示其他向量，這個現象叫作 ***Span***
+因為 Vectors 可以與**任意**實數相乘，產生的 linear combination 就可以任意表示其他向量，這個現象叫作 _**Span**_
 
 例如以下兩個向量不管 a1 和 a2 為何，在 combine 之後只能 span 這兩條向量原本的那條線
 
@@ -31,9 +31,9 @@ a\begin{bmatrix} 1\\ 2\end{bmatrix}
 \end{aligned}
 $$
 
-![](../.gitbook/assets/linear_combination1.jpg)
+![](../../.gitbook/assets/linear_combination1.jpg)
 
-而底下兩個向量 (1,0) 和 (0,1) 卻可以 **span** 整個二維平面的任意兩點，我們可以這樣表示
+而底下兩個向量 \(1,0\) 和 \(0,1\) 卻可以 **span** 整個二維平面的任意兩點，我們可以這樣表示
 
 $$
 \begin{aligned}
@@ -41,3 +41,4 @@ $$
 &a_1\vec{v_1} + a_2\vec{v_2} = \mathbb{R}^2
 \end{aligned}
 $$
+
