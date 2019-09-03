@@ -1,7 +1,7 @@
 # Table of contents
 
 * [Introduction](README.md)
-* [Discrete mathematics](discrete-mathematics/README.md)
+* [Linear Algebra](linear-algebra/README.md)
   * [Vectors and Spaces](discrete-mathematics/vectors-and-spaces/README.md)
     * [Vectors](discrete-mathematics/vectors-and-spaces/vectors.md)
     * [Linear combinations and spans](discrete-mathematics/vectors-and-spaces/linear-combinations-and-spans.md)
@@ -18,3 +18,7 @@
     * [Finding inverses and determinants](discrete-mathematics/matrix-transformations/finding-inverses-and-determinants.md)
     * [More Determinant Depth](discrete-mathematics/matrix-transformations/more-determinant-depth.md)
 
+* [Biology](biology/README.md)
+* [Artificial Intelligence](artificial-intelligence/README.md)
+* [Machine Learning](machine-learning/README.md)
+* [Data Mining](data-mining/README.md)
