@@ -19,6 +19,10 @@
     * [More Determinant Depth](discrete-mathematics/matrix-transformations/more-determinant-depth.md)
 
 * [Biology](biology/README.md)
+  * [Scientific Method](biology/scientific_method.md)
+
 * [Artificial Intelligence](artificial-intelligence/README.md)
+
 * [Machine Learning](machine-learning/README.md)
+
 * [Data Mining](data-mining/README.md)
