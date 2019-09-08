@@ -10,7 +10,7 @@ $$
 \\10\vec{v} = (20, 30)
 $$
 
-![](../../.gitbook/assets/scalar_multiplication.jpg)
+![](../../.gitbook/assets/linear_algebra/scalar_multiplication.jpg)
 
 * Unit vector
   * A unit vector has a magnitude \(or length\) of 1.
@@ -34,5 +34,5 @@ $$
 \end{aligned}
 $$
 
-![](../../.gitbook/assets/add_vectors.jpg)
+![](../../.gitbook/assets/linear_algebra/add_vectors.jpg)
 

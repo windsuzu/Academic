@@ -31,7 +31,7 @@ a\begin{bmatrix} 1\\ 2\end{bmatrix}
 \end{aligned}
 $$
 
-![](../../.gitbook/assets/linear_combination1.jpg)
+![](../../.gitbook/assets/linear_algebra/linear_combination1.jpg)
 
 而底下兩個向量 \(1,0\) 和 \(0,1\) 卻可以 **span** 整個二維平面的任意兩點，我們可以這樣表示
 

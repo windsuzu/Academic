@@ -22,7 +22,11 @@
   * [Scientific Method](biology/scientific_method.md)
 
 * [Artificial Intelligence](artificial-intelligence/README.md)
+  * [Introduction](artificial-intelligence/introduction.md)
+  * [AI Concepts, Terminology, and Application Areas](artificial-intelligence/concepts.md)
+  * [AI: Issues, Concerns and Ethical Considerations](artificial-intelligence/issues.md)
 
 * [Machine Learning](machine-learning/README.md)
+  * [Introduction](machine-learning/introduction.md)
 
 * [Data Mining](data-mining/README.md)

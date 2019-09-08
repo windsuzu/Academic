@@ -6,7 +6,7 @@
 
 現在要來討論的是， linear transformation 的組合要怎麼表示？他還算是 linear transformation 嗎？
 
-![](../../.gitbook/assets/transformation_composition.jpg)
+![](../../.gitbook/assets/linear_algebra/transformation_composition.jpg)
 
 我們現在有 Rn, Rm, Rl 空間，以及 S 和 T 兩個 linear transformation function
 
