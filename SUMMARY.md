@@ -28,5 +28,7 @@
 
 * [Machine Learning](machine-learning/README.md)
   * [Introduction](machine-learning/introduction.md)
+  * [Model and Cost Function](machine-learning/model.md)
+  * [Parameter Learning](machine-learning/parameter_learning.md)
 
 * [Data Mining](data-mining/README.md)

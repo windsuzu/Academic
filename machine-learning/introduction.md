@@ -24,7 +24,7 @@ Supervised Learning 可以簡單分類為 **Regression Problem** 以及 **Classi
 
 ### Example
 例如我們想從現有的房地產狀況，來判斷手中的房產應該用多少的價格賣出，才會符合市場需求。
-![](../.gitbook/assets/machine_learning/introduction/regression.jpg)
+![](../.gitbook/assets/machine_learning/week_one/regression.jpg)
 
 此時 **feature** 為 Size in feet square，而 **result** 為 Price 是一個 continuous output
 
@@ -37,14 +37,14 @@ Supervised Learning 可以簡單分類為 **Regression Problem** 以及 **Classi
 
 ### Example
 例如我們想從病人的腫瘤大小，來訓練機器判斷腫瘤是良性或是惡性時，此時結果可以用 0 或 1 表示，所以是 Classification 問題。
-![](../.gitbook/assets/machine_learning/introduction/classification.jpg)
+![](../.gitbook/assets/machine_learning/week_one/classification.jpg)
 
 在 Classification Problem 中，**Features** 和 **Results** 都可以有多個出現 !
 
 例如我們可以用 tumor size, age, 甚至是**無限多**的 features 來一起學習預測腫瘤好壞。
 
 而 results 也可以有多種出現，例如預測的腫瘤還有分多種型態，就可以用 0, 1, 2, 3, ... 分別代表不同種類。
-![](../.gitbook/assets/machine_learning/introduction/classification_with_more_features.jpg)
+![](../.gitbook/assets/machine_learning/week_one/classification_with_more_features.jpg)
 
 
 
