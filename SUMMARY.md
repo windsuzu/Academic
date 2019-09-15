@@ -30,5 +30,7 @@
   * [Introduction](machine-learning/introduction.md)
   * [Model and Cost Function](machine-learning/model.md)
   * [Parameter Learning](machine-learning/parameter_learning.md)
+  * [Multivariate Linear Regression](machine-learning/multivariate_linear_regression.md)
+  * [Computing Parameters Analytically](machine-learning/normal_equation.md)
 
 * [Data Mining](data-mining/README.md)
