@@ -1,6 +1,20 @@
 # Table of contents
 
 * [Introduction](README.md)
+
+* [Artificial Intelligence](artificial-intelligence/README.md)
+  * [Introduction](artificial-intelligence/introduction.md)
+  * [AI Concepts, Terminology, and Application Areas](artificial-intelligence/concepts.md)
+  * [AI: Issues, Concerns and Ethical Considerations](artificial-intelligence/issues.md)
+
+* [Biology](biology/README.md)
+  * [Scientific Method](biology/scientific_method.md)
+
+* [Computer Architecture](computer_architecture/README.md)
+  * [First Week](computer_architecture/first_week.md)
+
+* [Data Mining](data-mining/README.md)
+
 * [Linear Algebra](linear-algebra/README.md)
   * [Vectors and Spaces](discrete-mathematics/vectors-and-spaces/README.md)
     * [Vectors](discrete-mathematics/vectors-and-spaces/vectors.md)
@@ -18,14 +32,6 @@
     * [Finding inverses and determinants](discrete-mathematics/matrix-transformations/finding-inverses-and-determinants.md)
     * [More Determinant Depth](discrete-mathematics/matrix-transformations/more-determinant-depth.md)
 
-* [Biology](biology/README.md)
-  * [Scientific Method](biology/scientific_method.md)
-
-* [Artificial Intelligence](artificial-intelligence/README.md)
-  * [Introduction](artificial-intelligence/introduction.md)
-  * [AI Concepts, Terminology, and Application Areas](artificial-intelligence/concepts.md)
-  * [AI: Issues, Concerns and Ethical Considerations](artificial-intelligence/issues.md)
-
 * [Machine Learning](machine-learning/README.md)
   * [Introduction](machine-learning/introduction.md)
   * [Model and Cost Function](machine-learning/model.md)
@@ -33,4 +39,3 @@
   * [Multivariate Linear Regression](machine-learning/multivariate_linear_regression.md)
   * [Computing Parameters Analytically](machine-learning/normal_equation.md)
 
-* [Data Mining](data-mining/README.md)
