@@ -222,12 +222,14 @@ Add, subtract is same as decimal.
 * [補充 - 數值系統](https://hackmd.io/@sysprog/BkRKhQGae?type=view)
 
 ### Fraction representation
-represent
+representation 方式跟 decimal 差不多 :
+而轉換方式如下 :
 $$
 10.1010_2 = 1\times2^1 + 1\times2^{-1} + 1\times2^{-3} = 2.625_{10}
 $$
 
-add
+加法 :
+
 
 multiplication
 
