@@ -5,18 +5,20 @@
 
 * An agent’s behavior is described by the **agent function** that maps any given **percept** sequence to an action.
   * e.g., vacuum-cleaner 
-    * if the current square is dirty, then suck; otherwise, move to the other square
+    * if the current square is dirty, then suck
+    * otherwise, move to the other square
 
 
 # Rational agent
-5 Rational agent 指的是可以做出正確事情的 agent
+* Rational agent 指的是可以做出正確事情的 agent
+* 正確事情 : Agent 所做的事情會讓 enviroment 歷經一系列的 **desirable states**
+* desirability : performance measure 來量測
 
-正確 : enviroment => desirable states
-(用 performance measure 來量測)
+* Definition : Rational agent 會在 percept 的每個步驟都需要 maximize performance measure，從而 action
 
-6 每個步驟都是 max performance measure
-
-eg  vacuum-cleaner agent
+* Example : vacuum-cleaner agent
+  * Performance measurement : the amount of dirt being cleaned up
+  * Performance measure: a clean floor
 
 
 # Omniscience, Learning, and Autonomy
