@@ -10,12 +10,6 @@
 * [Biology](biology/README.md)
   * [Scientific Method](biology/scientific_method.md)
 
-* [Computer Architecture](computer-architecture/README.md)
-  * [First Week](computer-architecture/first_week.md)
-
-* [Data Mining](data-mining/README.md)
-  * [Introduction](data-mining/introduction.md)
-
 * [Linear Algebra](linear-algebra/README.md)
   * [Vectors and Spaces](linear-algebra/vectors-and-spaces/README.md)
     * [Vectors](linear-algebra/vectors-and-spaces/vectors.md)
@@ -40,3 +34,12 @@
   * [Multivariate Linear Regression](machine-learning/multivariate_linear_regression.md)
   * [Computing Parameters Analytically](machine-learning/normal_equation.md)
 
+* [NCKU - Artificial Intelligence](ncku-artificial-intelligence/README.md)
+  * [Introduction](ncku-artificial-intelligence/Introduction.md)
+  * [Intelligent Agents](ncku-artificial-intelligence/intelligent_agents.md)
+
+* [NCKU - Computer Architecture](ncku-computer-architecture/README.md)
+  * [First Week](ncku-computer-architecture/first_week.md)
+
+* [NCKU - Data Mining](ncku-data-mining/README.md)
+  * [Introduction](ncku-data-mining/introduction.md)

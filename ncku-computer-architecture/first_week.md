@@ -143,12 +143,12 @@ $$
 
 觀察是否可以被最大的減去，由左往右直到 1 為止 :
 
-![](../.gitbook/assets/computer_architecture/week_one/decimal_to_binary.png)
+![](../.gitbook/assets/ncku_computer_architecture/week_one/decimal_to_binary.png)
 
 ### Decimal to Hexadecimal
 跟上面差不多 :
 
-![](../.gitbook/assets/computer_architecture/week_one/decimal_to_hex.png)
+![](../.gitbook/assets/ncku_computer_architecture/week_one/decimal_to_hex.png)
 
 ### Binary to Hexadecimal
 將 二進位補滿 4 個數一組，再轉換每組數字 :

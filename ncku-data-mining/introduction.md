@@ -40,7 +40,7 @@
 * Example : Uber control drivers
 
 ## KDD process
-![](../.gitbook/assets/data_mining/introduction/kdd_process.png)
+![](../.gitbook/assets/ncku_data_mining/introduction/kdd_process.png)
 
 ### Databases to work on
 * Relational
