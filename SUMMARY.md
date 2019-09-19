@@ -45,3 +45,6 @@
 
 * [NCKU - Data Mining](ncku-data-mining/README.md)
   * [Introduction](ncku-data-mining/introduction.md)
+
+* [NCKU - Machine Learning](ncku-machine-learning/README.md)
+  * [Introduction](ncku-machine-learning/introduction.md)
