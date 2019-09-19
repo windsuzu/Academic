@@ -22,88 +22,109 @@
 
 
 # Omniscience, Learning, and Autonomy
-Rationality maximizes expected performance, while perfection maximizes actual performance. 
+> Rationality maximizes **expected** performance, while perfection maximizes **actual** performance. 
 
-agent no need omniscience
+* 針對 Agent 的 rationality 不需要達到 omniscience
 
-agent need to learn
+* 但 Agent 需要能夠從 perceive 的 data 中**學習 (learn)**
 
-agent lacks autonomy.
+* 另外 Agent 最好能夠 **Autonomous**
+  * learn and compensate for incorrect
 
-should be autonomous => learn and compensate for incorrect
-
-incorporation of learning
 
 # Task Environments
-定義
-performance measure,
-the environment
-agent’s actuators and sensors.
 
-PEAS
+我們透過以下幾點，來定義一個 **Task environment** :
+* Performance measure
+* The environment
+* Agent's actuators 
+* Agent's sensors
+* 合稱為 **PEAS (Performance, Environment, Actuators, Sensors)**
 
----
-Fully observable vs. partially observable
+例如 :
+| Agent       | Performance  | Environment         | Actuators          | Sensors      |
+|-------------|--------------|---------------------|--------------------|--------------|
+| Taxi driver | Safety, fast | Traffics, Customers | Brake, Accelerator | GPS, Engines |
 
-Single agent vs. multiagent (chess)
 
-Deterministic vs. stochastic (taxi driver)
+## Properties of Task Environments
 
-Episodic vs. sequential (chess / taxi)
+### Fully observable vs. partially observable
+* Agent 的每個 action 是否會跟 sensors 偵測所有的東西有關
 
-Static vs. dynamic (taxi)
+### Single agent vs. multiagent
+* 如果有多個 Agents，那他們之間是否會互相影響對方
+* Chess 就是 multiagent
 
-Discrete vs. continuous
+### Deterministic vs. stochastic
+* 若 environment 的下一個 state 會受前一個 state 影響，那就是 deterministic
+* stochastic 則相反，通常代表 outcomes 是 uncertainty 的
+* Taxi driving 就是 stochastic
 
-**Known vs. unknown**
+### Episodic vs. sequential
+* 情節之間是否是連貫的
+* Chess & Taxi driving 都是 sequential
+
+### Static vs. dynamic (taxi)
+* Environment 會因為 Agent 的**思考**而改變，則說 environment 是 dynamic 的
+* Taxi driving 是 dynamic 的
+
+### Discrete vs. continuous
+* Chess 的 environment 有 finite 的 discrete states & actions
+* Taxi driving 則是有 continuous state
+
+### **Known vs. unknown**
+* The agent's state of knowledge about the “laws of physics” of the environment.
+
+
 
 # The Structure of Agents
-agent = architecture + program 
+* **Agent = Architecture + Program**
+* **Program** : 設計來 implement agent function (用於 map percepts to action)
+* **Architecture** : 指的是 Devices (sensor, actuator)
 
-program = implement agent function (map percept to action)
-
-architecture = devices (sensor, actuator)
 
 ## Agent Programs
-A trivial agent program
+* A trivial agent program turns percept into action each time :
 
+![](../.gitbook/assets/ncku_artificial_intelligence/agent_program.png)
 
 ## Simple Reflex Agents
-only current percept, ignore past result
+* 下一個 action 只建立在 current percept, 而會無視以前的 percept history
+* 只建立在 environment 是 full-observable
 
-condition-action rule
+![](../.gitbook/assets/ncku_artificial_intelligence/simple_reflex_agent.png)
 
 
 ## Model-based Reflex Agents
-Handle partial observability
+* Agent 會持續追蹤外部世界的變化
+* 並更新內部的 **internal state**
 
-keep track world update
+![](../.gitbook/assets/ncku_artificial_intelligence/model_based_reflex_agent_graph.png)
 
-maintain internal state
-
+> Rule 跟 Simple Reflex agents 的是一樣的
 
 ## Goal-based Reflex Agents
-need a set of goal information
+* 因為只有 current state of environment 沒辦法每次都能產出好的 action
+* 所以基於 model 再新增 goal information
+* Behavior 可以因 Goal 改變而被簡單改變
+* Decision making 多了考慮未來的部分 "What/will"
 
-can be changed to other goal
-
-choose action to do (decision making)
+![](../.gitbook/assets/ncku_artificial_intelligence/goal_based_reflex_agent_graph.png)
 
 
 ## Utility-based Reflex Agents
-goal != high quality behavior
+* 有 Goal 不見得能有 High quality behavior
+* Utility-based agent 會挑選能夠 maximize expected utility 的 action
 
-choose action maximize expected utility of action outcomes
-
+![](../.gitbook/assets/ncku_artificial_intelligence/utility_based_reflex_agent_graph.png)
 
 ## Learning Agents
-learning element improve
-performance element select action
+* 使用 **critic** 的 feedback 來決定 performance element 要如何修改來加強 action
+  * learning element => making improvements
+  * performance element => selecting actions
 
-learn from critic (how agent is doing)
-and modify performance component
+* learn and improve in short run => better actions in long run
+  * problem generator suggest new actions
 
-problem generator suggest new actions
-learn and improve in short run => big in long run
-
-component modification => closer agreement
+![](../.gitbook/assets/ncku_artificial_intelligence/learning_agent_graph.png)
