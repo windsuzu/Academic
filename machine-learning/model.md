@@ -108,6 +108,7 @@ $$
 所以他對應的 **Cost function (J)** 會是 0 才對
 
 ![](../.gitbook/assets/machine_learning/week_one/intuition1.png)
+
 > 我們假設 theta 0 是 0，只要看 theta 1 就好，所以 J 會呈現一個 x, y plane
 >
 > 其中 x 軸代表 theta 1 的值，而 y 軸代表 Cost function 的結果
@@ -147,6 +148,7 @@ $$
 > 可以看到右下為 theta 0，左下為 theta 1，而模型最凹之處就是最小誤差的地方
 
 ![](../.gitbook/assets/machine_learning/week_one/contour1.png)
+
 在上圖中
 $$
 \theta_0 = 800 \text{ and } \theta_1 = -0.15
@@ -156,6 +158,7 @@ $$
 而 cost function 的值的確也與中心點有段距離
 
 ![](../.gitbook/assets/machine_learning/week_one/contour2.png)
+
 而當
 $$
 \theta_0 = 250 \text{ and } \theta_1 = 0.12
@@ -166,6 +169,7 @@ $$
 
 ---
 我們複習一下重點
+
 ![](../.gitbook/assets/machine_learning/week_one/model_goal.png)
 
 也就是說

@@ -120,8 +120,7 @@ Formulate 也是一大關鍵，要能夠把問題很好的呈現出來
 * 因為不受 depth 影響而是考慮 path cost
 * 複雜度為
   $$
-  \providecommand{\floor}[1]{\left \lfloor #1 \right \rfloor}
-  \mathcal{O}(b^{1+\floor{C*/\epsilon}})
+  \mathcal{O}(b^{1+\left \lfloor C*/\epsilon \right \rfloor})
   $$
 * 若所有的 path cost 都一樣，那就會像 BFS
 

@@ -4,16 +4,19 @@
 甚至可以拿來解決 Linear Regression 以外的機器學習問題
 
 我們首先定義 cost function 問題為 :
+
 ![](../.gitbook/assets/machine_learning/week_one/cost_function_problem.png)
 
 > Gradient descent 可以解決超過 2 個以上的 theta 值
 
 而 gradient descent 是這樣解決問題的 :
+
 ![](../.gitbook/assets/machine_learning/week_one/gradient_descent_outline.png)
 
 所以假設我們在一個 theta 0 和 theta 1 所生成的 cost function 圖表上
 
 我們將他看成地形圖，而最高點的就是山頂
+
 ![](../.gitbook/assets/machine_learning/week_one/gradient_descent_graph.png)
 
 若一開始起始點設在在山頂上
@@ -78,6 +81,8 @@ $$
 $$
 
 所以 theta 1 會越來越往 minimum 移動
+
+---
 
 ![](../.gitbook/assets/machine_learning/week_one/gradient_descent_negative.jpg)
 

@@ -52,28 +52,61 @@
 
 ### Mutation
 * **Stocastic hill climbing**
-  * 
+  * 在選擇 uphill move 時，會 random select 一個做為下一個 move
 * **First-choice hill climbing**
-  * 
+  * 從 random 裡面開始找，找到第一個比 current state 好的 move 就移動
 * **Random-restart hill climbing**
-  * 
-
+  * 失敗了就自動重來，直到到達 goal state 為止
 
 
 ## Simulated Annealing
-accept badness solution at beginning
+* Annealing (冶金退火)
+  * 是把金屬加熱至最高點後，慢慢降溫的手法
+* Simulated Annealing
+  * 一樣 random 選擇
+    * 只要比 current state 好就永遠 accept
+    * 就算比 current state 差也會有**一定機率** accept
+      * 但是**機率**會隨著步數的增加而 decrease (就像退火)
+      * With teperature T goes down
+        * It becomes unlikely to accept badness
 
-with temperature T goes down => becomes unlikely to accept badness
+![](../.gitbook/assets/ncku_artificial_intelligence/simulated_annealing.png)
 
 
 ## Local Beam Search
-k init state
-select k from k^2
-if best => halt
-information can be pass among each others
+* 會一次 track **k** 個 states (別的算法只有一個)
+* initialize : k ramdom states
+* Every step : all k states generate k^2 states
+* 如果某一個 state 為 goal state 就中止算法
 
-stochastic beam search
+---
+
+* Local beam search 看起來就只是 k 個 states 被平行操作
+* 但其實這 k 個 states 是會互相影響, 互相傳送資料的
+* 變形為 **Stochastic beam search**
+  * 是 random 產生 k successors
+
 
 ## Genetic Algorithm
+* 是 Stochastic beam search 的變形
+* 會找到兩個 parent states 來產生新的 state
+
+![](../.gitbook/assets/ncku_artificial_intelligence/genetic_algorithms_graph.png)
+
+* Population : k ramdomly begin states
+* Individual : each state
+  * 用 strings 或是 0/1 來表達
+
+* 產生 successor 方法 :
+  1. 會對每個 states 打分數 (**fitness** score)
+  2. 從分數給定每一個 states 被挑選的機率
+  3. 從機率選擇兩個 states 作為 parent pair
+  4. 每個 pair 進行 **crossover** 融合
+  5. 最後再將組合好的 state 進行 **mutation**
+
+* 下面是 crossover in 8-queens problem
+![](../.gitbook/assets/ncku_artificial_intelligence/genetic_algorithms_crossover.png)
+
+
 
 
