@@ -64,12 +64,12 @@
   * Classification
   * Regression
   * Deviation detection
-* Description methods : 把資料的 label 起來, 解釋 data
+* Description methods : 把資料 label 起來, 解釋 data
   * Clustering
   * Association rule discovery
   * Sequential pattern discovery
 
-## Classification
+# Classification
 用已經**分類**過的 data 來學習分類，再丟進從未看過的 data 來**測試**是哪一種分類
 * Training sets (each class has features/attributes)
 * Find a model for class attribute
@@ -83,7 +83,9 @@ $$
 * 建立符合邏輯的模型 (例如樹) 來解釋 data
 * Relate to machine learning
 
-### Application
+![](../.gitbook/assets/ncku_data_mining/introduction/classification_example.png)
+
+## Application
 1. Direct marketing (廣告投放)
    * Buy / Don't Buy
 2. Fraud detection (避免詐騙)
@@ -95,13 +97,16 @@ $$
 
 
 
-## Clustering
+# Clustering
 有點像 unsupervised classification，
 把相似度高的 data points (has some attributes) 分類在一起
 * 目標是 data 在同一群都很像，跟別群都不像 (maybe tradeoffs)
 * 並且該怎麼表示及定義每一群的名字
+* Clutering 不像 Classification 能夠最佳化 (主觀)
 
-### Application
+![](../.gitbook/assets/ncku_data_mining/introduction/clustering_example.png)
+
+## Application
 1. Market Segmentation (客戶分群)
    * 高, 中, 低消費群
 2. Document Clustering (新聞分類)
@@ -110,33 +115,75 @@ $$
 3. Stock Clustering
    * 與熱門公司的關聯度, 蘋果關聯股等等
 
-
 > Classification 跟 Clustering 是可以合作使用的
 
 
+# Association Rule Discovery
+* 從其他 item 的 **occurrence** 來預測該 item 的 **dependency rules**
 
-## Association Rule Discovery
-
-### Definition
+![](../.gitbook/assets/ncku_data_mining/introduction/association_rule_example.png)
 
 ## Application
-
-## Sequential Pattern Discovery
-
-### Definition
-
-### Application
-
-
-## Regression
+* Marketing and Sales Promotion
+* Supermarket shelf management
+  * 有關聯的兩件物品，一件庫存較少就可以先進貨
+* Inventory management
+  * 找出零件關係，是否某件壞了就會有另一件跟著壞掉
 
 
-## Deviation / Anomaly Detection
+# Sequential Pattern Discovery
+* 在 data 中加上時序，再從中找出他們的 **sequential dependencies**
+  * 可以比 association rule 還要更有因果關係
 
-## Time Series Analysis
+![](../.gitbook/assets/ncku_data_mining/introduction/sequential_pattern_example.png)
 
-## Graph mining
+## Application
+* In telecommunications alarm logs
+* In point-of-sale transaction sequences
+  * Computer Bookstore
+  * Athletic Apparel Store
 
+# Regression
+* 利用多個 features 來找出最佳的解 y
+* 可能利用 linear 或是 non-linear 的 dependency model 來解 
+
+## Application
+* 利用 temperature, humidity, pressure 等來預測風速
+* 利用過去銷售經驗，來預測新產品的銷量
+
+
+# Deviation / Anomaly Detection
+* 從 Normal behavior 中找出 significant deviations
+
+## Application
+* 信用卡詐騙
+* 網路入侵
+
+
+# Graph mining
+* 從複雜的圖表中找出關鍵點或關鍵的 subgraph
+  * Degree
+  * Power
+  * Closeness
+  * Betweeness
 
 
 # Summary
+* Performance Measurement
+  * Efficiency (Time, Accuracy)
+  * Effectiveness (Interestingness)
+* Interestingness
+  * understandable
+  * valid on new one
+  * potentially useful
+* Challenge of data mining
+  * Scalability
+  * Dimensionality
+  * 不同領域資料結合
+  * Data quality
+  * Privacy (只遮住 id 一樣能被暴力破解)
+  * Streaming data (Sensor input 持續性不足)
+* Feature & Challenge of KDD
+  * Big data, Feature engineering, deep learning
+  * more data from human behavior and knowledge
+  * Utimate goal : build brain for robots

@@ -546,7 +546,7 @@ $$
     ```
 
 # Octave : Vectorization
-* Vectorization 的計算方式將會比 Unvectorization 還要快速
+* Vectorization 的計算方式將會比 Unvectorization $a$ 還要快速
   * Vectorization 在底層是由一些的專家所設計，速度快
   * 所以在實作時，盡量把問題轉換為 vectorization 來解決
   * 在 C++, Java, Python 這類開發工具也應該要這麼解決
