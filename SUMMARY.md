@@ -29,10 +29,17 @@
 
 * [Machine Learning](machine-learning/README.md)
   * [Introduction](machine-learning/introduction.md)
-  * [Model and Cost Function](machine-learning/model.md)
-  * [Parameter Learning](machine-learning/parameter_learning.md)
-  * [Multivariate Linear Regression](machine-learning/multivariate_linear_regression.md)
-  * [Computing Parameters Analytically](machine-learning/normal_equation.md)
+  * Linear Regression
+    * [Model and Cost Function](machine-learning/model.md)
+    * [Parameter Learning](machine-learning/parameter_learning.md)
+    * [Multivariate Linear Regression](machine-learning/multivariate_linear_regression.md)
+    * [Computing Parameters Analytically](machine-learning/normal_equation.md)
+    * [Octave](machine-learning/octave.md)
+  * Logistic Regression
+    * [Classification and Representation](machine-learning/classification_representation.md)
+    * [Logistic Regression Model](machine-learning/logistic_regression_model.md)
+  * Regularization
+    * [Solving the Problem of Overfitting](machine-learning/overfitting_problem.md)
 
 * [NCKU - Artificial Intelligence](ncku-artificial-intelligence/README.md)
   * [Introduction](ncku-artificial-intelligence/Introduction.md)

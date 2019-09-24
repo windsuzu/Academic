@@ -335,3 +335,5 @@ $$
 x_1 = \frac{\text{size}}{1000},
 x_2 = \frac{\sqrt{\text{size}}}{\sqrt{1000}}
 $$
+
+> [Slide](https://d3c33hcgiwev3.cloudfront.net/_7532aa933df0e5055d163b77102ff2fb_Lecture4.pdf?Expires=1569110400&Signature=D3p36Xxg5kY-RmkDekhyQDn3ru8QNE8RgDx4qQBpR2PgiZhBuS4tJh5b5oIcZ0sjzrk0Eos0hTLml7vXO0A2OjsDiCfevUWnVFf16-j9WWyEFnPiHMbrfRgm96Aiozqb6XCkpjHSsATJbwvx~7wtiaM4L1jpOCfNCyDLC92KLOc_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A)
