@@ -46,6 +46,7 @@
   * [Intelligent Agents](ncku-artificial-intelligence/intelligent_agents.md)
   * [Solving Problems by Searching](ncku-artificial-intelligence/solving_problems_by_searching.md)
   * [Beyond Classical Search](ncku-artificial-intelligence/beyond_classical_search.md)
+  * [Learning from Examples](ncku-artificial-intelligence/learning_from_examples.md)
 
 * [NCKU - Computer Architecture](ncku-computer-architecture/README.md)
   * [First Week](ncku-computer-architecture/first_week.md)

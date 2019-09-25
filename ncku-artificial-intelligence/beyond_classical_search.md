@@ -98,15 +98,104 @@
   * 用 strings 或是 0/1 來表達
 
 * 產生 successor 方法 :
-  1. 會對每個 states 打分數 (**fitness** score)
-  2. 從分數給定每一個 states 被挑選的機率
-  3. 從機率選擇兩個 states 作為 parent pair
-  4. 每個 pair 進行 **crossover** 融合
-  5. 最後再將組合好的 state 進行 **mutation**
+   1. 會對每個 states 打分數 (**fitness** score)
+   2. 從分數給定每一個 states 被挑選的機率
+   3. 從機率選擇兩個 states 作為 parent pair
+   4. 每個 pair 進行 **crossover** 融合
+   5. 最後再將組合好的 state 進行 **mutation**
 
 * 下面是 crossover in 8-queens problem
 ![](../.gitbook/assets/ncku_artificial_intelligence/genetic_algorithms_crossover.png)
 
 
 
+# Local Search in Continuous Spaces
+不同於 8-queen
+
+建三個機場 三個機場的 distance 最小
+
+x1, y1, x2, y2, x3, y3 => 6 dimensional space (6 variables)
+
+minimize objective function
+
+limit with $+- \delta$, so => 12 successors
+
+gradient ascent => till gradient equals to 0
+
+learning rate => line search
+
+---
+
+constraint optimization => 解需符合限制
+
+one category => linear programming (convex problem)
+ 
+ 
+# Searching with Nondeterministic Actions
+determinisitc => erratic vacuum
+
+problem 吸塵器 不確定性 => 1 吸太好 2 掉垃圾
+
+REASULT => RESULTS
+single state => set of possible states
+
+contingency problem
+=> need **nested** if-the-else statements
+solution from sequences => tree
+
+---
+
+AND-OR search trees
+figure 4.10
+
+OR 用來指既定狀況 (原本的 sequential states)
+
+AND 用來指不確定狀況 (non-deterministic)
+
+need leaf goal
+
+---
+
+考慮 slippery vacuum world
+
+移動機制壞掉
+
+tree => has cycle
+
+加入新的 label 到 recursive function
+
+
+# Searching with Partial Observations
+沒 sensor 吸塵器
+
+若依常理行動 可以確定 “假想的 belief state" 被完成
+
+determinisitc => shrink problem
+
+non deterministic => maybe same as previous problem
+
+---
+
+goal, path cost full graph
+
+=> imply chapter 3 algorithms
+
+sensing function
+
+不同於 normal problem solving :
+1 多了 conditions
+2 需 maintain belief states
+
+robot sensoring
+
+# Searching with Partial Observations
+so far offline search
+
+contrast => online search => sweep robot => need to build its own map.
+
+has actions, step cost, goal test
+
+competitive ratio 越小 online search 越好
+
+DFS, hill-climbing can be use in online search algorithm
 
