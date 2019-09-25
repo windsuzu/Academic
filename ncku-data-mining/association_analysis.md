@@ -30,13 +30,13 @@ Association Rule 重視的是 **co-occurence**，而非 **causality** !
   * 一或多個 item 的組合
   * k-Itemset 表示一個組合有 k 個 items
 
-* Support count $(\sigma)$
+* Support count $$(\sigma)$$
   * 這一個 Itemset 在整個 transaction 中出現幾次
-  * e.g., $\sigma(\begin{Bmatrix} \text{Milk, Bread, Diaper} \end{Bmatrix}) = 2$
+  * e.g., $$\sigma(\begin{Bmatrix} \text{Milk, Bread, Diaper} \end{Bmatrix}) = 2$$
 
-* Support $(s)$
+* Support $$(s)$$
   * 該 Support count 在 transaction 的比例是多少 (ratio from 0 - 1)
-  * e.g., $s(\begin{Bmatrix} \text{Milk, Bread, Diaper} \end{Bmatrix}) = 2/5$
+  * e.g., $$s(\begin{Bmatrix} \text{Milk, Bread, Diaper} \end{Bmatrix}) = 2/5$$
 
 * Frequent Itemset
   * 我們會定義一個 **minsup** (minimum-support)
@@ -44,17 +44,17 @@ Association Rule 重視的是 **co-occurence**，而非 **causality** !
 
 * Association Rule
   * 就是一個關聯的表達格式
-  * $X \rightarrow Y \mid X, Y \text{ are itemsets}$
-  * e.g., $\begin{Bmatrix} \text{Milk, Diaper} \end{Bmatrix} \rightarrow \begin{Bmatrix} \text{Beer} \end{Bmatrix}$
+  * $$X \rightarrow Y \mid X, Y \text{ are itemsets}$$
+  * e.g., $$\begin{Bmatrix} \text{Milk, Diaper} \end{Bmatrix} \rightarrow \begin{Bmatrix} \text{Beer} \end{Bmatrix}$$
 
 * Rule Evaluation Metrics
   * 要探討該 Itemset 的關聯法則準確度，我們使用 s 和 c 來表達
   * Support (s)
     * 跟上面一樣，就是 itemset 在 transaction 出現的百分比
-    * $s = \frac{\sigma(X, Y)}{\lvert T \rvert}$
+    * $$s = \frac{\sigma(X, Y)}{\lvert T \rvert}$$
   * Confidence (c)
-    * 信心度，指的是 $Y$ 有多常跟著 $X$ 一起出現
-    * $c = \frac{\sigma(X, Y)}{X}$
+    * 信心度，指的是 $$Y$$ 有多常跟著 $$X$$ 一起出現
+    * $$c = \frac{\sigma(X, Y)}{X}$$
 
   * 舉個例子，一樣是用上面出現過的 transaction
 
@@ -92,11 +92,11 @@ Frequent Itemset 有 (他們都是 support 大於等於 2 的 Itemset)
 ```
 
 # Association Rule Mining Task
-接著要想出一個方法在 transaction $T$, **minsup**, **minconf** 的情況下
+接著要想出一個方法在 transaction $$T$$, **minsup**, **minconf** 的情況下
 
 試著找到 association rule 並滿足以下兩個條件
-* $\text{support} \ge \text{minsup}$
-* $\text{confidence} \ge \text{minconf}$
+* $$\text{support} \ge \text{minsup}$$
+* $$\text{confidence} \ge \text{minconf}$$
 
 ## Brute Force approach
 1. 先列出所有的 Association rules
@@ -122,22 +122,22 @@ Frequent Itemset 有 (他們都是 support 大於等於 2 的 Itemset)
 
 想像有 d 個 items，要將他們組成所有可能的 itemset 再從中去刪除不為 frequent 的 itemset
 
-d 個 items 就會產生 $2^d$ 個 itemsets
+d 個 items 就會產生 $$2^d$$ 個 itemsets
 
 ---
 
 * 我們將 Brute force 套回來看看
-  * 所以共要先產生 $M = 2^d$ 個 **Candidate rules**
+  * 所以共要先產生 $$M = 2^d$$ 個 **Candidate rules**
   * 在 database 掃描並更新每個 candidate rules 的 **support**
   * 再將所有 transactions 比對所有 candidate rules
-  * 複雜度將會是 $O(NMw) \mid N = \text{transactions}, w = \text{itemset length}$
+  * 複雜度將會是 $$O(NMw) \mid N = \text{transactions}, w = \text{itemset length}$$
 
 ## Strategies
-* 想辦法減少 candidate $M = 2^d$ ?
+* 想辦法減少 candidate $$M = 2^d$$ ?
   * pruning techniques
-* 想辦法減少 transactions $N$ ?
+* 想辦法減少 transactions $$N$$ ?
   * DHP, vertical-based mining algorithms
-* 想辦法減少 comparisons $NM$ ?
+* 想辦法減少 comparisons $$NM$$ ?
   * efficient data strucutres
 
 
@@ -174,8 +174,8 @@ $$
 $$
 
 ## Notation and Algorithm
-* $C_k$ : candidate k-itemsets : 代表所有可能為 frequent 的 itemsets
-* $L_k$ : frequent k-itemsets : 所有已滿足 minsup 的 frequent itemsets
+* $$C_k$$ : candidate k-itemsets : 代表所有可能為 frequent 的 itemsets
+* $$L_k$$ : frequent k-itemsets : 所有已滿足 minsup 的 frequent itemsets
 
 * Algorithm
   ```
@@ -192,70 +192,101 @@ $$
 ## Example
 ![](../.gitbook/assets/ncku_data_mining/association_analysis/apriori_example.png)
 
-* 先從 $C_1$ 刪除不合 minsup 的 itemsets 產生 $L_1$
-* $L_1$ 生成下一階段的 $C_2$
-* $C_2$ 刪除不合 minsup 產生 $L_2$
-* $L_2$ 生成下一階段的 $C_3$
-* $C_3$ 刪除不合 minsup 的 itemsets 產生 $L_3$
-* $L_3$ 無法再產生 $C_4$
+* 先從 $$C_1$$ 刪除不合 minsup 的 itemsets 產生 $$L_1$$
+* $$L_1$$ 生成下一階段的 $$C_2$$
+* $$C_2$$ 刪除不合 minsup 產生 $$L_2$$
+* $$L_2$$ 生成下一階段的 $$C_3$$
+* $$C_3$$ 刪除不合 minsup 的 itemsets 產生 $$L_3$$
+* $$L_3$$ 無法再產生 $$C_4$$
 
-注意在 $L_2$ 生成 $C_3$ 的時候
+注意在 $$L_2$$ 生成 $$C_3$$ 的時候
 
 {Milk, Beer} 已經不是 frequent itemset
 
-所以包含他的 {Milk, Beer, Diaper} 也不會出現在 $C_3$
+所以包含他的 {Milk, Beer, Diaper} 也不會出現在 $$C_3$$
 
 ---
 
+如果用暴力破解，總共要產生 $$\binom{6}{1} + \binom{6}{2} + \binom{6}{3} = 41$$ 種 itemset
+
+而在這個方法中，我們只產生了 $$6 + 6 + 1 = 13$$ 種 itemset
+
+## Generate Candidates
+在產生新的 candidate itemset 時
+
+我們將會使用 **lexicographic order** 套入 SQL 中 
+
+假設現在有 $$L_k$$ 的 itemset
+
+**那麼新的 $$C_{k+1}$$ = 原本兩個 k-itemsets 他們共享了其中的 k-1 個 items**
+
+![](../.gitbook/assets/ncku_data_mining/association_analysis/generate_candidate.png)
+
+我們可以寫成 self-joining 的 SQL 語法
+
+![](../.gitbook/assets/ncku_data_mining/association_analysis/generate_candidate_sql.png)
+
+只要前 k - 1 個 item 都一樣
+
+而最後的第 k 個 item 不同，就可以產生新的 candidate
 
 
-17
-從 1-itemsets 刪
-得到新的 2-itemsets 再刪
-最後得到 3-itemsets
+## Prune
+從現在所有的 (k+1)-itemsets candidates 中
 
-因為 milk beer 被砍掉 => beer milk diaper 也不會出現
+去翻出每一個裡面的 subset k-itemsets 是否有 not frequent 的 itemset
 
-41 => 13 次
-
-第二層可能還是非常多
+如果有就要刪除該 candidate
 
 
+## Challenges
+
+看起來問題都解決了，但事實上還有一些問題 :
+* 要如何做到在 transaction database 進行 **multiple scans**
+* 在由 $$L_1$$ 產出 $$C_2$$ 的第二層，在真實問題中會產生非常大量的 itemsets (bottleneck)
+* 計算每一個 candidate 的 support (s) 非常吃力
+  * 可以利用 hash tree 加強
 
 
-18
-notation
-frequent k-itemset (lk)
-candidate k-itemset (ck)
+## Subset Operation
+假設我們已經有一群 candidates 的名單
 
-k-1 to explore k
-subset test to k
-ck = lk-1 x lk-1
-generate frequent k-itemset (lk)
+我們要更新他們的 support counts
 
-19
-example of apriori
+我們先思考若給定 transaction 那要如何產生所有 3-subset
 
-20 - 22
-apriori algorithm
+![](../.gitbook/assets/ncku_data_mining/association_analysis/subset_operation.png)
 
-23
-challenge
-multiple scans
-C2 very large
+答案是使用 recursion !
 
-24
-use hash to store candidate itemset
-
-25 - 34
-generate hash tree
-
-35
-產生完 freqeunt itemset 後
-計算每種 subset 的 confidence 的方法
+我們將會以此精神結合 hash tree 來加快計算 support count
 
 
+## Hash tree
+Hash Tree 的建法很簡單，把現有的 itemset 按照 hash function 的規則建立
 
-===
+其中 **leaf node** 用來存 itemsets & counts 的列表
+
+而 **interior node** 則是存放 hash table
+
+![](../.gitbook/assets/ncku_data_mining/association_analysis/hash_function.png)
+
+先從 item 1 開始按照 hash function 分類
+
+當超過 max leaf size 時，就會以下一個 item 的規則分裂
+
+![](../.gitbook/assets/ncku_data_mining/association_analysis/hash_tree.png)
+
+最後我們將 subset operation 套用到 hash tree 中
+
+找到 transaction 對應的 candidates 就可以 increment 該 candidate 的 count
+
+![](../.gitbook/assets/ncku_data_mining/association_analysis/subset_operation_hash_tree.png)
+
+
+> [Other Slide](http://www.cs.uoi.gr/~tsap/teaching/2012f-cs059/material/datamining-lect3.pdf)
+
+
+=== 下週
 
 FP close
