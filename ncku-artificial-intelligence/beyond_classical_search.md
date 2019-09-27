@@ -108,94 +108,129 @@
 ![](../.gitbook/assets/ncku_artificial_intelligence/genetic_algorithms_crossover.png)
 
 
-
 # Local Search in Continuous Spaces
-不同於 8-queen
-
-建三個機場 三個機場的 distance 最小
-
-x1, y1, x2, y2, x3, y3 => 6 dimensional space (6 variables)
-
-minimize objective function
-
-limit with $+- \delta$, so => 12 successors
-
-gradient ascent => till gradient equals to 0
-
-learning rate => line search
+* 問題例子
+  * 定義三個機場的 coordinates (x, y)
+  * 每個城市到其中三個機場的距離都要最近
+  * 有 $$(x_1, y_1), (x_2, y_2), (x_3, y_3)$$ 六個變數 (6-dimensional space)
+  * 可以 **discretize** problem，利用 $$\delta$$ limitation 讓問題每次只產生 12 successors
+  * 令 $$C_i$$ 為跟 airport $$i$$ 最近的 cities，而 objective function 為
+    $$
+    f(x_1, y_1, x_2, y_2, x_3, y_3) = \sum_{i=1}^3\sum_{c\in C_i}(x_i-x_c)^2+(y_i-y_c)^2
+    $$
+  * 通常會使用 gradient 方式找最佳解
+  * 一個 objective function 的 gradient 會用 $$\nabla f$$ 表示
+    $$
+    \nabla f = \left(\frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial y_1}, \frac{\partial f}{\partial x_2}, \frac{\partial f}{\partial y_2}, \frac{\partial f}{\partial x_3}, \frac{\partial f}{\partial y_3}\right)
+    $$
+  * 例如 $$\frac{\partial f}{\partial x_1} = 2 \sum_{c\in C_1} (x_i - x_c)$$
+  * 目標就是要找到 $$\nabla f = 0$$ (斜度歸零代表找到最佳解)
+  * 更 formal 的 gradient algorithm 可以寫為 $$x \leftarrow x + \alpha \nabla f(x)$$
+    * $$\alpha$$ 為 step size (learning rate)
 
 ---
 
-constraint optimization => 解需符合限制
-
-one category => linear programming (convex problem)
+* $$\alpha$$ 的挑選太小跟太大都不好
+  * 可以利用 line search algorithms 來挑選適合的 $$\alpha$$ 值
+  * 最有名的算法是 **Newton-Raphson** method
+* Local search 在 continuous space 一樣會有 local maxima 等問題
+  * 可以使用 restarts, annealing 來幫助
+* 這類 **constraint optimization** 最有名的是 **linear programming** (convex problem)
  
  
 # Searching with Nondeterministic Actions
-determinisitc => erratic vacuum
+* 之前的問題都是 deterministic problem (actions 會產生新的固定 states)
+* Nondeterministic problem 則是 actions 不一定產生常理的新 states
+* 用掃地機器人的問題舉例
+  * Deterministic => state 1 吸完一定跑到 state 5
+  * Nondeterministic => state 1 吸完可能跑到 state 1, 5, 7 (吸力異常)
 
-problem 吸塵器 不確定性 => 1 吸太好 2 掉垃圾
-
-REASULT => RESULTS
-single state => set of possible states
-
-contingency problem
-=> need **nested** if-the-else statements
-solution from sequences => tree
+![](../.gitbook/assets/ncku_artificial_intelligence/vacuum_world.png)
 
 ---
 
-AND-OR search trees
-figure 4.10
+* 因為 nondeterministic 不一定會有固定的 actions 來解決問題
+* result 變為 results
+* single state 變為 set of possible states
+* 所以必須把 contingency plan 考慮進去 (如果 suck 後成功變為 5 再繼續行動)
+* 世界上的日常問題通常都是這種 contingency problems
+* 通常解決的 solution 會包含 nested **if-then-else**
+  ```
+  [Suck, if State = 5 then [Right, Suck] else []]
+  ```
 
-OR 用來指既定狀況 (原本的 sequential states)
+* 我們會用 AND-OR search trees 來表達 nondeterministic actions
+  * OR nodes 用來連接到既定狀況 (sequential states)
+  * AND nodes 用來連接到不確定狀況 (non-deterministic)
+  * 每個 leaf 都是一個 goal
 
-AND 用來指不確定狀況 (non-deterministic)
-
-need leaf goal
+![](../.gitbook/assets/ncku_artificial_intelligence/and_or_tree.png)
 
 ---
 
-考慮 slippery vacuum world
-
-移動機制壞掉
-
-tree => has cycle
-
-加入新的 label 到 recursive function
+* Nondeterministic 還可以有 cyclic solution
+  * 不再是 tree 的架構
+  * 例如掃地機器人的移動功能壞掉
+  * 可能往右移不斷失敗，然後不斷重複右移
+  * 我們可以加入 label 來表示一個 plan 方便在重複時呼叫
+    ```
+    [Suck, L1 : Right, if state = 5 then L1 else Suck]
+    ```
 
 
 # Searching with Partial Observations
-沒 sensor 吸塵器
 
-若依常理行動 可以確定 “假想的 belief state" 被完成
+## Searching with no observation (sensorless problem)
+* agent 無法感知環境，但 agent 知道該做哪些事情
+* agent 會把所有該做的事情做好，用 **coerce** 方式達成 goal state
+* **Belief states** : 包含所有可能的 physical states
+  * 若有 N 個 states，那 sensorless problem 可以提高到 $$2^N$$ states
+* **Initial states** : all possible states in the problem
+* **Actions** : 如果 actions 都不會發生什麼嚴重後果，那麼會將 actions union 組合
+  * 如果某個 action 會造成嚴重後果，那麼 actions 最好使用 intersect 組合
+* **Transition model** : 生成新的 belief states 的程序我們稱為 **prediction step**
+  $$
+  b' = \text{PREDICT}_p(b,a)
+  $$
 
-determinisitc => shrink problem
+![](../.gitbook/assets/ncku_artificial_intelligence/sensorless_vacuum.png)
 
-non deterministic => maybe same as previous problem
+* **Goal test** : Agent 可能會不小心就觸發 goal 的條件，但自己卻不知道
+* **Path cost** : 相同的 action 在不同的 states 進行時可能會不同
 
----
+* 現在我們可以 formulate automatic construction
+* 再應用之前的 search algorithms
 
-goal, path cost full graph
+![](../.gitbook/assets/ncku_artificial_intelligence/automatic_construction.png)
 
-=> imply chapter 3 algorithms
 
-sensing function
+## Solving partially observable problems
+* 一個 partially observable agent 與一般的 agent 有兩點不同
+* solution 將不再是 sequential 而是 conditional
+* 需要維護每個 action 過後的 belief states
 
-不同於 normal problem solving :
-1 多了 conditions
-2 需 maintain belief states
+![](../.gitbook/assets/ncku_artificial_intelligence/partial_observation.png)
 
-robot sensoring
+* 上圖又是一個幼稚園版的掃地機器人
+* 每次掃地完可能會有小朋友又亂丟垃圾
 
-# Searching with Partial Observations
-so far offline search
+![](../.gitbook/assets/ncku_artificial_intelligence/robot_predict.png)
 
-contrast => online search => sweep robot => need to build its own map.
+* 上圖是另外一種 robot position 問題
+* 我們要從給定的 robot 目前障礙物，來一步步判斷 robot 的位置
 
-has actions, step cost, goal test
 
-competitive ratio 越小 online search 越好
+# Online Searching Agents with Unknown Environments
+* 以上我們講的都是 **Offline search**
+  * 在還沒解決問題就已經知道所有真實世界會發生的事情
+* **Online search** 則是會在接收 action 後的狀況來決定下一個 action
+  * 最著名的例子就是以走路機器人來建立一個平面的 3D 地圖
 
-DFS, hill-climbing can be use in online search algorithm
+* Online search 一樣需考慮 :
+  * **Actions** : 在 state s 可以使用的 actions
+  * **Step cost** : 只有在完整做完 action 後才會知道
+  * **Goal test** : Cannot determine RESULT(s,a) except by actually being in s and doing a.
+  * **Competitive ratio** : 類似於 actual shortest path，越小越好
+
+* DFS 和 hill-climbing 算法較適合用於 online search
 
