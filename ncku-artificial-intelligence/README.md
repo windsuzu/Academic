@@ -12,3 +12,4 @@ Teached by:
 * [Lecture 2 - Intelligent Agents](https://drive.google.com/open?id=1qFCLjbri8Oso2rESHRqE7vloBD1i-oOt)
 * [Lecture 3 - Solving Problems by Searching](https://drive.google.com/open?id=1I_1ZfUPSOKPX_f31LDegsgB_0Mf6PcjX)
 * [Lecture 4 - Beyond Classical Search](https://drive.google.com/open?id=1cegnVNqfUgPVl3ikWf7JiJ9ORTtteS6f)
+* [Lecture 18 - Learning from Examples](https://drive.google.com/open?id=14YUQ7naR8R9bOCi8gXrRvfi18K8Rvi-d)

@@ -53,7 +53,7 @@ Logistic function 的長相像這樣
 
 ![](../.gitbook/assets/machine_learning/week_three/logistic_function_graph.png)
 
-不超過 0 和 1 的 boundary 而且看起來很適合處理 classification
+不超過 0 和 1 的 boundary，而且看起來很適合處理 classification
 
 所以我們將他套入原本的 hypothesis :
 $$
@@ -100,7 +100,7 @@ $$
 
 另外我們觀察到 sigmoid function
 
-![](../.gitbook/assets/machine_learning/week_three/sigmoid_function.jpg)
+![](../.gitbook/assets/machine_learning/week_three/sigmoid_function.png)
 
 只要 y > 0.5 那 z 就一定大於 0
 
@@ -125,7 +125,7 @@ $$
 \end{aligned}
 $$
 
-現在我們只要看 theta transpose x 就可以判斷 :
+現在我們只要看 $$\theta^Tx$$ 就可以判斷 :
 $$
 \theta^Tx \ge 0 \Rightarrow y = 1\\
 \theta^Tx < 0 \Rightarrow y = 0\\
@@ -147,7 +147,7 @@ h_\theta(x) = g(\theta_0 + \theta_1x_1 + \theta_2x_2),
 \theta = \begin{bmatrix}-3 \\ 1 \\ 1\end{bmatrix}
 $$
 
-也就是說
+將 $$\theta$$ 代回 hypothesis 可以得到
 $$
 \begin{aligned}
 -3 + x_1 + x_2 \ge 0 \Rightarrow y = 1 \\
@@ -157,10 +157,8 @@ x_1 + x_2 < 3 \Rightarrow y = 0
 \end{aligned}
 $$
 
-而
-$$
-x_1 + x_2 = 3
-$$
+而$$x_1 + x_2 = 3$$
+
 就是分割兩群 data set 的 decision boundary
 
 ## Non-linear Decision Boundary

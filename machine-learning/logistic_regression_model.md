@@ -4,10 +4,10 @@
 
 我們的 cost function 不能和 linear regression 一樣使用 :
 $$
-J(\theta) = \frac{1}{m}\sum_{i=1}^m {\color{red}\frac{1}{2} (h_\theta(x^{(i)})- y^{(i)})^2}
+J(\theta) = \frac{1}{m}\sum_{i=1}^m \color{red}{\frac{1}{2} (h_\theta(x^{(i)})- y^{(i)})^2}
 $$
 
-我們把 sum 後面那一段簡寫成 :
+原因如下，我們把 sum 後面那一段簡寫成 :
 $$
 \text{Cost}(h_\theta(x), y) = \frac{1}{2}(h_\theta(x)-y)^2
 $$
@@ -91,6 +91,10 @@ J(\theta) = - \frac{1}{m}\sum_{i=1}^m
 [y^{(i)}\log(h_\theta(x^{(i)})) + (1 - y^{(i)})\log(1-h_\theta(x^{(i)}))]
 $$
 
+{% hint style="info" %}
+Hello world
+{% endhint %}
+
 > 可以再進化成 vectorized function
 > $$
 > h = g(X\theta)\\
@@ -99,7 +103,7 @@ $$
 
 ---
 
-我們一樣可以使用 **Gradient Descent** 來找出 cost function 的最小 theta
+我們一樣可以使用 **Gradient Descent** 來找出 cost function 的最小 $$\theta$$
 
 原本的 gradient descent 長這樣 :
 $$
@@ -160,6 +164,7 @@ J(\theta) \text{  and  } \frac{d}{d\theta_j}J(\theta)
 $$
 
 這邊我們建立一個 **`costFunction`** 可以一次算出兩者
+
 ``` matlab
 function [jVal, gradient] = costFunction(theta)
     jVal = [...code to compute J(theta)...];
@@ -172,6 +177,7 @@ end
 以及最初的 theta 值
 
 octave 程式碼如下 :
+
 ``` matlab
 options = optimset('GradObj', 'on', 'MaxIter', 100);
 initialTheta = zeros(2,1);
@@ -195,6 +201,7 @@ $$
 實作 :
 
 * Cost function
+
 ``` matlab
 function [jVal, gradient] = costFunction(theta)
     jVal = (theta(1)-5)^2 + (theta(2)-5)^2;
@@ -203,14 +210,18 @@ function [jVal, gradient] = costFunction(theta)
     gradient(2) = 2*(theta(2)-5);
 end
 ```
+
 * Calling fminunc
+
 ``` matlab
 options = optimset('GradObj', 'on', 'MaxIter', 100);
 initialTheta = zeros(2, 1);
 
 [optTheta, functionVal, exitFlag] = fminunc(@costFunction, initialTheta, options);
 ```
+
 * prints
+
 ``` matlab
 optTheta =
     5.0000

@@ -1,7 +1,7 @@
 # Agents and Environments
 **Agent** 可以是任何一種東西，用 **censor** 來感測環境，並且透過 **actuators** 來動作
 
-![](../.gitbook/assets/ncku_artificial_intelligence/agent.png)
+![](../.gitbook/assets/ncku_artificial_intelligence/chapter1_4/agent.png)
 
 * An agent’s behavior is described by the **agent function** that maps any given **percept** sequence to an action.
   * e.g., vacuum-cleaner 
@@ -87,20 +87,20 @@
 ## Agent Programs
 * A trivial agent program turns percept into action each time :
 
-![](../.gitbook/assets/ncku_artificial_intelligence/agent_program.png)
+![](../.gitbook/assets/ncku_artificial_intelligence/chapter1_4/agent_program.png)
 
 ## Simple Reflex Agents
 * 下一個 action 只建立在 current percept, 而會無視以前的 percept history
 * 只建立在 environment 是 full-observable
 
-![](../.gitbook/assets/ncku_artificial_intelligence/simple_reflex_agent.png)
+![](../.gitbook/assets/ncku_artificial_intelligence/chapter1_4/simple_reflex_agent.png)
 
 
 ## Model-based Reflex Agents
 * Agent 會持續追蹤外部世界的變化
 * 並更新內部的 **internal state**
 
-![](../.gitbook/assets/ncku_artificial_intelligence/model_based_reflex_agent_graph.png)
+![](../.gitbook/assets/ncku_artificial_intelligence/chapter1_4/model_based_reflex_agent_graph.png)
 
 > Rule 跟 Simple Reflex agents 的是一樣的
 
@@ -110,14 +110,14 @@
 * Behavior 可以因 Goal 改變而被簡單改變
 * Decision making 多了考慮未來的部分 "What/will"
 
-![](../.gitbook/assets/ncku_artificial_intelligence/goal_based_reflex_agent_graph.png)
+![](../.gitbook/assets/ncku_artificial_intelligence/chapter1_4/goal_based_reflex_agent_graph.png)
 
 
 ## Utility-based Reflex Agents
 * 有 Goal 不見得能有 High quality behavior
 * Utility-based agent 會挑選能夠 maximize expected utility 的 action
 
-![](../.gitbook/assets/ncku_artificial_intelligence/utility_based_reflex_agent_graph.png)
+![](../.gitbook/assets/ncku_artificial_intelligence/chapter1_4/utility_based_reflex_agent_graph.png)
 
 ## Learning Agents
 * 使用 **critic** 的 feedback 來決定 performance element 要如何修改來加強 action
@@ -127,4 +127,4 @@
 * learn and improve in short run => better actions in long run
   * problem generator suggest new actions
 
-![](../.gitbook/assets/ncku_artificial_intelligence/learning_agent_graph.png)
+![](../.gitbook/assets/ncku_artificial_intelligence/chapter1_4/learning_agent_graph.png)

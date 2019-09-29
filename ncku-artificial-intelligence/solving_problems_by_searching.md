@@ -47,7 +47,7 @@ Formulate 也是一大關鍵，要能夠把問題很好的呈現出來
   * **goal test**: 棋盤是否已經變成終點的樣子了
   * **path cost**: 每次移動 cost 1
 
-![](../.gitbook/assets/ncku_artificial_intelligence/8_puzzle.png)
+![](../.gitbook/assets/ncku_artificial_intelligence/chapter1_4/8_puzzle.png)
 
 ### 8-queens problem
 * 要讓棋盤上的八個 queen 不會互相攻擊 (同一列、行、斜線都會攻擊)
@@ -57,7 +57,7 @@ Formulate 也是一大關鍵，要能夠把問題很好的呈現出來
   * **transition model**: 加入後新的棋盤的樣子
   * **goal test**: 測試 8 個 queen 沒有互相攻擊
 
-![](../.gitbook/assets/ncku_artificial_intelligence/8_queen.png)
+![](../.gitbook/assets/ncku_artificial_intelligence/chapter1_4/8_queen.png)
 
 ### Real world problem
 * Touring problem
@@ -71,7 +71,7 @@ Formulate 也是一大關鍵，要能夠把問題很好的呈現出來
   * 其中 branches 是 actions
   * 而 nodes 是 states
 
-![](../.gitbook/assets/ncku_artificial_intelligence/searching_algorithm.png)
+![](../.gitbook/assets/ncku_artificial_intelligence/chapter1_4/searching_algorithm.png)
 
 * 而每個 node (n) 有幾個屬性 :
   * n.state
@@ -99,7 +99,7 @@ Formulate 也是一大關鍵，要能夠把問題很好的呈現出來
 2. expand all its successors
 3. then their successors
 
-![](../.gitbook/assets/ncku_artificial_intelligence/bfs.png)
+![](../.gitbook/assets/ncku_artificial_intelligence/chapter1_4/bfs.png)
 
 * 考慮每個節點都有 b 個 successors
 * 受到深度 (depth) 影響非常大
@@ -129,7 +129,7 @@ Formulate 也是一大關鍵，要能夠把問題很好的呈現出來
 * [Tutorial video from youtube](https://www.youtube.com/watch?v=dRMvK76xQJI)
 * queue 為 [explored] = 記錄不會再去的點 :
 
-![](../.gitbook/assets/ncku_artificial_intelligence/uniform_cost_search.png)
+![](../.gitbook/assets/ncku_artificial_intelligence/chapter1_4/uniform_cost_search.png)
 
 1. 走到 S
    * 此時 queue = [S], 並且找到 RV[80], E[99]
@@ -168,7 +168,7 @@ Formulate 也是一大關鍵，要能夠把問題很好的呈現出來
 * 通常用於 search space 很大時，或是 solution 是 unknown 的
 * 看起來很浪費 Time complexity ，但其實 bound 在 最後一層
 
-![](../.gitbook/assets/ncku_artificial_intelligence/Iterative_deepening_dfs.png)
+![](../.gitbook/assets/ncku_artificial_intelligence/chapter1_4/Iterative_deepening_dfs.png)
 
 
 ## Bidirectional search
@@ -223,4 +223,4 @@ Formulate 也是一大關鍵，要能夠把問題很好的呈現出來
   * heuristic = straight line distance
   * path cost = to next city distance
 
-![](../.gitbook/assets/ncku_artificial_intelligence/a_star_example.png)
+![](../.gitbook/assets/ncku_artificial_intelligence/chapter1_4/a_star_example.png)

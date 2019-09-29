@@ -12,7 +12,7 @@
   * 可以在 infinite state spaces 找到 reasonable solutions
   * 他適合利用 **objective function** 來解決 **optimization problems**
 
-![](../.gitbook/assets/ncku_artificial_intelligence/state_space_1d.png)
+![](../.gitbook/assets/ncku_artificial_intelligence/chapter1_4/state_space_1d.png)
 
 * Local Search 的目標是找到 Global maximum (也就是 best solution)
 * 下面介紹第一個 local search algorithm : hill climbing 
@@ -29,14 +29,14 @@
   * Ridges
   * Plateaux or shoulder
 
-![](../.gitbook/assets/ncku_artificial_intelligence/hill_climbing_algorithm.png)
+![](../.gitbook/assets/ncku_artificial_intelligence/chapter1_4/hill_climbing_algorithm.png)
 
 ### Example : 8-queens problem
 * Successors of a state : 放下 queen 之後的所有的可能性
 * Heuristic cost function (h) : 有幾對 queens 會互相攻擊
 * 當 best h 有數個時，會隨機選取
 
-![](../.gitbook/assets/ncku_artificial_intelligence/hill_climbing_8_queens.png)
+![](../.gitbook/assets/ncku_artificial_intelligence/chapter1_4/hill_climbing_8_queens.png)
 
 * 8-queens 共有 8^8 states (17 millions)
 * 若很 greedy 每次皆選最陡的路往上走
@@ -70,7 +70,7 @@
       * With teperature T goes down
         * It becomes unlikely to accept badness
 
-![](../.gitbook/assets/ncku_artificial_intelligence/simulated_annealing.png)
+![](../.gitbook/assets/ncku_artificial_intelligence/chapter1_4/simulated_annealing.png)
 
 
 ## Local Beam Search
@@ -91,7 +91,7 @@
 * 是 Stochastic beam search 的變形
 * 會找到兩個 parent states 來產生新的 state
 
-![](../.gitbook/assets/ncku_artificial_intelligence/genetic_algorithms_graph.png)
+![](../.gitbook/assets/ncku_artificial_intelligence/chapter1_4/genetic_algorithms_graph.png)
 
 * Population : k ramdomly begin states
 * Individual : each state
@@ -105,7 +105,7 @@
    5. 最後再將組合好的 state 進行 **mutation**
 
 * 下面是 crossover in 8-queens problem
-![](../.gitbook/assets/ncku_artificial_intelligence/genetic_algorithms_crossover.png)
+![](../.gitbook/assets/ncku_artificial_intelligence/chapter1_4/genetic_algorithms_crossover.png)
 
 
 # Local Search in Continuous Spaces
@@ -145,7 +145,7 @@
   * Deterministic => state 1 吸完一定跑到 state 5
   * Nondeterministic => state 1 吸完可能跑到 state 1, 5, 7 (吸力異常)
 
-![](../.gitbook/assets/ncku_artificial_intelligence/vacuum_world.png)
+![](../.gitbook/assets/ncku_artificial_intelligence/chapter1_4/vacuum_world.png)
 
 ---
 
@@ -164,7 +164,7 @@
   * AND nodes 用來連接到不確定狀況 (non-deterministic)
   * 每個 leaf 都是一個 goal
 
-![](../.gitbook/assets/ncku_artificial_intelligence/and_or_tree.png)
+![](../.gitbook/assets/ncku_artificial_intelligence/chapter1_4/and_or_tree.png)
 
 ---
 
@@ -193,7 +193,7 @@
   b' = \text{PREDICT}_p(b,a)
   $$
 
-![](../.gitbook/assets/ncku_artificial_intelligence/sensorless_vacuum.png)
+![](../.gitbook/assets/ncku_artificial_intelligence/chapter1_4/sensorless_vacuum.png)
 
 * **Goal test** : Agent 可能會不小心就觸發 goal 的條件，但自己卻不知道
 * **Path cost** : 相同的 action 在不同的 states 進行時可能會不同
@@ -201,7 +201,7 @@
 * 現在我們可以 formulate automatic construction
 * 再應用之前的 search algorithms
 
-![](../.gitbook/assets/ncku_artificial_intelligence/automatic_construction.png)
+![](../.gitbook/assets/ncku_artificial_intelligence/chapter1_4/automatic_construction.png)
 
 
 ## Solving partially observable problems
@@ -209,12 +209,12 @@
 * solution 將不再是 sequential 而是 conditional
 * 需要維護每個 action 過後的 belief states
 
-![](../.gitbook/assets/ncku_artificial_intelligence/partial_observation.png)
+![](../.gitbook/assets/ncku_artificial_intelligence/chapter1_4/partial_observation.png)
 
 * 上圖又是一個幼稚園版的掃地機器人
 * 每次掃地完可能會有小朋友又亂丟垃圾
 
-![](../.gitbook/assets/ncku_artificial_intelligence/robot_predict.png)
+![](../.gitbook/assets/ncku_artificial_intelligence/chapter1_4/robot_predict.png)
 
 * 上圖是另外一種 robot position 問題
 * 我們要從給定的 robot 目前障礙物，來一步步判斷 robot 的位置
