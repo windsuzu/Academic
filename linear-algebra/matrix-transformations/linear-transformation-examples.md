@@ -24,7 +24,7 @@ $$
 \vec{c} = \begin{bmatrix}3\\-2\end{bmatrix}
 $$
 
-![](../../.gitbook/assets/linear_algebra/transformation_before.jpg)
+![](../../.gitbook/assets/transformation_before.jpg)
 
 我們想讓他以 y 軸為主軸，翻轉過來，並且不改變底的情況下，讓高拉長兩倍
 
@@ -74,7 +74,7 @@ $$
 \begin{bmatrix} -3\\-4 \end{bmatrix}\\
 $$
 
-![](../../.gitbook/assets/linear_algebra/transformation_after.jpg)
+![](../../.gitbook/assets/transformation_after%20%281%29.jpg)
 
 我們成功將他翻面並且拉長了！
 
@@ -90,7 +90,7 @@ $$
 
 上面我們學到了 **reflection** 以及 **scaling**，現在我們來學 **rotation**
 
-![](../../.gitbook/assets/linear_algebra/rotation.jpg)
+![](../../.gitbook/assets/rotation%20%281%29.jpg)
 
 我們要怎麼找到 T 或者是 matrix A ，讓 vector x 往逆時針方向轉 ɵ 度
 
@@ -115,7 +115,7 @@ $$
 
 先從 \[1, 0\] 轉換成 \[a, b\] 開始看起
 
-![](../../.gitbook/assets/linear_algebra/rotation_x.jpg)
+![](../../.gitbook/assets/rotation_x%20%281%29.jpg)
 
 可以發現 a 為這個正三角形的鄰邊，剛好 cos 等於鄰邊除以斜邊
 
@@ -130,7 +130,7 @@ $$
 
 再來我們看 \[0, 1\] 轉換成 \[c, d\]
 
-![](../../.gitbook/assets/linear_algebra/rotation_y.jpg)
+![](../../.gitbook/assets/rotation_y%20%281%29.jpg)
 
 此時 c 可以為正三角形的對邊， 用 sin 等於對邊除以斜邊得到 c 值，而且因為是在第二象限，所以要加上負值
 
@@ -277,7 +277,7 @@ $$
 Proj_L(\vec{x})
 $$
 
-![](../../.gitbook/assets/linear_algebra/projection.jpg)
+![](../../.gitbook/assets/projection%20%281%29.jpg)
 
 而從 vector x 垂直射下到 L 的垂直線我們表示為
 

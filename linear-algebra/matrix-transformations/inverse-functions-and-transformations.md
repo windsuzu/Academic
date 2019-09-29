@@ -6,7 +6,7 @@
 
 我們先複習一下 function
 
-![](../../.gitbook/assets/linear_algebra/function_intro.jpg)
+![](../../.gitbook/assets/function_intro%20%281%29.jpg)
 
 $$
 \begin{aligned}
@@ -17,7 +17,7 @@ $$
 
 還有 Identity function
 
-![](../../.gitbook/assets/linear_algebra/function_identity.jpg)
+![](../../.gitbook/assets/function_identity%20%281%29.jpg)
 
 $$
 \mathbf{I_x}: X \to X \\
@@ -34,7 +34,7 @@ $$
 
 指的是 function 能透過對應的 inverse function 將值運算回自己
 
-![](../../.gitbook/assets/linear_algebra/function_inverse.jpg)
+![](../../.gitbook/assets/function_inverse%20%281%29.jpg)
 
 $$
 \begin{aligned}
@@ -129,7 +129,7 @@ S: Y\to X \\
 S(y): \text{ The unique solution in } x \text{ to } f(x) = y
 $$
 
-![](../../.gitbook/assets/linear_algebra/invertible_1.jpg)
+![](../../.gitbook/assets/invertible_1%20%281%29.jpg)
 
 現在有任意一個變數 b 在 Y subset 裡面， S\(b\) 代表的就是 X 中那一個會變成 b 的唯一 x
 
@@ -151,7 +151,7 @@ $$
 
 若有 a 透過 f\(a\) 從 X 變到 Y，那麼對 f\(a\) 做 S transformation 能變回 a 嗎？
 
-![](../../.gitbook/assets/linear_algebra/invertible_2.jpg)
+![](../../.gitbook/assets/invertible_2%20%281%29.jpg)
 
 因為我們早已定義 S 會幫我們找到唯一的 x 值，所以很明顯要找的 x 就是 a
 
@@ -204,7 +204,7 @@ $$
 
 舉個例子，所有的 Y 都至少有一人 map 到他
 
-![](../../.gitbook/assets/linear_algebra/surjective.jpg)
+![](../../.gitbook/assets/surjective.jpg)
 
 ### Injective \(one-to-one\)
 
@@ -216,7 +216,7 @@ $$
 
 注意的是，可以有 y 不被任何人 map 到，但不可以一次有兩個以上的人 map 到 y
 
-![](../../.gitbook/assets/linear_algebra/injective.jpg)
+![](../../.gitbook/assets/injective%20%281%29.jpg)
 
 ## Relating invertibility to being onto and one-to-one
 
@@ -250,7 +250,7 @@ $$
 
 我們知道 transformation 還可以轉為 matrix vector product
 
-![](../../.gitbook/assets/linear_algebra/matrix_transformation.jpg)
+![](../../.gitbook/assets/matrix_transformation.jpg)
 
 $$
 \begin{aligned}
@@ -378,7 +378,7 @@ $$
 b_1 + b_2 = 0 \rightarrow b_1 = -b_2
 $$
 
-![](../../.gitbook/assets/linear_algebra/linear_transformation_solution.jpg)
+![](../../.gitbook/assets/linear_transformation_solution%20%281%29.jpg)
 
 也就是說任何 x 經過 T 一定要在 b1 = -b2 直線上的任何一點，才是有 solution
 
@@ -409,7 +409,7 @@ $$
  x_2 \begin{bmatrix} 3\\1 \end{bmatrix}
 $$
 
-![](../../.gitbook/assets/linear_algebra/linear_transformation_domain.jpg)
+![](../../.gitbook/assets/linear_transformation_domain.jpg)
 
 淺藍色的直線就是我們的 x vector \(domain\)，上面的任何一點經過 T 都會 map 到 \[5, -5\]
 
@@ -635,7 +635,7 @@ $$
 
 若 T 要 invertible ，那 T 和 inverse 的組合等於在 Rn 不變的 transformation
 
-![](../../.gitbook/assets/linear_algebra/invertible_transformation.jpg)
+![](../../.gitbook/assets/invertible_transformation.jpg)
 
 $$
 \begin{aligned}

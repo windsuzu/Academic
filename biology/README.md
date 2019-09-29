@@ -1,6 +1,9 @@
 # Biology
 
-# Prerequisites
+## Biology
+
+## Prerequisites
+
 * General science skills
   * [The scientific method](https://www.khanacademy.org/science/biology/intro-to-biology/science-of-biology/v/the-scientific-method).
 * Chemistry:
@@ -13,3 +16,4 @@
   * [Statistics](https://www.khanacademy.org/math/probability/descriptive-statistics/central-tendency/v/statistics-intro-mean-median-and-mode)
 * Math
   * [Basic algebra and graphing](https://www.khanacademy.org/math/algebra-basics)
+

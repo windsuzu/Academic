@@ -10,7 +10,7 @@ $$
 f:X\to Y
 $$
 
-![](../../.gitbook/assets/linear_algebra/function_intro.jpg)
+![](../../.gitbook/assets/function_intro%20%281%29.jpg)
 
 我們可以帶入更多的術語進到 function 裡面，這裡用一個 x 變成 x^2 的 function 來示範
 
@@ -24,7 +24,7 @@ $$
 f: x \mapsto x^2
 $$
 
-![](../../.gitbook/assets/linear_algebra/function_intro2.jpg)
+![](../../.gitbook/assets/function_intro2.jpg)
 
 我們稱還沒轉換的前一個物件為 domain ，而轉換過後的物件為 co-domain
 
@@ -56,7 +56,7 @@ $$
 f: \mathbb{R}^n \to \mathbb{R}^m
 $$
 
-![](../../.gitbook/assets/linear_algebra/vector_transformation.jpg)
+![](../../.gitbook/assets/vector_transformation%20%281%29.jpg)
 
 例如我們可以將 R3 的 vector 轉換到 R2 的 vector
 
@@ -400,7 +400,7 @@ L_3 &= \begin{Bmatrix} \vec{x_1} + t(x_2-x_1) \mid 0 \le t \le 1\end{Bmatrix}\\
 \end{aligned}
 $$
 
-![](../../.gitbook/assets/linear_algebra/transaction_before.jpg)
+![](../../.gitbook/assets/transaction_before%20%281%29.jpg)
 
 我們現在使用 matrix 來定義 transformation 為
 
@@ -442,7 +442,7 @@ $$
 
 接著再把這些已經 transform 的 vector 代回 T\(L\) 的式子中，即可得到 L1, L2, L3
 
-![](../../.gitbook/assets/linear_algebra/transaction_after.jpg)
+![](../../.gitbook/assets/transaction_after.jpg)
 
 我們稱這些經過 transformation 的直線或三角形為 **Image of XXX under T**
 
@@ -497,7 +497,7 @@ T(\vec{x}) \mid \vec{x} \in \mathbb{R}^n
 \end{aligned}
 $$
 
-![](../../.gitbook/assets/linear_algebra/image_of_transformation.jpg)
+![](../../.gitbook/assets/image_of_transformation%20%281%29.jpg)
 
 我們把整個轉換過去的 T\(Rn\) 稱為 **range of T** 或者是 **Image of T** 然後標記為 **Im\(T\)**
 
@@ -526,7 +526,7 @@ $$
 
 那我們現在想要從 co-domain 來得知有哪些 domain 轉換過去，要怎麼表示？
 
-![](../../.gitbook/assets/linear_algebra/preimage.jpg)
+![](../../.gitbook/assets/preimage.jpg)
 
 我們想知道 X 底下有哪些 subset 可以 transform 到 Y 底下的 S subset，我們可以這樣表示
 
@@ -597,7 +597,7 @@ $$
 
 也就是 t\(-3, 1\) 的這條直線 \(subset\) 上任何一點，經過 transformation 就會回到原點
 
-![](../../.gitbook/assets/linear_algebra/kernel.jpg)
+![](../../.gitbook/assets/kernel%20%281%29.jpg)
 
 像這樣有 subset 經過 transformation 後回到原點的現象，我們稱這個 subset 為 **kernel of T**
 

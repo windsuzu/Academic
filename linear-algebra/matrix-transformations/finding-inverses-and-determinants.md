@@ -548,7 +548,7 @@ $$
 
 仔細觀察，等於我們將矩陣多畫出兩行，然後將紅色部分 + 藍色部分
 
-![](../../.gitbook/assets/linear_algebra/sarrus.jpg)
+![](../../.gitbook/assets/sarrus.jpg)
 
 一樣來舉個例子
 

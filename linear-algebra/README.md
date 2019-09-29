@@ -1,2 +1,2 @@
-# Discrete mathematics
+# Linear Algebra
 

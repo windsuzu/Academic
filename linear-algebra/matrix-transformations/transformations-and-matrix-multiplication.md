@@ -6,7 +6,7 @@
 
 現在要來討論的是， linear transformation 的組合要怎麼表示？他還算是 linear transformation 嗎？
 
-![](../../.gitbook/assets/linear_algebra/transformation_composition.jpg)
+![](../../.gitbook/assets/transformation_composition%20%281%29.jpg)
 
 我們現在有 Rn, Rm, Rl 空間，以及 S 和 T 兩個 linear transformation function
 
@@ -153,7 +153,7 @@ $$
 
 今天若是 B 和 A 交換，要求 AB 是求不出來的
 
-所以這邊又點出一個觀念，就是 **矩陣相乘是沒有交換律的 \(NO commutative\)** 
+所以這邊又點出一個觀念，就是 **矩陣相乘是沒有交換律的 \(NO commutative\)**
 
 $$
 \mathbf{AB \neq BA}

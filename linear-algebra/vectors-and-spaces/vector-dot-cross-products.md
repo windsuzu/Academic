@@ -70,7 +70,7 @@ $$
 
 我們可以用二維空間來展示，而且好處是可以套用至更高維的空間
 
-![](../../.gitbook/assets/linear_algebra/triangle_inequality.jpg)
+![](../../.gitbook/assets/triangle_inequality.jpg)
 
 * Angle between two vectors: [https://youtu.be/5AWob\_z74Ks](https://youtu.be/5AWob_z74Ks)
 
@@ -121,7 +121,7 @@ $$
 
 我們可以從兩個向量 \(a, b\) 得到 **躺在平面** 的向量 \(a - b\)，並且他會與 **normal vector** \(n\) 相互垂直
 
-![](../../.gitbook/assets/linear_algebra/3d_plane.jpg)
+![](../../.gitbook/assets/3d_plane.jpg)
 
 $$
 \begin{aligned}
@@ -182,7 +182,7 @@ $$
 
 我們可以利用右手定則看到 cross product 的結果
 
-![](../../.gitbook/assets/linear_algebra/right_hand_rule.jpg)
+![](../../.gitbook/assets/right_hand_rule.jpg)
 
 > Relationship between cross product and sin of angle: [https://youtu.be/7MKA2QlKvHc](https://youtu.be/7MKA2QlKvHc)
 
@@ -204,7 +204,7 @@ $$
 \cos\theta = \frac{adj}{\lVert\vec{a}\rVert}, adj = \lVert\vec{a}\rVert\cos\theta
 $$
 
-![](../../.gitbook/assets/linear_algebra/dot_product_theta.jpg)
+![](../../.gitbook/assets/dot_product_theta.jpg)
 
 這個鄰邊 \(adj.\) 可以說是 a 向量的投影
 
@@ -235,7 +235,7 @@ $$
 \sin\theta = \frac{opt}{\lVert\vec{a}\rVert}, opt = \lVert\vec{a}\rVert\sin\theta
 $$
 
-![](../../.gitbook/assets/linear_algebra/cross_product_theta.jpg)
+![](../../.gitbook/assets/cross_product_theta%20%281%29.jpg)
 
 這個對邊 \(opt.\) 可以說是 a 向量垂直於 b 向量的那條線
 
@@ -278,7 +278,7 @@ $$
 
 先找到原點指向該平面的向量 b，再和原點到點 a 的向量 a 相減得到 f
 
-![](../../.gitbook/assets/linear_algebra/dot_plane_distance.jpg)
+![](../../.gitbook/assets/dot_plane_distance.jpg)
 
 $$
 \vec{n} = \begin{bmatrix}A\\B\\C \end{bmatrix},

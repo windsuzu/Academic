@@ -64,7 +64,7 @@ $$
 
 在圖形上看起來像是這樣
 
-![](../../.gitbook/assets/linear_algebra/linear_system.jpg)
+![](../../.gitbook/assets/linear_system.jpg)
 
 ## linear systems
 
