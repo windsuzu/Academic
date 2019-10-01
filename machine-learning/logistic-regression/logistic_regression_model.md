@@ -90,7 +90,7 @@ $$
   \text{Cost}(h_\theta(x), y) = -\log(1-h_\theta(x))
   $$
 
-所以完整的 cost function J =
+所以完整的 cost function J 為
 
 $$
 J(\theta) = - \frac{1}{m}\sum_{i=1}^m 
@@ -98,15 +98,13 @@ J(\theta) = - \frac{1}{m}\sum_{i=1}^m
 $$
 
 {% hint style="info" %}
-Hello world
-{% endhint %}
+可以再進化成 vectorized function
 
-> 可以再進化成 vectorized function
->
-> $$
-> h = g(X\theta)\\
-> J(\theta) = \frac{1}{m} \cdot (-y^T\log(h)-(1-y)^T\log(1-h))
-> $$
+$$
+h = g(X\theta)\\
+J(\theta) = \frac{1}{m} \cdot (-y^T\log(h)-(1-y)^T\log(1-h))
+$$
+{% endhint %}
 
 我們一樣可以使用 **Gradient Descent** 來找出 cost function 的最小 $$\theta$$
 
@@ -141,11 +139,13 @@ $$
 \end{aligned}
 $$
 
-> 每個 loop 裡面的 theta 一樣要同時更新 而他的 vectorized implementation 為
->
-> $$
-> \theta := \theta - \alpha \frac{1}{m} X^T (g(X\theta) - \vec{y})
-> $$
+{% hint style="info" %}
+每個 loop 裡面的 theta 一樣要同時更新，而他的 vectorized implementation 為
+
+$$
+\theta := \theta - \alpha \frac{1}{m} X^T (g(X\theta) - \vec{y})
+$$
+{% endhint %}
 
 ## Advanced Optimization
 
@@ -163,7 +163,7 @@ $$
 
 但十分複雜，不過我們可以透過一些 library 來直接執行
 
-在 octave 中我們呼叫 **fminunc\(\)** 來實作
+在 Octave 中我們呼叫 `fminunc()` 來實作
 
 我們需要提供以下兩個東西的數值，分別為
 
@@ -180,11 +180,11 @@ function [jVal, gradient] = costFunction(theta)
 end
 ```
 
-接著要提供 optimset 就是 function 的 options
+接著要提供 `optimset` \(function 的 options\)
 
-以及最初的 theta 值
+以及最初的 $$\theta$$ 值
 
-octave 程式碼如下 :
+Octave 程式碼如下 :
 
 ```text
 options = optimset('GradObj', 'on', 'MaxIter', 100);
@@ -275,6 +275,4 @@ $$
 就會把三種 h\(x\) 各跑一次
 
 最後哪一種機率最高，他就是那一個 class
-
-> [Slide](https://d3c33hcgiwev3.cloudfront.net/_964b8d77dc0ee6fd42ac7d8a70c4ffa1_Lecture6.pdf?Expires=1569369600&Signature=PhY46Jbe8gft0~H7Hs2vxvgCae3AQDas33ZZJSJh92DE3Kp4cFA9VYiW~~mXNf2V0nOKXQX3gd2H~NFMTQsarPupOgG27wTigwDXI6aeTcu8dIWkwDFrD3153xOurtCkHq8-KAsi70P7Zh6MX66pHFOX7~CPn8JFm-t-Ni6Za3U_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A)
 
