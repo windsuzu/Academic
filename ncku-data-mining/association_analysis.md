@@ -58,7 +58,7 @@ Association Rule 重視的是 **co-occurence**，而非 **causality** !
 
     ![](../.gitbook/assets/transaction_example.png)
 
-    我們想要探討 $\begin{Bmatrix} \text{Milk, Diaper} \end{Bmatrix} \rightarrow \begin{Bmatrix} \text{Beer} \end{Bmatrix}$ 的關聯度如何
+    我們想要探討 $$\begin{Bmatrix} \text{Milk, Diaper} \end{Bmatrix} \rightarrow \begin{Bmatrix} \text{Beer} \end{Bmatrix}$$ 的關聯度如何
 
     $$
     \begin{aligned}
@@ -176,6 +176,8 @@ $$
 \end{aligned}
 $$
 
+這個原則我們稱為 **Anti-monotone** !
+
 ### Notation and Algorithm
 
 * $$C_k$$ : candidate k-itemsets : 代表所有可能為 frequent 的 itemsets
@@ -287,9 +289,118 @@ Hash Tree 的建法很簡單，把現有的 itemset 按照 hash function 的規�
 
 ![](../.gitbook/assets/subset_operation_hash_tree.png)
 
-> [Other Slide](http://www.cs.uoi.gr/~tsap/teaching/2012f-cs059/material/datamining-lect3.pdf)
+{% hint style="info" %}
+[Other Slide](http://www.cs.uoi.gr/~tsap/teaching/2012f-cs059/material/datamining-lect3.pdf)
+{% endhint %}
 
-=== 下週
+### Rule Generation
 
-FP close
+我們從 frequent itemset 可以產生各式各樣的 association rules
+
+目前為止，只要是符合 **minconf** 和 **minsup** 的 association rules
+
+我們就會將他解釋為 good association rule
+
+但可能有些 rules 是無用或是 duplicated 的
+
+#### Anti-monotone
+
+在一般情形下，不同的 confidence 間是沒有 anti-monotone 的關係
+
+$$
+c(ABC \rightarrow D) \;\not\!\!\!\implies c(AB \rightarrow D)
+$$
+
+但是相同 itemset 所產出的 confidence 可以有 anti-monotone 的關係
+
+$$
+c(ABC \rightarrow D) \ge c(AB \rightarrow CD)  \ge c(A \rightarrow BCD)
+$$
+
+{% hint style="info" %}
+你可以想像成已知三個條件猜一個
+
+一定比已知兩個條件猜兩個還要簡單很多
+{% endhint %}
+
+所以當我們知道上層的 rule 是不符合 confidence 的
+
+那相同 itemset 所產生的下層 rules 就可以被刪掉
+
+![](../.gitbook/assets/lattice_of_rules.png)
+
+#### Generate Candidate rules
+
+我們也可以用兩個 rules 來產生新的 rule
+
+透過 shared prefix 來組成新的 rule
+
+但若是新 rule 的 subset 含有 low confidnece rule 那就必須刪除
+
+![](../.gitbook/assets/rule_generation_apriori.png)
+
+$$
+\begin{aligned}
+&\text{join}(CD\rightarrow AB, BD\rightarrow AC) = 
+D\rightarrow ABC \\
+&\text{Prune }(D \rightarrow ABC) \text{ if } (AD \rightarrow BC) \text{ is low confidence.}
+\end{aligned}
+$$
+
+### Improvement of Apriori Algorithm
+
+* Ideas
+  * 減少對 database 的 scan 次數
+  * 減少 candidates 數量
+  * Facilitate support counting of candidates
+
+#### DHP \(Direct Hashing & Pruning\)
+
+DHP 的目的是要改善
+
+* frequent itemsets generation
+* transaction database size reduction
+* reducing of database scans
+
+DHP 將會運用 hashing 的技巧
+
+​將一開始的 itemsets 轉移到 hash table 上
+
+再從 hash table 篩選出 hash 出現次數多的格子
+
+DHP 在 hash 時可能會有誤差，但因為會不斷的往下篩選所以不要緊
+
+![](../.gitbook/assets/dhp_example.png)
+
+在篩選的過程中，也可以慢慢剔除掉不必要的 transactions \(如 100, 400\)
+
+達到 **Reduction on Transaction Database size**
+
+#### Partitioning
+
+因為 potential frequent itemset 常出現在至少一個 partition 中
+
+所以我們將 transaction database 拆分成不重複的 partitions 放入 main memory 中
+
+```text
+Divide D into partitions D1, D2, ..., Dp
+For i = 1 to p:
+    Li = Apriori(Di)
+C = L1 + L2 + ... + Lp
+Count C on D to generate L
+```
+
+第一次 scan 時，每個 partitions 會分別產生 local frequent itemset
+
+第二次 scan 時，collection of local frequent itemset 就能找出 global candidate itemset
+
+每一個 partitions 能夠平行化運算增加效率
+
+但還是會在第二次 scan 時產生過多的 candidates
+
+#### Beyond Apriori Algorithm
+
+所以 Apriori 始終沒辦法解決 candidates 過多的問題
+
+我們有辦法避免 candidate generation 嗎？
 
