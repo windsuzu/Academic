@@ -47,7 +47,8 @@
 * [NCKU - Data Mining](ncku-data-mining/README.md)
   * [Introduction](ncku-data-mining/introduction.md)
   * [Association Analysis](ncku-data-mining/association_analysis.md)
-  * [FP-growth](ncku-data-mining/suffix-tree.md)
+  * [FP-growth](ncku-data-mining/fp_growth.md)
+  * [Other Association Rules](ncku-data-mining/other_association_rules.md)
 * [NCKU - Machine Learning](ncku-machine-learning/README.md)
   * [Introduction](ncku-machine-learning/introduction.md)
 
