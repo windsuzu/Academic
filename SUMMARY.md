@@ -49,6 +49,9 @@
   * [Association Analysis](ncku-data-mining/association_analysis.md)
   * [FP-growth](ncku-data-mining/fp_growth.md)
   * [Other Association Rules](ncku-data-mining/other_association_rules.md)
+  * [Sequence Pattern](ncku-data-mining/sequence_pattern.md)
 * [NCKU - Machine Learning](ncku-machine-learning/README.md)
   * [Introduction](ncku-machine-learning/introduction.md)
-
+* Python
+  * [Numpy](python/numpy.md)
+  * [Pandas](python/pandas.md)

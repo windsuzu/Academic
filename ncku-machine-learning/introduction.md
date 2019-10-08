@@ -1,5 +1,30 @@
 # Introduction
 
+## Mean $$\mu$$
+
+
+## Variance $$\sigma$$
+
+
+## Expectation $$E$$
+
+## Bayes law
+
+### Posterior Probability
+
+### Likelihood
+
+### Odds ratio version
+
+
+## Entropy $$H$$
+
+
+## Identity $$I$$
+
+
+
+
 $$
 transfer error (f)
 
@@ -101,3 +126,54 @@ $$
 
 hw : 1.13 =&gt; 1.15 =&gt; 1.17
 
+===
+
+# Demensionality
+
+Curse of demensionality
+
+demension reduction solved by : feature selection, PCA, assume features are independent
+
+https://en.wikipedia.org/wiki/Dimensionality_reduction#Feature_selection
+
+=> K-MEANS CLUSTERING https://medium.com/@chih.sheng.huang821/%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92-%E9%9B%86%E7%BE%A4%E5%88%86%E6%9E%90-k-means-clustering-e608a7fe1b43
+
+=> K-NN NEAREST NEIGHBORS https://zh.wikipedia.org/wiki/%E6%9C%80%E8%BF%91%E9%84%B0%E5%B1%85%E6%B3%95
+
+# Variance 方差
+
+$$
+if x, y independent
+VAR[x+y] = VAR[x] + VAR[y]
+
+else
+VAR[x+y] = VAR[x] + VAR[y] + 2COV[x, y]
+
+Covariance = COV[x, y] = E[(xi-\mu x)(yi-\mu y)]
+\mu_x = E[x]
+\mu_y = E[y]
+$$
+
+$$
+VAR[x+x] = VAR[x] + VAR[x] + 2COV[x,x] = 4VAR[x]
+$$
+
+Pearsons correlation = $$\frac{COV[x, y]}{\sqrt{VAR[x]VAR[y]}}$$
+
+Spearman's rank correlation
+
+# Diffusion
+
+布朗運動 E[displacement^2] = 2wDt
+w = dimensionality
+D = diffusion constant + m^2/s
+t = time
+
+Binomial(0.5, t) - t/2
+
+# chapter 3 - Bent coin
+beta integral with gamma function
+
+$$
+\forall k Prob[k success] = \frac{1}{n+1}
+$$

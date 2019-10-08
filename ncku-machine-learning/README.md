@@ -10,5 +10,7 @@ Paul Horton
 
 ## Textbooks
 
-David MacKay - Information Theory, Inference, and Learning Algorithms \[1, 2, 3, 20, 21, 22\] Kevin murphy - machine learning
+David MacKay - Information Theory, Inference, and Learning Algorithms \[1, 2, 3, 20, 21, 22\] 
+
+Kevin murphy - Machine Learning: A Probabilistic Perspective
 
