@@ -95,7 +95,7 @@ $$
 
 $$
 \begin{aligned}
-&\text{Repeast \{}\\
+&\text{Repeat \{}\\
 &\theta_0 := \theta_0 - \alpha \frac{1}{m} \sum_{i=1}^m(h_\theta(x^{(i)})- y^{(i)})x_0^{(i)}\\
 &\theta_j := \theta_j - \alpha \left[\left(\frac{1}{m} \sum_{i=1}^m(h_\theta(x^{(i)})- y^{(i)})x_j^{(i)}\right)+\frac{\lambda}{m}\theta_j\right] && j \in \begin{Bmatrix}1, 2, ... n
 \end{Bmatrix}\\
@@ -174,7 +174,7 @@ $$
 
 $$
 \begin{aligned}
-&\text{Repeast \{}\\
+&\text{Repeat \{}\\
 &\theta_0 := \theta_0 - \alpha \frac{1}{m} \sum_{i=1}^m(h_\theta(x^{(i)})- y^{(i)})x_0^{(i)}\\
 &\theta_j := \theta_j - \alpha \left[\left(\frac{1}{m} \sum_{i=1}^m(h_\theta(x^{(i)})- y^{(i)})x_j^{(i)}\right)+\frac{\lambda}{m}\theta_j\right] && j \in \begin{Bmatrix}1, 2, ... n
 \end{Bmatrix}\\

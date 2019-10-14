@@ -147,3 +147,220 @@ df.iloc[[1, 2, 4], [0, 2]]  # 1, 2, 4 rows 的 0, 2 columns
 df.iloc[1, 1]  # item at (1, 1)
 ```
 
+以下是 boolean indexing 的方式
+
+``` py
+df[df.A > 0]  # 找出 column A 所有大於 0 的 Data frame
+
+df2[df2['E'].isin(['two', 'four'])]  # 找出 column E 的值包含 two 或 four 的 Data frame
+```
+
+# Settings
+
+``` py
+pd.Series([1, 2, 3], index=pd.date_range('20100101', period=3))  # 可以指派想要的 index
+
+df.at[dates[0], 'A'] = 0  # 利用 label 指派數值
+
+df.iat[0, 1] = 0  # 利用 position 指派數值
+
+df.loc[:, 'D'] = np.array([5] * len(df))  # 指派整個 numpy array
+
+df2[df2 > 0] = -df2  # 修改所有 value
+```
+
+# Missing Data
+
+接著有一些處理 missing data (NaN) 的方法
+
+``` py
+df1 = df.reindex(index=dates[0:4], columns=list(df.columns) + ['E'])
+# reindex 可以 change/add/delete 特定 axis 的 index
+
+df1.loc[dates[0]:dates[1], 'E'] = 1
+
+#                   A         B         C  D    F    E
+# 013-01-01  0.000000  0.000000 -1.509059  5  NaN  1.0
+# 013-01-02  1.212112 -0.173215  0.119209  5  1.0  1.0
+# 013-01-03 -0.861849 -2.104569 -0.494929  5  2.0  NaN
+# 013-01-04  0.721555 -0.706771 -1.039575  5  3.0  NaN
+
+df1.dropna(how='any')  # 把包含 NaN 的 rows 全刪掉
+
+df1.fillna(value=5)  # 把 NaN 全填成 5
+
+pd.isna(df1)  # 把 table 變成 True/False table (NaN = True) 
+```
+
+# Apply function
+
+``` py
+df.apply(np.cumsum)
+
+df.apply(lambda x: x.max() - x.min())
+```
+
+# Histogramming
+
+``` py
+s = pd.Series(np.random.randint(0, 7, size=10))
+# 0    4
+# 1    2
+# 2    1
+# 3    2
+# 4    6
+# 5    4
+# 6    4
+# 7    6
+# 8    4
+# 9    4
+
+s.value_counts()
+# 4    5
+# 6    2
+# 2    2
+# 1    1
+```
+
+# Merge
+
+Concat 可以將 objects 組合起來
+
+``` py
+pieces = [df[:3], df[3:7], df[7:]]
+
+pd.concat(pieces)
+```
+
+也可以用 SQL-like 的 merge (join) 方法
+
+``` py
+left = pd.DataFrame({'key': ['foo', 'foo'], 'lval': [1, 2]})
+#    key  lval
+# 0  foo     1
+# 1  foo     2
+
+right = pd.DataFrame({'key': ['foo', 'foo'], 'rval': [4, 5]})
+#    key  rval
+# 0  foo     4
+# 1  foo     5
+
+pd.merge(left, right, on='key')
+#    key  lval  rval
+# 0  foo     1     4
+# 1  foo     1     5
+# 2  foo     2     4
+# 3  foo     2     5
+```
+
+另一個 Merge 的 example
+
+``` py
+left = pd.DataFrame({'key': ['foo', 'bar'], 'lval': [1, 2]})
+#    key  lval
+# 0  foo     1
+# 1  bar     2
+
+right = pd.DataFrame({'key': ['foo', 'bar'], 'rval': [4, 5]})
+#    key  rval
+# 0  foo     4
+# 1  bar     5
+
+pd.merge(left, right, on='key')
+
+#    key  lval  rval
+# 0  foo     1     4
+# 1  bar     2     5
+```
+
+最後還有 append
+
+``` py
+df.append(s, ignore_index=True)
+```
+
+# Grouping
+
+"group by" 可以細分成以下三個 steps
+
+* **Splitting** the data into groups based on some criteria
+* **Applying** a function to each group independently
+* **Combining** the results into a data structure
+
+``` py
+#      A      B         C         D
+# 0  foo    one -1.202872 -0.055224
+# 1  bar    one -1.814470  2.395985
+# 2  foo    two  1.018601  1.552825
+# 3  bar  three -0.595447  0.166599
+# 4  foo    two  1.395433  0.047609
+# 5  bar    two -0.392670 -0.136473
+# 6  foo    one  0.007207 -0.561757
+# 7  foo  three  1.928123 -1.623033
+
+df.groupby('A').sum()
+#             C        D
+# A                     
+# bar -2.802588  2.42611
+# foo  3.146492 -0.63958
+
+df.groupby(['A', 'B']).sum()
+#                   C         D
+# A   B                        
+# bar one   -1.814470  2.395985
+#     three -0.595447  0.166599
+#     two   -0.392670 -0.136473
+# foo one   -1.195665 -0.616981
+#     three  1.928123 -1.623033
+#     two    2.414034  1.600434
+```
+
+# Reshaping
+
+The stack() method “compresses” a level in the DataFrame’s columns.
+
+``` py
+#                      A         B
+# first second                    
+# bar   one     0.029399 -0.542108
+#       two     0.282696 -0.087302
+# baz   one    -1.575170  1.771208
+#       two     0.816482  1.100230
+
+stacked = df.stack()
+# first  second   
+# bar    one     A    0.029399
+#                B   -0.542108
+#        two     A    0.282696
+#                B   -0.087302
+# baz    one     A   -1.575170
+#                B    1.771208
+#        two     A    0.816482
+#                B    1.100230
+```
+
+The inverse operation of stack() is unstack(), which by default unstacks the last level:
+
+``` py
+stacked.unstack()
+#                      A         B
+# first second                    
+# bar   one     0.029399 -0.542108
+#       two     0.282696 -0.087302
+# baz   one    -1.575170  1.771208
+#       two     0.816482  1.100230
+
+stacked.unstack(1)
+# second        one       two
+# first                      
+# bar   A  0.029399  0.282696
+#       B -0.542108 -0.087302
+# baz   A -1.575170  0.816482
+#       B  1.771208  1.100230
+```
+
+# Categoricals
+
+# Plotting
+
+# Getting Data In/Out

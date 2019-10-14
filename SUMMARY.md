@@ -25,17 +25,19 @@
     * [More Determinant Depth](linear-algebra/matrix-transformations/more-determinant-depth.md)
 * [Machine Learning](machine-learning/README.md)
   * [Introduction](machine-learning/introduction.md)
-  * [Linear Regression](machine-learning/linear-regression/README.md)
+  * Linear Regression
     * [Model and Cost Function](machine-learning/linear-regression/model.md)
     * [Parameter Learning](machine-learning/linear-regression/parameter_learning.md)
     * [Multivariate Linear Regression](machine-learning/linear-regression/multivariate_linear_regression.md)
     * [Computing Parameters Analytically](machine-learning/linear-regression/normal_equation.md)
     * [Octave](machine-learning/linear-regression/octave.md)
-  * [Logistic Regression](machine-learning/logistic-regression/README.md)
+  * Logistic Regression
     * [Classification and Representation](machine-learning/logistic-regression/classification_representation.md)
     * [Logistic Regression Model](machine-learning/logistic-regression/logistic_regression_model.md)
-  * [Regularization](machine-learning/regularization/README.md)
+  * Regularization
     * [Solving the Problem of Overfitting](machine-learning/regularization/overfitting_problem.md)
+  * Neural Networks
+    * [Introduction of Neural Networks](machine-learning/neural_networks/introduction_of_neural_networks.md)
 * [NCKU - Artificial Intelligence](ncku-artificial-intelligence/README.md)
   * [Introduction](ncku-artificial-intelligence/introduction.md)
   * [Intelligent Agents](ncku-artificial-intelligence/intelligent_agents.md)
