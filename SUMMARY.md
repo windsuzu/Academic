@@ -38,6 +38,7 @@
     * [Solving the Problem of Overfitting](machine-learning/regularization/overfitting_problem.md)
   * Neural Networks
     * [Introduction of Neural Networks](machine-learning/neural_networks/introduction_of_neural_networks.md)
+    * [Neural Networks - Learning](machine-learning/neural_networks/neural_networks_learning.md)
 * [NCKU - Artificial Intelligence](ncku-artificial-intelligence/README.md)
   * [Introduction](ncku-artificial-intelligence/introduction.md)
   * [Intelligent Agents](ncku-artificial-intelligence/intelligent_agents.md)

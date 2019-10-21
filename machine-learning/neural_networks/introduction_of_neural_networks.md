@@ -2,17 +2,17 @@
 
 ![](../../.gitbook/assets/motivation_neural_network.png)
 
-想像我們要解決上面這個 Non-linear classification
+想像我們為了解決上面這個 Non-linear classification
 
-用了 sigmoid function 搭配很多的 parameters 和新 features
+必須使用 sigmoid function 搭配很多的 parameters 和新 features
 
 $$
 g(\theta_0 + \theta_1x_1 + \theta_2x_2 + \theta_3x_1x_2 + \theta_4x_1^2x_2 + \theta_5x_1^3x_2 + \theta_6x_1x_2^2 + \cdots)
 $$
 
-解決只用了兩個 features 就產生可能 "Overfitting" 的 hypothesis
+像上面用了兩個 features 就產生了可能 "Overfitting" 的 hypothesis
 
-更不用說當我們有更多的 feature 時，新 features 的數量將以指數成長
+當我們有更多的 features 時，新 features 的數量將以指數成長
 
 ## Example - Computer Vision
 
@@ -127,7 +127,7 @@ $$
 * 且 layer $$j+1$$ 共有 $$s_{j+1}$$ 個 units
 * 那麼 $$\Theta^{(j)}$$ 的 dimension 為 $$s_{j+1} \times (s_j + 1)$$
 
-例如 layer 1 有 2 個 nodes 而 layer 2 有 4 個 activation nodes
+例如 layer 1 有 2 個 nodes 而 layer 2 有 4 個 nodes
 
 那麼 $$\Theta^{(1)}$$ 的 dimension 為 4 x 3
 
@@ -169,7 +169,7 @@ $$
 
 總結來說，z 和 a 的公式如下
 
-其中的 n + 1 為 $$a_0^{(1)} (x_0), a_0^{(2)}, \cdots$$
+其中的 n + 1 為 $$a_0^{(1)} = x_0, a_0^{(2)}, a_0^{(3)}, \cdots$$
 
 $$
 \begin{aligned}
