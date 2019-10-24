@@ -217,3 +217,37 @@ learning curves 會跟下圖差不多
 
 ## Summary
 
+所以當你 diagnose 並發現問題點後，可以分別做正確的修正了 !
+
+* When you get **high bias problem**
+  * add features
+  * add polynomial features $$(x_1x_2, x_1^2, x_2^2, \cdots)$$
+  * decrease $$\lambda$$
+* When you get **high variance problem**
+  * add more training examples
+  * try smaller sets of features
+  * increase $$\lambda$$
+
+### Diagnose Neural Networks
+
+* 小的 neural networks 趨向於 **underfitting**
+  * 但他 **computationally cheaper**
+* 大的 neural networks 趨向於 **overfitting**
+  * 但他 **computationally expensive**
+  * 而 overfitting 也可以透過 regularization 來修正 (increase $$\lambda$$)
+
+Neural networks 預設是使用 1 hidden layer
+
+但你也可以使用多個 hidden layer 並且搭配 cross validation sets 來訓練
+
+### Model Complexity Effects
+
+* 當 hypothesis 的 degree 很低時
+  * 會 high bias 及 low variance
+  * train set 和 test set 都會 fit poorly
+* 當 hypothesis 的 degree 很高時
+  * 會在 train set 有 low bias 但 high variance
+  * 在 train set fit perfectly
+  * 但在 test set fit poorly
+
+我們希望的 model 會介於兩者之間，fit all sets reasonably !

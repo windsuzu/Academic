@@ -44,8 +44,13 @@ https://www.statisticshowto.datasciencecentral.com/odds-ratio/
 ## k-means clustering
 
 ## soft k-mean clustering
+p289
 
 ## gaussian mixture model
+
+## Belief update
+
+
 
 
 $$
@@ -221,4 +226,26 @@ Course goal: Full understanding of inferrence of Pa
 
 - binomial distribution inferrence
 - chapter 3
+
+
+# Chpater 8
+
+$$
+I(X, Y) = H(X) - H(X|Y) = H(Y) - H(Y|X)
+$$
+
+if x, y independent
+
+$$
+I(X, Y) = 0
+$$
+
+if X determines Y
+
+$$
+H(X|Y) = 0, I(X, Y) = H(X) = H(Y)
+$$
+
+![](../.gitbook/assets/entropy_relations.png)
+
 
