@@ -31,7 +31,7 @@ K = 4
 
 其實就只是 **regularization logistic regression** 的改版而已
 
-Regularization logistic regression 的 cost function 還記得是 :
+我們還記得 Regularization logistic regression 的 cost function 是 :
 
 $$
 J(\theta) = -\frac{1}{m} \sum_{i=1}^m\begin{bmatrix}
@@ -47,8 +47,8 @@ y^{(i)}_k \log(h_\theta(x^{(i)})_k)+(1-y^{(i)}_k)\log(1-h_\theta(x^{(i)})_k)
 \end{bmatrix} + \frac{\lambda}{2m} \sum_{l=1}^{L-1} \sum_{i=1}^{sl}\sum_{j=1}^{sl+1}(\Theta_{j,i}^{(l)})^2
 $$
 
-* 在 part1 我們加入 $$\sum_{k=1}^K$$ 來加總 K 個 output nodes 的 cost
-* 在 part2 要想辦把加總出所有的 $$\Theta$$
+* 在前項 part1 我們加入 $$\sum_{k=1}^K$$ 來加總 K 個 output nodes 的 cost
+* 在後項 part2 要想辦把加總出所有的 $$\Theta$$
   * 所以當下的 $$\Theta$$ columns 等於 sl (# of nodes in current layer)
   * 而 $$\Theta$$ rows 等於 sl + 1 (# of nodes in next layer)
   * 於是就可以計算所有 $$\Theta$$ 的平方和
@@ -65,7 +65,7 @@ $$
 
 而要計算出 $$J(\Theta)$$ 的微分，就是使用 **Backpropagation algorithm**
 
-1. 首先我們有這些 training sets
+### 1. 首先我們有這些 training sets
 
 $$
 \begin{Bmatrix}
@@ -73,19 +73,22 @@ $$
 \end{Bmatrix}
 $$
 
-1. 設定一個矩陣包含所有 l, i, j 等於 0
+### 2. 設定一個矩陣包含所有 l, i, j 等於 0
+
+應該是用來存放最終的 Cost function
 
 $$
 \Delta^{(l)}_{i,j} := 0
 $$
 
-3. For `t = 1 to m` 各跑一次 **Forward Propogation**
-   1. $$a^{(1)} := x^{(t)}$$
-   2. 計算 $$a^{(l)} \text{ for } l = 2, 3, \cdots L$$
-   
-      ![](../../.gitbook/assets/forward_propogation_layer4.png)
+### 3. For `t = 1 to m` 各跑一次 **Forward Propogation**
 
-4. 利用 $$y^{(t)}$$ 來計算 $$\delta^{(L)} = a^{(L)} - y^{(t)}$$
+* $$a^{(1)} := x^{(t)}$$
+* 計算 $$a^{(l)} \text{ for } l = 2, 3, \cdots L$$
+
+![](../../.gitbook/assets/forward_propogation_layer4.png)
+
+### 4. 利用 $$y^{(t)}$$ 來計算 $$\delta^{(L)} = a^{(L)} - y^{(t)}$$
 
 其中的 $$a^{(L)}$$ 代表最後一個 layer 的每個 activation units (output nodes)
 
@@ -97,13 +100,13 @@ $$
 
 > (l = 1 不用算，因為他就是我們的 input，不會有任何誤差)
 
-5. 利用 $$\delta^{(l)} = ((\Theta^{l})^T\delta^{(l+1)}).*g'(z^{(l)})$$ 來計算前面 layers 的 $$\delta$$
+### 5. 利用 $$\delta^{(l)} = ((\Theta^{l})^T\delta^{(l+1)}).*g'(z^{(l)})$$ 來計算前面 layers 的 $$\delta$$
 
 計算當下 layer 的 $$\delta$$ 等於
 
-**當下的 $$\Theta$$ matrix 乘下一層 layer 的 $$\delta$$ values**
+**當下的 $$\Theta$$ matrix 乘上 next layer 的 $$\delta$$ values**
 
-然後再 **element-wise 乘上 activation function $$g(z^{l})$$ 的微分**
+然後再 **element-wise 乘上 activation function $$g'(z^{l})$$**
 
 其中這個 g-prime 又可以寫成
 
@@ -113,7 +116,7 @@ $$
 
 如此一來我們就得到了 $$\delta^{L}, \delta^{L-1}, \delta^{L-1}, \cdots, \delta^2$$
 
-1. 將計算好的 $$a$$ 和 $$\delta$$ 帶回去 $$\Delta^{(l)}_{i,j}$$
+### 6. 將計算好的 $$a$$ 和 $$\delta$$ 帶回去 $$\Delta^{(l)}_{i,j}$$
 
 $$
 \Delta^{(l)}_{i,j} := \Delta^{(l)}_{i,j} + a^{(l)}_j \delta^{(l+1)}_i
@@ -127,9 +130,7 @@ $$
 
 最終我們得到了一個 $$D^{(l)}_{i,j} = \frac{\partial}{\partial\Theta^{(l)}_{i,j}}J(\Theta)$$
 
-這個 D 是一個 accumulator 用來 add up 所有 values
-
-也可以說是 Neural networks 的 Gradient
+D 可以說是 Neural networks 的 Gradient
 
 $$
 \begin{aligned}
@@ -326,3 +327,43 @@ Theta3 =  rand(1,11) * (2 * INIT_EPSILON) - INIT_EPSILON;
 
 > 注意，以上的 $$\epsilon$$ 不等於 gradient checking 的 $$\epsilon$$
 
+# Summary
+
+首先決定一個 neural networks 的 architecture 很重要
+
+我們必須決定以下事情 :
+
+* number of input units
+  * dimension of features $$x^{(i)}$$
+* number of output units
+  * number of classes
+* number of units in each hidden layers
+  * more the better, 但要考慮 computation cost
+* Default : 1 hidden layer
+  * 如果你有大於一個 hidden layer
+  * 最好每層的 units 數都要一致
+
+再來就可以來 Training a Neural Network :
+
+1. 隨機定義 Weights $$\Theta$$
+2. 用 forward propogation 取得 $$h_\Theta(x^{(i)})$$
+3. 計算 cost function
+4. 用 backpropogation 取得 partial derivatives
+5. Gradient checking 確定 backpropogation 計算正確然後關掉 checking
+6. 用 gradient descent 或其他算法找到能 minimize cost function 的 weights $$\Theta$$
+
+通常在剛接觸 neural networks 時是可以用 for loop 來 implement 的 :
+
+``` matlab
+for i = 1:m
+    forward and back propagation using example (x(i),y(i))
+    Get activations a(l) and delta terms d(l) for l = 2,...,L
+```
+
+Neural networks 的 cost function 是 non-convex 的
+
+但通常找到的 local minimum 都還不錯 !
+
+![](../../.gitbook/assets/neural_networks_cost_graph.png)
+
+上圖就是一個 neural networks 的 visualization

@@ -1,28 +1,51 @@
+$$
+\forall k Prob[k success] = \frac{1}{n+1}
+$$
+
 # Introduction
 
 ## Mean $$\mu$$
 
+https://www.khanacademy.org/math/ap-statistics/summarizing-quantitative-data-ap/measuring-center-quantitative/v/statistics-intro-mean-median-and-mode
 
 ## Variance $$\sigma$$
 
+https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative-data/variance-standard-deviation-population/v/variance-of-a-population
 
 ## Expectation $$E$$
 
+https://www.khanacademy.org/tag/expected-value
+https://www.khanacademy.org/math/in-in-grade-12-ncert/in-in-probability-of-events/copy-of-binomial-random-variables/v/expected-value-of-binomial-distribution
+
 ## Bayes law
+
+https://www.khanacademy.org/math/ap-statistics/probability-ap#stats-conditional-probability
 
 ### Posterior Probability
 
+https://www.statisticshowto.datasciencecentral.com/posterior-distribution-probability/
+
 ### Likelihood
+
+https://www.statisticshowto.datasciencecentral.com/likelihood-function/
 
 ### Odds ratio version
 
+https://www.statisticshowto.datasciencecentral.com/odds-ratio/
 
 ## Entropy $$H$$
 
-
 ## Identity $$I$$
 
+## Prior
 
+## k nearest neighbors
+
+## k-means clustering
+
+## soft k-mean clustering
+
+## gaussian mixture model
 
 
 $$
@@ -33,9 +56,7 @@ transfer error (f)
 3f^2 + f^3
 \text{lower error percentage}
 $$
-
 11
-
 $$
 hamming distance = bit diff counts
 
@@ -50,9 +71,7 @@ non error percentage: (1-f)^7 + 7f(1-f)^6
 
 erro percentage: C(7,2) * f^2(1-f)^5 \approx 21f^2
 $$
-
 quiz
-
 $$
 \begin{bmatrix}
  & a & g & c & t\\
@@ -71,7 +90,6 @@ r= \lambda \\
 e^\lambda \frac{\lambda^\lambda}{\lambda!} = \frac{1}{\sqrt{2\pi\lambda}}\\
 \lambda! = (\frac{\lambda}{e})^\lambda \frac{1}{\sqrt{2\pi\lambda}}
 $$
-
 baye's law
 
 prior odds P\(A\) = 20% P\(-A\) = 80% =1/4
@@ -83,11 +101,9 @@ XXX7XXXX YYYYYYYY
 phone number = $$\frac{1}{10^7} / \frac{1}{10^8}$$ = 10 倍
 
 posterior odds
-
 $$
 \frac{P[A|S]}{P[-A|S]} = \frac{P[A]}{P[-A]} \frac{P[S|A]}{P[S|-A]}
 $$
-
 posterior = prior odds \* likelihood
 
 is better than bayes law \(P\[S\] is not easy to get.\)
@@ -96,34 +112,29 @@ linearly variance
 
 linearly expectation
 
-* odds form of bayes law \(p29\)
-* expectation \(p1\)
+- odds form of bayes law \(p29\)
 
+- expectation \(p1\)
   $$
   E[f(x)] = \sum_ipx_if(x_i)
   $$
 
-* entropy \(p32\) [https://planetcalc.com/2476/](https://planetcalc.com/2476/)
-
+- entropy \(p32\) [https://planetcalc.com/2476/](https://planetcalc.com/2476/)
   $$
   H(p_1 \cdots p_k) = \sum_i p_i \log\frac{1}{p_i} = E[\log\frac{1}{p_i}]
   $$
-
   entropy can be used to predict the least bits needs to be transfer a = 1/2, b = 1/2, h = 1 a = 2/3, b = 1/3, h = .92 =&gt; can use less than 1 bit to code \(use huffman code\)
 
-* approx combination \(Stirling approx\) \(p2\)
-
+- approx combination \(Stirling approx\) \(p2\)
   $$
   N! \approx (\frac{n}{e})^n\sqrt{2\pi n}
   $$
 
 another way
-
 $$
 H_2(p) = H(p, 1-p) = p\log p + (1-p)\log(1-p) \\
 \ln \binom{N}{r} \approx NH_2(\frac{r}{N})
 $$
-
 hw : 1.13 =&gt; 1.15 =&gt; 1.17
 
 ===
@@ -172,8 +183,42 @@ t = time
 Binomial(0.5, t) - t/2
 
 # chapter 3 - Bent coin
-beta integral with gamma function
 
+beta integral with gamma function
 $$
 \forall k Prob[k success] = \frac{1}{n+1}
 $$
+
+$$
+F_a + F_b = F
+$$
+
+$$
+\frac{F_a!F_b!}{(F_a + F_b + 1)!} 
+=\frac{1}{(N+1)}\frac{F_a!(F-F_a)!}{F!} = \frac{1}{(F+1)\binom{F}{F_a}}
+$$
+
+## 3.5 answer
+
+$$
+P[P_a\mid aba] = \frac{P[P_a]\times P[aba|P_a]}{P[aba]} 
+$$
+
+$$
+P[aba|P_a] = P_a^2(1-P_a)
+$$
+
+$$
+P[aba] = \frac{1}{(3+1)\binom{3}{2}}
+$$
+
+$$
+P[P_a\mid aba] = 
+\frac{P_a(P_a^2(1-P_a))}{\frac{1}{12}}
+$$
+
+Course goal: Full understanding of inferrence of Pa
+
+- binomial distribution inferrence
+- chapter 3
+

@@ -110,4 +110,24 @@ Task :
 4. sequence phase
 5. maximal phase
 
-=== 這邊沒教完 下禮拜 ===
+
+
+## Episode Mining
+* Sliding windows
+
+## FreeSpan
+
+* Frequent pattern-projected Sequential pattern mining
+* scan 不是在一筆出現幾次 而是在所有筆共出現幾次
+* 出現 a-projected database
+* 從中再抓出 frequent patterns
+* <ab> 跟 <(ab)> 不同
+
+
+## PrefixSpan
+
+* Prefix-projected Sequential pattern mining
+* 找出 prefix (注意差別)
+* projection 讓我們可以 groupby
+* postfix
+* example

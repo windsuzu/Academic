@@ -39,6 +39,8 @@
   * Neural Networks
     * [Introduction of Neural Networks](machine-learning/neural_networks/introduction_of_neural_networks.md)
     * [Neural Networks - Learning](machine-learning/neural_networks/neural_networks_learning.md)
+  * Improve Learning Algorithm
+    * [Advice for Applying Machine Learning](machine-learning/improve_learning_algorithm/advice_for_applying_machine_learning.md)
 * [NCKU - Artificial Intelligence](ncku-artificial-intelligence/README.md)
   * [Introduction](ncku-artificial-intelligence/introduction.md)
   * [Intelligent Agents](ncku-artificial-intelligence/intelligent_agents.md)
@@ -53,6 +55,7 @@
   * [FP-growth](ncku-data-mining/fp_growth.md)
   * [Other Association Rules](ncku-data-mining/other_association_rules.md)
   * [Sequence Pattern](ncku-data-mining/sequence_pattern.md)
+  * [Classification](ncku-data-mining/classification.md)
 * [NCKU - Machine Learning](ncku-machine-learning/README.md)
   * [Introduction](ncku-machine-learning/introduction.md)
 * Python
