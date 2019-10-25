@@ -47,6 +47,7 @@
     * [Neural Networks - Learning](machine-learning/neural_networks/neural_networks_learning.md)
   * Improve Learning Algorithm
     * [Advice for Applying Machine Learning](machine-learning/improve_learning_algorithm/advice_for_applying_machine_learning.md)
+    * [Machine Learning System Design](machine-learning/improve_learning_algorithm/machine_learning_system_design.md)
 * [NCKU - Artificial Intelligence](ncku-artificial-intelligence/README.md)
   * [Introduction](ncku-artificial-intelligence/introduction.md)
   * [Intelligent Agents](ncku-artificial-intelligence/intelligent_agents.md)
