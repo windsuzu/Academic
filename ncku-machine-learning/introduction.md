@@ -17,9 +17,17 @@ https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative
 https://www.khanacademy.org/tag/expected-value
 https://www.khanacademy.org/math/in-in-grade-12-ncert/in-in-probability-of-events/copy-of-binomial-random-variables/v/expected-value-of-binomial-distribution
 
+## P-value
+
+
+## Binomial Distribution
+
+
 ## Bayes law
 
 https://www.khanacademy.org/math/ap-statistics/probability-ap#stats-conditional-probability
+
+## Prior Probability
 
 ### Posterior Probability
 
@@ -248,4 +256,15 @@ $$
 
 ![](../.gitbook/assets/entropy_relations.png)
 
+hw : p-val = prob of data given hypothesis
 
+## Maximum Likelihood Estimation
+
+$$
+\text{Given } f(x) = N(\mu, \sigma^2) \text{ with fixed } \sigma^2\\
+\text{data }x_1 \cdots x_n\\
+\text{What is the maximum likelihood estimation of }\mu
+$$
+
+$$
+$$

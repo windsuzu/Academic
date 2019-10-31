@@ -132,3 +132,4 @@ al /= keep_prob
 * 第二件事是 **not overfitting**
   * 會用 regularization 等方式處理
 * 但 early stopping 既不跑完 optimization 還要時刻注意 overfitting 問題
+  * 將兩件事情耦合在一起

@@ -19,9 +19,7 @@
     * [Regularizing your Neural Network](deep-learning/improving-deep-neural-networks/regularization.md)
     * [Setting up your Optimization Problem](deep-learning/improving-deep-neural-networks/optimization.md)
     * [Optimization algorithms](deep-learning/improving-deep-neural-networks/optimization_algorithm.md)
-    * [Hyperparameter tuning](deep-learning/improving-deep-neural-networks/hyperparameter_tuning.md)
-    * [Batch Normalization](deep-learning/improving-deep-neural-networks/batch_normalization.md)
-    * [Multi-class classification](deep-learning/improving-deep-neural-networks/multiclass_classification.md)
+    * [Hyperparameter, Batch Normalization, Softmax](deep-learning/improving-deep-neural-networks/hyperparams_batch_softmax.md)
   * [Structuring Machine Learning Projects](deep-learning/structuring-machine-learning-projects/README.md)
   * [Convolutional Neural Networks](deep-learning/convolutional-neural-networks/README.md)
     * [Introduction](deep-learning/convolutional-neural-networks/introduction.md)
@@ -81,3 +79,16 @@
 * Python
   * [Numpy](python/numpy.md)
   * [Pandas](python/pandas.md)
+* Statstics
+  * Quantitative Data
+  * Modeling Data Distribution
+  * Bivariate Numerical Data
+  * Probability
+  * Random Variables
+  * Sampling Distribution
+  * Confidence Intervals
+  * Significance tests
+
+
+
+
