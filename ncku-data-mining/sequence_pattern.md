@@ -106,28 +106,134 @@ Task :
 
 1. 首先將 data 進行 sorting
 2. 計算 large itemset 也就是 support 值
-3. 進行 transformation
+3. 進行 transformation (Replacement)
 4. sequence phase
 5. maximal phase
 
+### Example
+
+* 進行 sorting 後的資料
+
+![](../.gitbook/assets/sequential_pattern_1.jpg)
+
+* 找出滿足 support 的 large itemset
+  * 並給他們定義一個新 id
+
+![](../.gitbook/assets/sequential_pattern_2.jpg)
+
+* Transformation Phase
+  * 刪除原本資料不滿足 support 的 item
+  * 將滿足的資料能攤開的攤開
+  * 然後設定新 id
+
+![](../.gitbook/assets/sequential_pattern_3.jpg)
+
+* Sequence Phase
+  * 將 after mapping 的 items 攤開成 Maximal Large Sequence
+  * Apriori-like
+
+```
+<1 2 3> : support = 2
+<1 2 4> : support = 2
+
+Generate <1 2 3 4>
+```
+
+* Maximal Sequence
+  * 一個 sequence 沒有包含在其他 sequence 即為 maximal sequence
+
+```
+e.g.
+
+<(3) (4 5) (8)> is contained by <(7) (3 8) (9) (4 5 6) (8)>
+
+<(3) (5)> is not contained by <(3 5)>
+```
 
 
 ## Episode Mining
-* Sliding windows
+
+* Episode : A partially ordered collection of events occurring 
+together
+* 以 sliding window 方式來抓出 sequence
+*  discover all frequent episodes from a given class(ex. all parallel or all serial) of episodes 
+
+![](../.gitbook/assets/episode_mining.jpg)
+
 
 ## FreeSpan
 
 * Frequent pattern-projected Sequential pattern mining
-* scan 不是在一筆出現幾次 而是在所有筆共出現幾次
-* 出現 a-projected database
-* 從中再抓出 frequent patterns
-* <ab> 跟 <(ab)> 不同
+  * 將 sequence database 投影成**較小**的 projected database
+  * grow subsequence fragments in each projected database
+  * **Divide-and-conquer**
+
+### Example
+
+![](../.gitbook/assets/freespan_1.jpg)
+
+* a 皆出現在這四筆所以 a : 4
+* 以此類推求出所有 support > 2 的 item 並排序
+
+``` python
+f_list = a:4, b:4, c:4, d:3, e:3, f:3
+```
+
+![](../.gitbook/assets/freespan_2.jpg)
+
+* 先對 a 投影
+  * aaa 只出現 1 次所以不拿
+  * aa 出現 2 次
+  * a 出現 4 次
+
+![](../.gitbook/assets/freespan_3.jpg)
+
+* 以 a 為底，接著對 b 投影
+  * 可以抓出 b 出現 4 次
+  * ab 出現 4 次
+  * (ab) 出現 2 次
+  * 要注意 ab 和 (ab) 是不同的
+
+![](../.gitbook/assets/freespan_4.jpg)
+
+* 以 a, b 為底，接著對 c 投影
 
 
 ## PrefixSpan
 
 * Prefix-projected Sequential pattern mining
-* 找出 prefix (注意差別)
-* projection 讓我們可以 groupby
-* postfix
-* example
+  * 一樣是 Projection-based
+  * less projections and quickly shrinking sequences 
+* PrefixSpan 有三個核心，分別是 **prefix, postfix, projection**
+  * 假設有一 sequence 為 `<a(abc)(ac)d(cf)>`
+  * Prefix
+    * `<a>, <aa>, <a(ab)>, <a(abc)> ...`
+    * 一定要從每一個 item 的頭開始
+    * 所以 `<ab>, <a(bc)>` 這些都不算在 prefix
+  * Postfix
+    * 對於 `<aa>` 來說他的 postfix 為
+      * `<(_bc)(ac)d(cf)>`
+    * 對於 `<bd>` 來說他的 postfix 為
+      * `<(cf)>`
+  * Projection
+    * projection 讓我們可以 groupby
+    * `<bd>` 的 projection 是 `<bd(cf)>`
+
+### Example
+
+![](../.gitbook/assets/prefixspan_1.jpg)
+
+* 先對 a 投影，就可以找出所有有 prefix a 的 length 2 sequence
+  * `<aa>:2  <ab>:4  <(ab)>:2  <ac>:4  <ad>:2  <af>:2`
+  * 接著就可以對這 6 個 subsets 遞迴投影
+
+![](../.gitbook/assets/prefixspan_2.jpg)
+
+* 例如對 `<aa>` 投影，有兩筆可以繼續遞迴
+* 對 `<ab>` 投影，有三筆可以繼續遞迴
+* 同時也可以刪去不滿足 support 的 item
+
+![](../.gitbook/assets/prefixspan_3.jpg)
+
+* 將 a 及其 subsets 進行一輪後
+* 接著就可以對 b 及他的 subsets 投影

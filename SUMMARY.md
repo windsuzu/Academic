@@ -24,6 +24,7 @@
   * [Convolutional Neural Networks](deep-learning/convolutional-neural-networks/README.md)
     * [Introduction](deep-learning/convolutional-neural-networks/introduction.md)
   * [Sequence Models](deep-learning/sequence-models/README.md)
+    * [Recurrent Neural Networks](deep-learning/sequence-models/rnn.md)
 * [Linear Algebra](linear-algebra/README.md)
   * [Vectors and Spaces](linear-algebra/vectors-and-spaces/README.md)
     * [Vectors](linear-algebra/vectors-and-spaces/vectors.md)
@@ -75,10 +76,16 @@
   * [Sequence Pattern](ncku-data-mining/sequence_pattern.md)
   * [Classification](ncku-data-mining/classification.md)
 * [NCKU - Machine Learning](ncku-machine-learning/README.md)
+  * [Probability](ncku-machine-learning/probability.md)
+  * [Inference](ncku-machine-learning/inference.md)
+  * [Bayesian Inference](ncku-machine-learning/bayesian_inference.md)
   * [Introduction](ncku-machine-learning/introduction.md)
 * Python
   * [Numpy](python/numpy.md)
   * [Pandas](python/pandas.md)
+  * Scikit-learn
+    * [Introduction](python/scikit_learn/introduction.md)
+    * [Statistic Learning](python/scikit_learn/statistic_learning.md)
 * Statstics
   * Quantitative Data
   * Modeling Data Distribution
