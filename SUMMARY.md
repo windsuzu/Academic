@@ -75,6 +75,7 @@
   * [Other Association Rules](ncku-data-mining/other_association_rules.md)
   * [Sequence Pattern](ncku-data-mining/sequence_pattern.md)
   * [Classification](ncku-data-mining/classification.md)
+  * [Evaluation](ncku-data-mining/evaluation.md)
 * [NCKU - Machine Learning](ncku-machine-learning/README.md)
   * [Probability](ncku-machine-learning/probability.md)
   * [Inference](ncku-machine-learning/inference.md)

@@ -203,3 +203,76 @@ $$
 
 ## Language Modelling
 
+* 假設 speech recognition 時聽到了一句話
+  * “The apple and pear salad.”
+* 那到底是聽到上面的句子還是 “The apple and pair salad.” ?
+* 為了判斷是哪一句話，所以給兩句話機率的方法就是 **language modelling**
+
+$$
+P(\text{The apple and pear salad.}) = 5.7\times 10^{-10}\\
+P(\text{The apple and pair salad.}) = 3.2\times 10^{-13}
+$$
+
+* 可以看到在這個 language model 中
+  * The apple and pear salad 的機率比較高
+
+## Build Language model with RNNs
+
+* training set 會是 large **corpus** of english text
+  * corpus 是一個 NLP 名詞，代表大量句子所組成的文本
+* 首先要 tokenize corpus 中的所有單字，也就是建立字典
+  * 標點符號可以 tokenize 可以不要
+
+$$
+\begin{aligned}
+&\text{The } &\text{ Egyptian } &\text{ Mau } &\text{ is } &\text{ a } &\text{ bread } &\text{ of } &\text{ cat }. &\text{ <EOS> }\\
+&y^{<1>}&y^{<2>}&y^{<3>}&y^{<4>}&y^{<5>}&y^{<6>}&y^{<7>}&y^{<8>}&y^{<9>}
+\end{aligned}
+$$
+
+* tokenize 前有時會增加一個 `<EOS>` 代表句子結束
+* tokenize 會將每一個單字轉換為 one hot vector 
+  * 假設有一個 10000 單字的字典，那就會在該單字的 index 設 1 其他設 0
+  * 今天遇到一個不在字典的單字，例如 `Mau`
+    * 那就會將他設定在 `<UNK>` 的位置，表示 unknown
+
+* Tokenize 後就可以將他們 input 到 RNN 訓練
+
+![](../../.gitbook/assets/rnn_language_model.png)
+
+* 首先 $$x^{<1>}$$ 和 $$a^{<0>}$$ 都設為 0
+* 第一個 timestep 算出的 $$\hat{y}^{<1>}$$ 代表字典中所有單字是句子中第一個字的機率
+  * 有 10002 個字，包括 `EOS` 和 `UNK`
+    $$P(\text{a})P(\text{aaron})\cdots P(\text{cat})\cdots P(\text{UNK})P(\text{EOS})$$
+* 第二個 timestep 的 $$x^{<2>}$$ 就是原本句子得到的 $$y^{<1>}$$
+  * 加上上一個 timestep 算出的 $$a^{<1>}$$
+  * 所以算出來的 $$\hat{y}^{<2>}$$ 代表出現 cats 後字典裡每一個單字是下一個字的機率
+  * 所以 average 應該要是最高才對
+    $$
+    P(\text{average}\mid \text{cats}) \text{ should be the highest}
+    $$
+* 以此類推，$$\hat{y}^{<3>}$$ 表示 cats average 出現後，字典中每個單字的出現機率
+  $$
+  P(\text{15} \mid \text{cats average})\text{ should be the highest}
+  $$
+
+* 為了要訓練這個 RNN 我們定義 cost function
+  * 在 predict 第 t 個單字時的 softmax loss function 為
+    $$
+    \mathcal{L}(\hat{y}^{<t>}, y^{<t>})=-\sum_i y_i^{<t>}\log\hat{y}_i^{<t>}
+    $$
+  * Overall 的 Cost function 為
+    $$\mathcal{L} = \sum_t \mathcal{L}^{<t>}(\hat{y}^{<t>}, y^{<t>})
+    $$
+
+* 總結一下，要預測一個句子 $$P(y^{<1>},y^{<2>},y^{<3>})$$的機率
+  * 等於要計算 $$P(y^{<1>})$$
+  * 以及知道 $$P(y^{<1>})$$ 下的 $$P(y^{<2>})$$ 為何
+  * 再來是 $$P(y^{<1>}, y^{<2>})$$ 下 $$P(y^{<3>})$$ 為何
+
+$$
+P(y^{<1>},y^{<2>},y^{<3>}) = P(y^{<1>})P(y^{<2>}\mid y^{<1>})P(y^{<3>}\mid y^{<1>},y^{<2>})
+$$
+
+## Sampling novel sequences
+
