@@ -234,20 +234,22 @@ $$
 2. 在每個 itetation t 進行計算
    * 在 momentum 部分的 $$\beta$$ 用 $$\beta_1$$ 表示
    * 在 RMSprop 部分的 $$\beta$$ 用 $$\beta_2$$ 表示
-   $$\begin{aligned}
+   $$
+   \begin{aligned}
    &\text{Compute } dw, db \text{ on current mini-batch} \\
-   & v_{dW} = \beta_1 (v_{dW}) + (1-\beta_1) dW \\
-   & v_{db} = \beta_1 (v_{db}) + (1-\beta_1) db \\
-   & s_{dW} = \beta_2 (s_{dW}) + (1-\beta_2) (dW)^2 \\
-   & s_{db} = \beta_2 (s_{db}) + (1-\beta_2) (db)^2 \\
-   \end{aligned}$$
+   &v_{dW} = \beta_1 (v_{dW}) + (1-\beta_1) dW \\
+   &v_{db} = \beta_1 (v_{db}) + (1-\beta_1) db \\
+   &s_{dW} = \beta_2 (s_{dW}) + (1-\beta_2) (dW)^2 \\
+   &s_{db} = \beta_2 (s_{db}) + (1-\beta_2) (db)^2
+   \end{aligned}
+   $$
 3. 接著在 Adam，要對這四個參數進行 bias correction adjustment
    $$
    \begin{aligned}
    v_{dW}^{\text{corrected}} &= \frac{v_{dW}}{1-\beta_1^t} \\
    v_{db}^{\text{corrected}} &= \frac{v_{db}}{1-\beta_1^t} \\
    s_{dW}^{\text{corrected}} &= \frac{s_{dW}}{1-\beta_2^t} \\
-   s_{db}^{\text{corrected}} &= \frac{s_{db}}{1-\beta_2^t} \\
+   s_{db}^{\text{corrected}} &= \frac{s_{db}}{1-\beta_2^t}
    \end{aligned}
    $$
 4. 最終更新參數 $$w, b$$

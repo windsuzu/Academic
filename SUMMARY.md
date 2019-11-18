@@ -25,6 +25,8 @@
     * [Introduction](deep-learning/convolutional-neural-networks/introduction.md)
   * [Sequence Models](deep-learning/sequence-models/README.md)
     * [Recurrent Neural Networks](deep-learning/sequence-models/rnn.md)
+    * [Natural Language Processing & Word Embeddings](deep-learning/sequence-models/nlp_word_embedding.md)
+    * [Sequence models & Attention mechanism](deep-learning/sequence-models/sequence_models_attention.md)
 * [Linear Algebra](linear-algebra/README.md)
   * [Vectors and Spaces](linear-algebra/vectors-and-spaces/README.md)
     * [Vectors](linear-algebra/vectors-and-spaces/vectors.md)
