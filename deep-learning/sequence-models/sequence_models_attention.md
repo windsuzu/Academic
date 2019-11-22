@@ -229,8 +229,36 @@ $$\alpha^{<t, t'>} = \frac{exp(e^{t, t'})}{\sum_{t'=1}^{T_x}exp(e^{t, t'})}$$
 
 > 相關論文 : [Bahdanau et. al., 2014. Neural machine translation by jointly learning to align and translate](https://arxiv.org/pdf/1409.0473.pdf)
 
+# Speech Recognition
+
+* 在 speech recognition 中，輸入一段音頻，輸出相對應的句子
+* 通常在 pre-processing 步驟，會利用音頻來生成聲譜圖 (spectrogram) 作為 features
+* 以前的 speech recognition 會透過語言專家設計的 phonemes 來 build model
+  * phonemes (音素) 指的是能識別任意兩個詞的最小語音單位
+* 而現在的 deep learning 則可以讀入一段音頻，直接輸出句子
+* 在進行基於深度學習的 speech recognition
+  * 學術研究通常需要使用到 3000 hr 的音頻數據
+  * 商業應用則需要超過 10000 hr 的音頻數據
+* 以下是一個使用 attention mechanism 的 speech recognition RNN model
+
+![](../../.gitbook/assets/attention_speech_recognition.png)
+
+* 由於的input 的音頻輸入肯定大於 output 的句子長度
+* 我們用 CTC (Connectionist Temporal Classification) 進行語音辨識
+* CTC 允許 RNN 生成如下的 output
+  * 相同的字母可以重複出現，空格代表下一個字母
+  * e.g. ttt_h_eeeee__-__aaa_p_ppppp_ll_e
+  * => the apple
+
+![](../../.gitbook/assets/ctc_speech_recognition.png)
 
 
-<!-- # Speech Recognition -->
-<!-- # Trigger Word Detection -->
+# Trigger Word Detection
 
+* 在現代家電可以看到許多 trigger word detection，通過特定詞語來喚醒設備
+  * e.g. Google Assistant, Apple Siri, Amazon Alexa, ...
+* 使用 RNN 可以簡單實現 trigger word detection
+  * 將觸發詞之後的 output 設定為 1
+  * 其他的單字 output 設定為 0
+
+![](../../.gitbook/assets/trigger_word_detection.png)

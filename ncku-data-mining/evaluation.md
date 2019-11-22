@@ -135,3 +135,12 @@ raters agreement PR(a)
 background noise PR(e)
 隨便猜跟認真算一樣的值
 
+# Applicability
+
+each system need to use diff evaluation
+
+* NDCG : sort data, ranking
+* Recall : use with ground truth
+* top-1 precision : recommandation
+* F1 : precision + recall find best from tradeoff 
+* novelty
