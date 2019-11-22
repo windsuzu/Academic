@@ -262,7 +262,8 @@ $$
     \mathcal{L}(\hat{y}^{<t>}, y^{<t>})=-\sum_i y_i^{<t>}\log\hat{y}_i^{<t>}
     $$
   * Overall 的 Cost function 為
-    $$\mathcal{L} = \sum_t \mathcal{L}^{<t>}(\hat{y}^{<t>}, y^{<t>})
+    $$
+    \mathcal{L} = \sum_t \mathcal{L}^{<t>}(\hat{y}^{<t>}, y^{<t>})
     $$
 
 * 總結一下，要預測一個句子 $$P(y^{<1>},y^{<2>},y^{<3>})$$的機率
@@ -279,7 +280,7 @@ $$
 * 訓練好的 language model 可以用 sampling 方式來呈現他所學的結果
 * Sampling 方式就像 one-to-many model
   * 給定 $$a^{<0>} = x^{<1>} = \vec{0}$$
-  * 算出 $$\hat{y}^<1>$$ 之後，用 `np.random.choice` 方式從中選取任意一個 sample
+  * 算出 $$\hat{y}^{<1>}$$ 之後，用 `np.random.choice` 方式從中選取任意一個 sample
   * 這個 sample 作為 $$x^{<2>}$$ 繼續算出 $$\hat{y}^{<2>}$$ 再選一個 sample
   * 以此類推直到 sampling 到 EOS 或是自訂回合數就停止
 
@@ -330,14 +331,6 @@ $$
 * 為了處理 RNN 中的 vanishing gradient，要使用 GRU 及 LSTM 的技術
 
 # Gated Recurrent Unit (GRU)
-
-<!-- 
-* 
-  * 穿插範本
-* 畫 GRU
-* 講解為何處理掉 vanishing gradient
-* c 可以為 vector 且處理要用 element-wise
-* Full GRU 多了 relavance gate -->
 
 * 先回顧 basic RNN 的架構，在計算 $$a^{<t>}$$ 時是這樣計算
   $$a^{<t>} = g(W_a[a^{<t-1>}, x^{<t>}]+b_a)$$
@@ -452,6 +445,7 @@ $$
 * 計算出這一層的 $$c^{<t>}, a^{<t>}$$ 給下一層使用
 * 算出預測值 $$\hat{y}^{<t>}$$
 * 將多個 LSTM 相連在一起就是 LSTM network
+
 ![](../../.gitbook/assets/rnn_lstm_nets.png)
 
 ## Peephole Connection

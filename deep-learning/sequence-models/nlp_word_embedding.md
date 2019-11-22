@@ -140,7 +140,7 @@ $$
 
 * 最終目標我們要在一個 embedding matrix 上學習 embeddings
 * 假設 vocabulary 有 10000 個單字，Embedding 有 300 個特徵
-* 那麼就定義一個 300*10000 的 **embedding matrix $$E$$**
+* 那麼就定義一個 $$300\times10000$$ 的 **embedding matrix $$E$$**
 * 之後將會隨機初始化 $$E$$ 來進行 embedding 的訓練
 
 ![](../../.gitbook/assets/embedding_matrix_intuition.png)
