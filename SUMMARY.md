@@ -62,6 +62,10 @@
   * Improve Learning Algorithm
     * [Advice for Applying Machine Learning](machine-learning/improve_learning_algorithm/advice_for_applying_machine_learning.md)
     * [Machine Learning System Design](machine-learning/improve_learning_algorithm/machine_learning_system_design.md)
+  * Support Vector Machine
+    * [Large Margin Classification](machine-learning/support_vector_machine/large_margin_classification.md)
+    * [Kernels](machine-learning/support_vector_machine/kernels.md)
+    * [SVM in Practice](machine-learning/support_vector_machine/svm_practice.md)
 * [NCKU - Artificial Intelligence](ncku-artificial-intelligence/README.md)
   * [Introduction](ncku-artificial-intelligence/introduction.md)
   * [Intelligent Agents](ncku-artificial-intelligence/intelligent_agents.md)
