@@ -83,6 +83,7 @@
   * [Classification](ncku-data-mining/classification.md)
   * [Evaluation](ncku-data-mining/evaluation.md)
   * [Clustering](ncku-data-mining/clustering.md)
+  * [Link Analysis](ncku-data-mining/link_analysis.md)
 * [NCKU - Machine Learning](ncku-machine-learning/README.md)
   * [Probability](ncku-machine-learning/probability.md)
   * [Inference](ncku-machine-learning/inference.md)
