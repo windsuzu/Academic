@@ -356,6 +356,7 @@ $$
 ## PU Learning 2-step strategy
 
 1. Identifying a set of **reliable negative** documents from the unlabeled set. 
+   * Reliable Negative : Human labeling 100% Negative data
 2. Building a sequence of classifiers by iteratively applying a classification algorithm and then selecting a good classifier. 
 
 ![](../.gitbook/assets/two_step_strategy.jpg)

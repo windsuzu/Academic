@@ -1,7 +1,5 @@
 # Biology
 
-## Biology
-
 ## Prerequisites
 
 * General science skills

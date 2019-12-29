@@ -211,7 +211,7 @@ until The centroids don't change
   * good clustering on samples means good on whole dataset ?
 
 
-# Hierchical clustering
+# Hierarchical Clustering
 
 * Produces a set of nested clusters organized as a **hierarchical tree**
 * Can be visualized as a dendrogram (樹枝狀圖)

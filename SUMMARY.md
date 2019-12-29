@@ -7,6 +7,7 @@
   * [AI: Issues, Concerns and Ethical Considerations](artificial-intelligence/issues.md)
 * [Biology](biology/README.md)
   * [Scientific Method](biology/scientific_method.md)
+  * [Chemistry of Life](biology/chemistry_of_life.md)
 * [Deep Learning](deep-learning/README.md)
   * [Neural Networks and Deep Learning](deep-learning/neural-network-and-deep-learning/README.md)
     * [Introduction](deep-learning/neural-network-and-deep-learning/introduction.md)

@@ -287,7 +287,7 @@ R &= \frac{TP}{TP+FN} \\
 F1 &= \frac{2PR}{P+R} = \frac{2TP}{2TP+FP+FN}\\\\
 X &= TP+FP \\
 Y &= TP+FN \\
-Dice(X,Y) &= TP/2TP+FP+FN 
+Dice(X,Y) &= \frac{2TP}{2TP+FP+FN}
 \end{aligned}
 $$
 
