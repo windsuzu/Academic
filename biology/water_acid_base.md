@@ -188,19 +188,27 @@ $$
   * 當 $$\text{H}^+$$ 濃度低於純水時是 basic (alkaline) solution
     * less than $$1\times 10^{-7} \text{ M}$$
 
+
+
 * 因為這個表達法太難記了，所以科學家想出 pH 來表達 hydrogen ion 的濃度
   * pH 取濃度的 negative log
   * $$\text{pH} = -\log_{10}(\text{concentration of H}^+)$$
+
+
 
 * 所以你用純水的濃度算可以得到 pH = 7
   * $$-\log_{10}(10^{-7}) = -(-7) = 7$$
   * known as **neutral pH**
   * 身體裡大多的血、組織液都是 neutral pH
 
+
+
 * acid 會增加 hydrogen ions $$(\text{H}^+)$$ 濃度，pH 值降低
   * 因為會多分解出 hydrogen atoms 並 donate 自己給其它水分子
 * base 則會減少 hydrogen ions $$(\text{H}^+)$$ 濃度，pH 值增加
   * 因為會多分解出 hydroxide $$\text{OH}^-$$，迅速的移除掉 hydrogen ions
+
+
 
 * 酸性越強，便越快分解產生 $$\text{H}^+$$
   * e.g., hydrochloric acid $$\text{HCI}$$ 在水中能完美分解成 hydrogen 和 chloride ions，所以讓他成為強酸
