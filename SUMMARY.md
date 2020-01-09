@@ -10,6 +10,7 @@
   * [Chemistry of Life](biology/chemistry_of_life.md)
   * [Water, Acids, Bases](biology/water_acid_base.md)
   * [Properties of carbon](biology/properties_of_carbon.md)
+  * [Macromolecules](biology/macromolecules.md)
 * [Deep Learning](deep-learning/README.md)
   * [Neural Networks and Deep Learning](deep-learning/neural-network-and-deep-learning/README.md)
     * [Introduction](deep-learning/neural-network-and-deep-learning/introduction.md)
