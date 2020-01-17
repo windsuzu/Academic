@@ -361,6 +361,122 @@ stacked.unstack(1)
 
 # Categoricals
 
+Pandas 能夠將資料分類
+
+``` py
+df = pd.DataFrame({"id": [1, 2, 3, 4, 5, 6], "raw_grade": ['a', 'b', 'b', 'a', 'a', 'e']})
+
+df["grade"] = df["raw_grade"].astype("category")
+
+# 0    a
+# 1    b
+# 2    b
+# 3    a
+# 4    a
+# 5    e
+# Name: grade, dtype: category
+# Categories (3, object): [a, b, e]
+```
+
+也能將分類重新命名
+
+``` py
+df["grade"].cat.categories = ["very good", "good", "very bad"]
+
+# 0    very good
+# 1         good
+# 2         good
+# 3    very good
+# 4    very good
+# 5     very bad
+# Name: grade, dtype: category
+# Categories (3, object): [very good, good, very bad]
+```
+
+就可以依分類做 sort 或 groupby
+
+``` py
+df.sort_values(by="grade")
+
+#    id raw_grade      grade
+# 5   6         e   very bad
+# 1   2         b       good
+# 2   3         b       good
+# 0   1         a  very good
+# 3   4         a  very good
+# 4   5         a  very good
+
+df.groupby("grade").size()
+
+# grade
+# very bad     1
+# bad          0
+# medium       0
+# good         2
+# very good    3
+# dtype: int64
+```
+
+
 # Plotting
+``` py
+import matplotlib.pyplot as plt
+
+ts = pd.Series(np.random.randn(1000),
+        index=pd.date_range('1/1/2000', periods=1000))
+
+ts = ts.cumsum()
+ts.plot()
+
+plt.show()
+```
+
+![](../.gitbook/assets/pandas_plot.jpg)
+
+``` py
+df = pd.DataFrame(np.random.randn(1000, 4), index=ts.index,
+                  columns=['A', 'B', 'C', 'D'])
+df = df.cumsum()
+
+#                     A          B          C          D
+# 2000-01-01   1.137372  -0.667626   0.120983  -0.568837
+# 2000-01-02   0.185677  -1.196407   0.655425  -1.207966
+# 2000-01-03   0.284604  -1.341850  -1.269046  -1.799623
+# 2000-01-04   2.061235  -0.904345  -0.584501  -2.260388
+# 2000-01-05   2.838373  -1.657153  -0.439002  -1.864843
+# ...               ...        ...        ...        ...
+# 2002-09-22 -46.196742 -11.879780  22.752095 -15.641322
+# 2002-09-23 -47.016031 -10.803038  23.834051 -14.173797
+# 2002-09-24 -45.673721 -12.083731  24.443607 -11.324811
+# 2002-09-25 -46.164865 -13.052021  23.609504 -12.678023
+# 2002-09-26 -46.298883 -13.105695  23.919682 -12.888132
+
+# [1000 rows x 4 columns]
+
+df.plot()
+
+plt.show()
+
+plt.legend(loc='best')
+```
+
+![](../.gitbook/assets/pandas_plot2.jpg)
 
 # Getting Data In/Out
+
+* 讀取 csv 檔的方法
+* 輸出 csv 檔的方法
+
+``` py
+pd.read_csv('foo.csv')
+
+df.to_csv('foo.csv')
+```
+
+* Excel
+
+``` py
+pd.read_excel('foo.xlsx', 'Sheet1', index_col=None, na_values=['NA'])
+
+df.to_excel('foo.xlsx', sheet_name='Sheet1')
+```
