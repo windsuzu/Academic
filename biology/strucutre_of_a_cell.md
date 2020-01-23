@@ -266,14 +266,71 @@ Eukaryotes 甚至不會讓重要資訊離開 nucleus 中
 
 ### Chromosomes and DNA
 
+了解 nucleus 後來深入了解內部的 DNA
 
+* DNA 主要由 1 至多個 **chromosomes** 組成
+  * 一個 chromosome 是非常長的 string 或 DNA loop
+  * 一個 chromosome 可以承載非常多 genes
+* 在 prokaryotes 中 DNA 通常是單個 circular chromosome (a loop)
+* 在 eukaryotes 中則是 linear structures (strings)
+  * 每個 eukaryotes 都有特定數量的 chromosomes 在 cells 的 nucleus 當中
+    * 例如人類細胞有 46 個 chromosomes
+    * 果蠅的細胞只有 8 個 chromosomes
+
+Chromosomes 只有在細胞進行 division 時才可以很好的觀測到
+
+* 所以細胞在生長和維護的階段時
+  * Chromosomes 會變成 unwound, jumbled bunch threads
+  * 此時 enzyme 就可以介入將 DNA 編譯成 RNA 來利用
+
+不論是 loose 還是 compact 的 chromosomes 都會和 structural proteins 結合在一起
+
+* 例如下圖的 DNA 和 histone 這種 protein 結合在一起
+  * 這些跟 DNA 相關的 proteins 幫助 DNA 進入 nucleus
+  * 他們也扮演讓 genes 啟動或不啟動的角色
+  * 這種 DNA 和 proteins 組合的複雜結構叫作 **chromatin**
+
+![](../.gitbook/assets/chromatin_structure.png)
+
+* 一個人類細胞的 DNA 通常有 2 m
+ * 一個 nucleus 的半徑大約只有 0.006 mm
+
+所以要把整個 DNA 塞進 nucleus 相當於將 40 km 的直線塞到一顆網球裡 !!
 
 ### Ribosomes
 
+接下來是用來產生 protein 的重要角色 **ribosomes**
 
+* Ribosome 由 RNA 和 proteins 組成
+  * 含有兩個分開的 RNA-protein complexes (small, large subunits)
+  * 大的在小的上面，中間夾著 RNA template (mRNA)
 
+![](../.gitbook/assets/ribosome_structure.png)
+
+在 eukaryotes 中， ribosomes 是怎麼樣從 nucleus 獲得製造 protein 的指令呢 ?
+
+* Nucleus 中一部分的 DNA (genes) 被轉錄 (transcribed) 成 messenger RNAs (mRNAs)
+* mRNAs 從 nucleus 來到 ribosome 並告訴他基因給予製造 protein 的訊息 
+  * 例如用什麼特別的 amino acids 序列
+* 這一連串的動作叫作 **translation**
+* 另外在 prokaryotes 因為沒有 nucleus，所以直接在 cytoplasm 轉錄成 mRNAs 然後直接給 ribosomes
+
+在 eukaryotes 的 ribosomes 可以出現在各種地方
+
+* 例如漂浮在 cytoplasm
+* 或是 bound (attach) 在 endoplasmic reticulum 和 nuclear envelope 的外部
+  * Nucleus 那張圖的**紅點**就是 bound ribosomes
+  * ribosomes 和 endoplasmic reticulum 結合在一起會成為 **rough endoplasmic reticulum**
+
+因為 protein synthesis 是細胞中非常基本且重要的功能，幾乎所有 cell 都有 ribosomes (甚至 bacteria)
+
+* 而某些特別需要產生 proteins 的細胞會有非常大量的 ribosomes
+  * 例如 pancreas (胰臟) 為了產生大量 digestive enzymes
+  * 所以 pancreatic cells 擁有異常多數量的 ribosomes
 
 # Tour of eukaryotic cell
+
+## The endomembrane system
 
 # Extracellular structures and cell-cell junctions
 
