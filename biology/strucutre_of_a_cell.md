@@ -332,6 +332,372 @@ Chromosomes 只有在細胞進行 division 時才可以很好的觀測到
 
 ## The endomembrane system
 
+想像你是 pancreatic cell 要讓自己的 digestive enzymes 離開自己到小腸幫助消化。這件事需要整個 endomembrane system 的幫忙！
+
+* **Endomembrane system** (endo-: "within")
+  * 指的是 eukaryotic cell 中一群 membranes 和 organelles
+  * 這些東西幫忙修正、打包、運輸 lipids 和 proteins
+  * 例如 **nuclear envelope**, **lysosomes** 還有 **endoplasmic reticulum**, **Golgi apparatus**
+  * **Plasma membrane** 雖說不算在 cell 內，但也是 system 的一員
+    * 幫助前面所說的 pancreatic enzymes 等 secreted proteins 排出細胞
+  * 另外 **mitochondria** (粒線體), **chloroplasts** (葉綠體), **peroxisomes** (過氧化體) 不屬於 system
+
+### The endoplasmic reticulum
+
+* **ER** 扮演非常重要的角色，修改 proteins 和合成 lipids
+  * ER 包含由 membranous tubules 和 flattened sacs 組成的網路
+  * 這些 disc 和 tubule 都是中空的，然後裡面的空間稱為 **lumen**
+
+![](../.gitbook/assets/endoplasmic_reticulum_view.png)
+
+#### Rough ER
+
+前段的 ER 因為一堆 ribosomes 附在上面，所以稱為 **rough endoplasmic reticulum**
+
+* Ribosomes 生產的 protein chains 會被送進 lumen
+  * 一些完全送進去並漂浮在 ER
+  * 一些固定在 ER 的 membrane 上
+* 在 ER 中，proteins 會被 fold 或被修改 (e.g., addition of carbohydrate side chains)
+  * 被改變的 proteins 就會到其他 membranes 報到 
+    * e.g., membrane of ER, other organelles, secreted from the cell
+  * 沒有待在 ER 的 proteins 將會被打包成 **vesicles** 送至 Golgi apparatus 
+* Rough ER 還可以製造 phospholipids 供其他 membranes 使用
+  * 一樣是使用 vesicle form 傳送
+
+一些 cell 的工作主要為 secrete protein 就會有大量的 rough ER (e.g., liver cell)
+
+#### Smooth ER
+
+接續 rough ER 的就是 **smooth endoplasmic reticulum**
+
+* smooth ER 上幾乎沒有 ribosomes，而主要的功能為
+  * 合成 carbohydrates, lipids, steroid hormones
+  * 對藥物或毒物進行解毒
+  * 儲存 calcium ions (sarcoplasmic reticulum in muscle cell)
+
+rough ER 中也有一些 "smooth" patches 用來作為 vesicles 的出口，這些稱為 **transitional ER**
+
+### The Golgi apparatus
+
+從 ER 出來的 vesicles 在抵達終點之前還要再通過 **Golgi apparatus**
+
+* Vesicle 中的 lipids, proteins 需要被 sorted, packaged, tagged 到正確的格式，這些動作就是在 golgi apparatus 中進行
+
+![](../.gitbook/assets/golgi_apparatus_view.png)
+
+* Golgi apparatus 有兩面，負責接收 vesicle 的為 **cis face**
+  * vesicle 和 cis face 結合，將內容物都丟進 Golgi apparatus 的 lumen 當中
+* 另一面則為 **trans face**
+  * proteins, lipids 在 Golgi apparatus 中被改造完成
+    * 加入或移除 sugar 或加入 phosphate groups 當作 tags
+  * 改造過的 proteins 將進行排序然後再次打包成 vesicle 從 trans face 送出
+
+![](../.gitbook/assets/golgi_apparatus_overview.png)
+
+從 Golgi 出來的 vesicles 終於可以用了
+
+* 有的送至 cell 內部的地方使用
+  * 例如 lysosome, vacuole
+* 有的則到外圍和 plasma membrane 結合
+  * 將一些 secreted proteins 釋放到 cell 外作用
+
+一些需要 secrete 大量 proteins 的 cell 會有很多 Golgi stacks
+
+* 分泌 digestive enzymes 的 salivary gland cells
+* 分泌 antibodies 的 immune system
+
+植物的 Golgi apparatus 也會製造 polysaccharides 用於 cell wall
+
+### Lysosomes
+
+Lysosome 包含 digestive enzymes 作為 animal cell 的回收場
+
+* Lysosome 將不要的分子架構拆解重新使用
+* 上面說的，一些離開 Golgi 的 vesicles 會來到 lysosome
+
+Lysosome 還能夠分解外部進入 cell 的垃圾
+
+* 例如人類免疫系統的 macrophages (某種 white blood cell)
+  * 會進行 **phagocytosis** (吞噬作用)
+  * 一段在 macrophages 的 membrane 會內陷 (invaginates)
+  * 接著如下圖一樣吞噬 pathogen
+
+![](../.gitbook/assets/phagocytosis.png)
+
+#### Peroxisome
+
+這邊額外討論一下非 endomembrane system 的 peroxisome
+
+* Peroxisomes 和 lysosomes 
+  * 一樣負責分解並中和細胞中的 molecules
+  * 並且兩者的形狀都很像
+
+但 peroxisome 有獨特的一些特性
+
+* Peroxisome 的 enzymes 通常會涉及 oxidation reactions
+  * 也就是產出 hydrogen peroxide $$(\text{H}_2\text{O}_2)$$ by-product
+* 這些 enzymes 負責分解的是 fatty acids 和 amino acids
+  * 另外也會解毒進到身體中的毒素
+  * 例如 liver cell 的 peroxisomes 能夠解毒 alcohol
+
+### Vacuoles
+
+植物多了一個跟 lysosome 很像的 organelle 稱為 **vacuoles**
+
+* Vacuole 儲存水和廢物，隔離危險的物質
+  * 其中的 enzymes 一樣能分解廢物 (macromolecules, cellular components)
+  * 能進行 water balance
+  * 儲存一些 toxins, pigments 等 compound
+
+## Mitochondria and chloroplasts
+
+假設你吃了花椰菜，你要怎麼從他得到能量來運動，花椰菜又為什麼會有能量 ?
+
+這必須要牽扯到兩個重要的 organelles : mitochondria 和 chloroplasts
+
+* **Chloroplasts** 只存在於植物細胞中，將得到的陽光能量轉化成 sugars (透過 photosynthesis)
+  * 這些 sugars (fuel molecules) 存在 plant's tissues
+* **Mitochondria** 是細胞中的"發電所"，將 fuel molecules 分解，然後幫助人類吸收養分 (透過 cellular respiration)
+
+> **Endosymbiotic theory (共生體學說)**
+> * 這兩個 organelles 的起源被認為是在古代和一些細菌共生而成
+> 
+> ![](../.gitbook/assets/endosymbiotic_theory_progress.png)
+
+### Chloroplasts
+
+* Chloroplasts (葉綠體) 可以在 cytosol 中被找到
+  * 是 disc-shaped 的 organelles
+  * membrane 包含 **outer** 和 **inner**，中間夾著 **intermembrane space**
+  * 裡面包含了 **thylakoids** (類囊體，含有 membrane 的膠囊)
+    * thylakoid 的 membrane 包含可以捕獲光的複合物
+      * 這些複合物包含了 **chlorophyll** (葉綠素，讓植物變綠色的顏料)
+    * thylakoid 是中空的，裡面的空間稱為 **thylakoid space (lumen)**
+  * 這些 thylakoids 疊成了 **grana** (singular: **granum**)
+  * 漂浮在周圍的液體為 **stroma**
+
+![](../.gitbook/assets/chloroplast_structure.png)
+
+### Mitochondria
+
+* **Mitochondria** (singular: **mitochondrion**) 的工作是穩定輸出 ATP
+  * 利用 fuel (e.g., sugar) 產生 ATP 的行為稱為 **cellular respiration**
+  * 而這些過程發生在 mitochondria 當中
+
+Mitochondria 一樣漂浮在 cytosol 中
+
+* Mitochondria 是 oval-shaped 的 organelles
+  * 有兩個 membranes
+    * 一個是把整個 mitochondrion 包覆住的 membrane (**outer**)
+    * 一個是在內層把 cristae 包覆住的 membrane (**inner**)
+  * **Cristae** 指的是為了增加表面面積的突起物
+    * Cristae 原本被想像為 broad, wavy folds
+    * 但現在被認為應該是 long carven 的形狀
+
+![](../.gitbook/assets/mitochondria_structure.jpg)
+
+ * 兩個 membranes 之間是 **intermembrane space**
+ * Inner membrane 中被分隔的 compartment 稱為 **mitochondrial matrix**
+  * Matrix 中包含 DNA 和 ribosomes
+  * multi-compartment 架構方便進行 cellular respiration
+    * 讓不同的 "room" 能夠有不同的 concentration of molecules
+
+雖然 mitochondria 都可以在動物和植物多數的細胞被找到，但還是會依照能量需求有所不同
+
+* Muscle cells 需要非常多的能量，所以 cell 中的 mitochondria 非常多
+* Red blood cells 只專注於運送氧氣，所以 cell 中**沒有任何**的 mitochondria
+
+## Cytoskeleton
+
+細胞就像人體的器官一樣，需要各種 skeleton 支撐
+
+* 支撐細胞的 skeleton 稱為 **cytoskeleton**
+  * 不只支撐 plasma membrane 賦予整個細胞形狀
+  * 更負責正確的布置各種 organelles 的位置
+  * 提供 vesicles 移動路徑
+  * 多數的 cytoskeleton 也幫助細胞移動
+
+在 eukaryotes 中有三種 protein fibers 存在於 cytoskeleton:
+
+1. microfilaments
+2. intermediate filaments
+3. microtubules
+
+### Microfilaments
+
+* Microfilaments 是三種 fiber 最窄的一個
+  * 他的半徑只有 7 nm
+  * 他是由很多 protein 的 monomer (**actin**) 所組成的 double helix
+    * 所以又稱為 **actin filaments**
+  * 他有 directionality 也就是兩邊的 end 不同
+
+![](../.gitbook/assets/microfilament_structure.png)
+
+Microfilament 在細胞裡有幾個重要工作
+
+* 幫助 myosin 這類 motor protein 移動的路徑
+* 幫助 cell division
+* 幫助 muscles contraction
+* 能快速集中，幫助細胞移動 (例如免疫系統的白血球移動)
+* 在 cytoplasm 周圍與 plasma membrane 連接，穩定細胞架構跟形狀
+
+### Intermediate filaments
+
+* Intermediate filament 的半徑約為 8 到 10 nm
+  * 由多個 fibrous proteins 組成的 strands 組合而成
+
+![](../.gitbook/assets/intermediate_filaments.png)
+
+* Intermediate filaments 的種類非常多 (不同 protein 組成)
+  * 例如由 keratin 所組成的 intermediate filaments
+  * 常見在 hair, nails, skin
+
+Intermediate filaments 不像 microfilaments 可以快速集中又散開
+
+* Intermediate filament 通常是不變的
+  * 所以主要工作是維持細胞的張力
+  * 保持細胞的形狀和 nucleus 等 organelles 的位置
+
+### Microtubules
+
+* Microtubules 是三類 fiber 中最大的一種
+  * 他的半徑能到 25 nm
+  * 主要由 tubulin proteins 組成一個空心吸管狀的管子
+  * 每個 tubulin proteins 又包含兩種 (alpha, beta- tubulin)
+
+Microtubules 的特性和 microfilaments 大同小異
+
+* 能夠快速集中的 dynamic structure (靠著 add, remove tubulin)
+* 擁有 directionality
+* microtubules 主要幫助細胞承受 compression force
+
+![](../.gitbook/assets/microtubules_structure.png)
+
+Microtubules 也扮演了非常多的角色
+
+* 提供 kinesins, dyneins (motor proteins) 移動管道
+  * 移動細胞內的 visicles
+* 在 cell division 期間組合成 **spindle**
+  * 負責將 chromosomes 分離
+
+#### Flagella, cilia
+
+Microtubules 還是組成 flagella 和 cilia 的重要元件
+
+* **Flagella** 是很長的 hair-like structure
+  * 接在細胞後端，幫助整個細胞移動 (e.g., sperm)
+* **Cilia** (singular: cilium) 也是幫助移動，但通常遍布細胞表面
+  * 例如上呼吸系統的細胞，他們的 cilia 幫助移動 dust, particles 到鼻孔
+
+Flagella 和 cilia 的共同點有以下幾點
+
+* 9 對 microtubules 排列成圓形
+  * 2 個 microtubules 則在中間
+  * 形成 9+2 的環
+* 有 dyneins 這個 motor proteins 在 microtubules 移動
+  * 使得 flagella 和 cilia 跳動 (beating)
+* 在兩者的底部有 **basal body** 存在
+  * basal body 一樣由 microtubules 組成，負責集合 cilium 或 flagellum
+
+![](../.gitbook/assets/flagella_cilia_structure.jpg)
+
 # Extracellular structures and cell-cell junctions
 
+我們花了很多時間在觀察 cell 的內部，但外部呢 ?
 
+## The extracellular matrix and cell wall
+
+植物細胞有堅固的 cell wall 而動物細胞則和周圍的細胞互相形成 meshwork (extracellular matrix)
+
+### Extracellular matrix of animal cells
+
+* 有的 animal cell 釋放一些物質 (protein **collagen**，膠原蛋白) 到細胞外部的空間
+  * 釋放的 collagen 會和 carbohydrates 組合形成複雜的 meshwork
+  * 這些外部的 long fibers 又叫做 collagen fibrils
+
+這些 collagen proteins 非常重要，讓 tissues 的架構能夠穩固
+
+* 在 extracellular matrix 中
+  * Collagen fibers 會和 **proteoglycans** (carbohydrate-bearing) 交織在一起
+  * extracellular matrix 會直接透過 **integrins** connector 和最近的 cell 連接
+    * integrins 被嵌在 plasma membrane 上面
+    * integrins 上有 **fibronectin** 作為外部 protein 和 integrins 的橋樑
+    * integrins 在內部會和 cytoskeleton 連接起來
+
+![](../.gitbook/assets/extracellular_matrix.png)
+
+Integrins 幫助細胞架在 extracellular matrix 上面，進一步的說，integrins 幫助細胞感知外部環境，並做出適當的訊號跟反應
+
+### The cell wall
+
+植物沒有 collagen 可以維持細胞間的組織，但有 cell walls 維持細胞的架構和形狀
+
+* Fungi, protists, most prokaryotes 幾乎都有 cell walls
+* Cell wall 是由 cell 所排出的 molecules (**cellulose**，纖維素) 所組成
+  * Cellulose 是 glucose units 所組成的 polysaccharide
+  * cellulose 集合再形成 microfibrils 的 fibers
+
+![](../.gitbook/assets/cell_wall_structure.jpg)
+
+* 除了 cellulose 外，還有許多 polysaccharides 常見於 cell wall
+  * 例如 **hemicellulose**, **pectin**
+* 最上層的 **middle lamella** 則負責 cell walls 之間的穩定
+
+## Cell-cell junctions
+
+在蓋房子時，房間之間到底要怎麼處理呢 ? 細胞之間也有這個問題 !
+
+* 要直接開一個通道直接連接鄰居嗎
+* 要加強細胞之間的關係，強化整個 layer 嗎
+* 還是建立 tight seal 避免水通過整個 tissue
+
+Junctions 就是為了解決這些事情的專家，而且有很多種 junctions
+
+### Plasmodesmata
+
+植物的 cell walls 之間會有特殊的 junctions 叫做 **plasmodesmata** (singular: **plasmodesma**)
+
+![](../.gitbook/assets/plasmodesmata.png)
+
+* Cytoplasm 的物質可以透過這個洞互相交換
+* 一些較小的 molecules 可以順利的透過 passive diffusion 通過這個管道
+* 一些較大的 (e.g., proteins)，plasmodesmata 可能會選擇性的撐大管道來讓他們通過
+
+### Gap junctions
+
+**Gap junctions** 是動物版的 plasmodesmata，讓細胞可以交換 water, ions, 還有一些物質。但其實和 plasmodesmata 有些差異
+
+![](../.gitbook/assets/gap_junctions.png)
+
+* 在脊椎動物中，六個 membrane proteins (**connexins**) 組合成一個 **connexon**
+  * connexons 為甜甜圈形狀的架構
+  * connexons 會連接兩個相鄰的 animal cells
+* 在無脊椎動物中，也會有類似的 gap junctions，但用的 proteins 叫做 **innexins**
+
+Gap junctions 主要應用在 cardiac muscle
+
+* Heart muscle cells 之間應用 gap junctions 來傳遞 ions，起到讓 cell 之間同時收縮的效果
+
+### Tight junctions
+
+**Tight junctions** 不提供 cytoplasmic connections，而是提供 watertight seal
+
+![](../.gitbook/assets/tight_junctions.png)
+
+* Cells 之間透過 tight junction proteins group (claudins) 緊密湊在一起
+  * Groups 之間排成 strands 形成 branching network
+* Tight junctions 目的是防止水分從 cells 間流失
+  * 讓 cells 整層形成無法穿透的屏障 (e.g., cells those lining an organ)
+  * 例如膀胱的 epithelial cells 透過 tight junctions 防止尿液洩漏
+
+### Desmosomes
+
+一些動物細胞間還會有 **desmosomes** 幫助連接 epithelial cells 不被扯斷
+
+* Desmosomes 通常由複雜的 proteins 組成 (e.g., **Cadherins**)
+  * Cadherins 出現在 membrane 中，將兩個 cells 的 membranes 連結起來
+  * Cadherins 透過 cytoplasmic plaque (下圖紅色部分) 一路連接到內部的 intermediate filaments
+
+![](../.gitbook/assets/desmosomes.jpg)
+
+Desmosomes 讓器官、組織等 (cardiac muscle, skin)，能夠拉伸並且保持 unbroken 的樣子
