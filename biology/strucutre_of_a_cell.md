@@ -125,7 +125,7 @@ Cell 的大小範圍在 0.1 到 100 μm
   * 有的還有用 **carbohydrates** 組成最外層的 capsule
     * **Capsule** 幫助細胞跟當下環境表面接觸
   * 一些外部構造幫助移動細胞，甚至交換 genetic material
-    * **Flagella** 像 rotary motors 依樣幫助 bacteria 移動
+    * **Flagella** 像 rotary motors 一樣幫助 bacteria 移動
   * 另外還有跟頭髮很像的 **fimbriae** 用來跟 host cell 或其他表面接觸
   * 有的 bacteria 還有各種不同的桿狀架構 **pili**
     * 有些幫助 bacteria 之間傳遞 DNA molecules
@@ -146,7 +146,7 @@ Cell 的大小範圍在 0.1 到 100 μm
   * 必須要保持正常的 acidic pH 才能 dispose 細胞垃圾
 * **Peroxisomes (過氧化體)** 負責處理一些 chemical reaction
   * 例如 oxidation reactions 和生產 hydrogen peroxide
-  * 這兩件是都有可能傷及細胞，所以 comparment 起到很好的保護
+  * 這兩件事都有可能傷及細胞，所以 comparment 起到很好的保護
 
 就是因為 eukaryotic cell 可以維持多種環境在一個細胞的能力，而 prokaryotes 不行
 
@@ -258,7 +258,7 @@ Eukaryotes 甚至不會讓重要資訊離開 nucleus 中
 
 * **Nucleolus** 產生新的 ribosomes
   * 一些 chromosomes 含有 DNA 片段能夠 encode ribosomal RNA
-  * 這類 RNA 和 protein 結合成為 ribosom
+  * 這類 RNA 和 protein 結合成為 ribosome
   * 在 nucleolus 中，新的 ribosomal RNA 和 proteins 合成出 ribosome 的 subunits
   * 這些 subunits 就會穿過 nuclear pores 移動到 cytoplasm 開始他們的工作
 
@@ -266,7 +266,7 @@ Eukaryotes 甚至不會讓重要資訊離開 nucleus 中
 
 ### Chromosomes and DNA
 
-了解 nucleus 後來深入了解內部的 DNA
+了解 nucleus 後，我們來深入了解他內部的 DNA
 
 * DNA 主要由 1 至多個 **chromosomes** 組成
   * 一個 chromosome 是非常長的 string 或 DNA loop
@@ -285,7 +285,7 @@ Chromosomes 只有在細胞進行 division 時才可以很好的觀測到
 
 不論是 loose 還是 compact 的 chromosomes 都會和 structural proteins 結合在一起
 
-* 例如下圖的 DNA 和 histone 這種 protein 結合在一起
+* 例如下圖的 DNA 和 histone (protein) 結合在一起
   * 這些跟 DNA 相關的 proteins 幫助 DNA 進入 nucleus
   * 他們也扮演讓 genes 啟動或不啟動的角色
   * 這種 DNA 和 proteins 組合的複雜結構叫作 **chromatin**
