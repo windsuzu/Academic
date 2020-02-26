@@ -432,3 +432,132 @@ Splicing 看起來很無意義，但他是為要 **alternative splicing** 而存
 
 ![](../.gitbook/assets/transcription_moment.jpg)
 
+# Translation
+
+你知道 antibiotics 是怎麼殺死細菌的嗎 ? 其實就是靠著中斷細菌的 translation !
+
+![](../.gitbook/assets/rna_translation.png)
+
+## Translation molecules
+
+要將 mRNA 正確 "read" 然後製作出 polypeptide 需要兩大 molecules: tRNAs 和 ribosomes
+
+### Transfer RNAs (tRNAs)
+
+tRNAs 是 mRNAs codons 和最終 amino acids 的橋樑
+
+* tRNAs 有兩側
+  * 一側有一串 nucleotides 叫做 **anticodon**
+    * Anticodon 會和對應的 mRNA codons 組合
+  * 一側載著 codon 對應的 amino acids
+
+tRNAs 的種類很多，每種都會讀取一或多個 codons 然後給他正確的 amino acids
+
+![](../.gitbook/assets/transfer_rnas.png)
+
+#### The 3D structure of a tRNA
+
+* 雖然上面的 tRNA 是長方形的，但實際上 tRNA 是 L 形的
+  * 這是因為 nucleotides 之間形成 base pairs
+  * 讓 tRNA 之間產生 double-standed 的 regions 還有 loops
+
+![](../.gitbook/assets/trna_3d.png)
+
+其中的一邊是 anticodon，另一邊則是 amino acids
+
+#### Loading a tRNA with an amino acid
+
+* Amino acids 是透過一種 enzyme 來和正確的 tRNA 組合的
+  * 這個 enzyme 叫做 **aminoacyl-tRNA synthetases**
+  * 每一種 amino acid 都有不同的 synthetase enzyme
+  * 組合中需要耗費一個 ATP
+  * 有的 enzyme 具有 **proofreading site** 防止錯誤 
+
+![](../.gitbook/assets/aminoacyl_trna_synthetases.png)
+
+### Ribosomes
+
+Ribosomes 是建造出 polypeptides 的地方
+
+* Ribosome 由 protein 和 RNA (ribosomal RNA, rRNA) 組成
+  * Ribosome 有兩個 subunits
+  * 大的和小的，一起將 mRNA 像漢堡一樣夾住
+* Ribosome 的架構中分別有三個區域 (A, P, E) 讓 tRNA 經過
+* Ribosome 也會扮演 enzyme 的角色，催化 amino acids 串聯起來
+
+## Stages of translation
+
+Translation 一樣可以分成三大部分: initiation, elongation, termination
+
+### Initiation
+
+* Ribosome 集中包覆在 mRNA 周圍
+  * 第一個 tRNA 來到現場
+    * 這個 tRNA 帶著 methionine (對應 start codon: AUG)
+
+整個 setup (ribosome + mRNA + Met-tRNA) 稱作 **initiation complex**，準備開始 translation
+
+Initiation 的整個詳細步驟如下 (in eukaryotes):
+
+1. 帶著 methionine 的 tRNA 依附在 small ribosomal subunit
+2. 他們一起結合到 mRNA 的 5' GTP cap
+3. 接著往 3' 方向走
+4. 停在 start codon
+
+![](../.gitbook/assets/translation_initiation.png)
+
+在細菌中的 initiation 有些不同
+
+* Small ribosomal subunit 會直接到達 **Shine-Dalgarno** sequences
+  * 這是因為細菌的 genes 通常都是一整組 (operons) 一起 transcribe 的
+  * 所以一個 mRNA 有不同的段落給不同的 genes
+  * Shine-Dalgarno 方便讓 ribosome 快速找到位置
+
+![](../.gitbook/assets/bacteria_translation.png)
+
+### Elongation
+
+在 initiation complex 形成之後，Amino acid chain 要開始變得 **long**er
+
+* 每次 mRNA 一次讀取一個 codon
+  * 對應的 tRNA 就會來結合
+  * tRNA 運送的 amino acids 將和現有的 amino acid chain (polypeptide) 串起來 (chemical reaction)
+  * mRNA 移動，讓下一個 codon 能夠被讀取
+  * 整個過程 tRNA 會在 A, P, E sites 移動
+    * A: **A**minoacyl
+    * P: **P**olypeptide forming
+    * E: ready to **E**xit
+
+![](../.gitbook/assets/translation_workflow.png)
+
+1. 一開始 Met-tRNA 落在 P site
+2. 新的 codon 在 A site 準備被讀取
+   * 這時 tRNA 帶著新的 amino acid 來到 A site
+   * 消耗 energy 和 codon 結合
+3. P site 的 polypeptide 和 A site 的 amino acid 結合
+   * 以 **peptide bond** 的形式結合
+   * P site 的 polypeptide 轉移到 A site
+     * P site 來的是 **N-terminus**
+     * A site 的是 **C-terminus**
+4. mRNA 被 ribosome 往後拉一個 codon
+   * 在 P site 的 tRNA 來到 E site 準備離開
+   * 一個循環結束
+
+Elongation 最長可以到 33000 個 loops (形成肌肉中的 titin)
+
+### Termination
+
+* 當 stop codon (UAG, UAA, UGA) 進入到 ribosome (A site) 的時候
+  * polypeptide chain 將會被釋放
+    * polypeptide 會折疊成 3D 形狀
+    * 到細胞中下一個工作的地點
+    * 或跟其他 polypeptide 組合
+
+Stop codons 會被 **release factors** (protein) 認出
+
+* Release factor 存在於 P site
+  * 會擾亂形成 peptide bonds 的 enzymes
+  * 透過加入水分子到 amino acid chain 的最後
+  * 拆斷 chain 和 tRNA 以此釋放 protein
+
+整個 translation 的工具 (ribosomal subunits) 會分開，然後可以重複使用

@@ -19,7 +19,7 @@
   * [Cell Division](biology/cell_division.md)
   * [Classical and molecular genetics](biology/classical_and_molecular_genetics.md)
   * [DNA as the genetic material](biology/dna_as_the_genetic_meterial.md)
-  * [Central dogma (DNA to RNA to protein)](biology/central_dogma.md)
+  * [Central dogma](biology/central_dogma.md)
 * [Deep Learning](deep-learning/README.md)
   * [Neural Networks and Deep Learning](deep-learning/neural-network-and-deep-learning/README.md)
     * [Introduction](deep-learning/neural-network-and-deep-learning/introduction.md)
