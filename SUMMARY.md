@@ -20,6 +20,7 @@
   * [Classical and molecular genetics](biology/classical_and_molecular_genetics.md)
   * [DNA as the genetic material](biology/dna_as_the_genetic_meterial.md)
   * [Central dogma](biology/central_dogma.md)
+  * [Gene regulation](biology/gene_regulation.md)
 * [Deep Learning](deep-learning/README.md)
   * [Neural Networks and Deep Learning](deep-learning/neural-network-and-deep-learning/README.md)
     * [Introduction](deep-learning/neural-network-and-deep-learning/introduction.md)
