@@ -22,8 +22,7 @@
   * [Central dogma](biology/central_dogma.md)
   * [Gene regulation](biology/gene_regulation.md)
 * Bioinformatics
-  * Introduction to Genomics
-    * [Overview](bioinformatics/genomics_introduction/overview.md)
+  * [Bioinformatics Overview](bioinformatics/bioinformatics_overview.md)
 * [Deep Learning](deep-learning/README.md)
   * [Neural Networks and Deep Learning](deep-learning/neural-network-and-deep-learning/README.md)
     * [Introduction](deep-learning/neural-network-and-deep-learning/introduction.md)
