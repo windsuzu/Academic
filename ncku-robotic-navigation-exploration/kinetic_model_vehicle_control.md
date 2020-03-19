@@ -317,82 +317,202 @@ R &= \frac{L_d\sin(\frac{\pi}{2}-\alpha)}{\sin(2\alpha)}
 
 ![](../.gitbook/assets/kinematic_bicycle_model.png)
 
-後輪車輛原點 x, y
+* 後輪為車輛原點 (x, y)
+* 車輛轉向 (車軸方向) $$\theta$$
+* 方向盤轉角 $$\delta$$
+* 車軸長度 $$L$$
 
-車輛轉向 (車軸方向) theta
+![](../.gitbook/assets/kinematic_bicycle_model2.png)
 
-方向盤轉角 delta
+將前輪放大可以得到一些細節
 
-車軸長度 L
+* 車子以 v 的速度向前
+* 有兩個世界座標的軸分量 (weight) 為 $$\dot{x_f}$$ 和 $$\dot{y_f}$$
 
--------
+計算兩個 weight 對車子垂直方向的 weight
 
-前輪放大細節
+* $$\dot{x_f}\sin(\theta+\delta)$$
+* $$\dot{y_f}\cos(\theta+\delta)$$
 
-v 速度向前
+考慮在低速下，兩個 weight 相加會抵消，就可以得到前後輪的 equation (**Nonholonomic constraint equations**)
 
-世界座標軸 weight xf. 和 yf.
+$$
+\begin{aligned}
+(1) && \dot{x_f}\sin(\theta+\delta) - \dot{y_f}\cos(\theta+\delta) = 0 && \text{(front wheel)}\\
+(2) && \dot{x}\sin(\theta) - \dot{y}\cos(\theta) = 0 && \text{(rear wheel)}
+\end{aligned}
+$$
 
-計算兩個 weight 對車子的垂直方向的 weight
-考慮在低速下，兩個 weight 相加會抵消
-得到前後輪的 equation
+我們的目標是算出車輛**原點的運動**，可以從後輪座標推得前輪座標 (**Front wheel position**)
 
--------
+$$
+\begin{aligned}
+x_f = x + L\cos(\theta) \\
+y_f = y + L\sin(\theta)
+\end{aligned}
+$$
 
-目標是算出車輛原點的運動
+將前輪座標帶回 (1) 就可以得到**基於車輛原點的限制方程式**
 
-可以從後輪座標推得前輪座標
+$$
+\begin{aligned}
+(3) && \dot{x}\sin(\theta+\delta) - \dot{y}\cos(\theta+\delta) - \dot{\theta}L\cos(\delta) = 0
+\end{aligned}
+$$
+  
+由 (2) 和 (3) 可以得到一組解，代表原點的變化 
 
-前輪座標代入第一式得到第三式 (最底下)
+$$
+\begin{aligned}
+(4) && \dot{x} = v\cos(\theta)\\
+(5) && \dot{y} = v\sin(\theta)
+\end{aligned}
+$$
 
-第三式 = 基於車輛原點的限制方程式
+將 (4) 和 (5) 再帶回 (3) 就可以得到角速度 ($$\dot{\theta}$$)
 
-跟著第二式得到一組解，代表原點的變化 (x., y.)，再代回第三式
+$$
+\dot{\theta} = \frac{v\tan(\delta)}{L}
+$$
 
-得到角速度 theta.
+**於是我們就可以得到完整的 kinematic bicycle model (基於方向盤轉角 $$\delta$$)**
 
--------
+$$
+\begin{bmatrix}
+\dot{x}\\\dot{y}\\\dot{\theta}
+\end{bmatrix} =
+\begin{bmatrix}
+\cos(\theta) \\ \sin(\theta) \\ \frac{\tan(\theta)}{L}
+\end{bmatrix} v
+$$
 
-整理後得到腳踏車模型 (基於方向盤轉角 delta) 及一些 properties
+以及一些相關的 properties
+
+$$
+\begin{aligned}
+&\bullet R\dot{\theta} = v \\
+&\bullet \frac{v\tan(\delta)}{L} = \frac{v}{R} \\
+&\bullet \tan(\delta) = \frac{L}{R} 
+\end{aligned}
+$$
 
 ## Pure Pursuit Control for Bicycle Model
 
-將腳踏車模型代回 ppc
+![](../.gitbook/assets/bicycle_model_pure_pursuit_control.png)
 
-從剛剛的 properties tan delta 推回方向盤轉角 delta
+我們可以將 bicycle model 應用於 pure pursuit control
+
+* $$\alpha$$ 和 $$R$$ 和原本的 pure pursuit control 一樣
+* 我們可以用上面的 bicycle model properties 來求得方向盤轉角 ($$\delta$$)
+
+$$
+\begin{aligned}
+&\tan(\delta) = \frac{L}{R} \\
+&\delta = \arctan\left(\frac{L}{R}\right) = \arctan\left(\frac{2L\sin(\alpha)}{L_d}\right)
+\end{aligned}
+$$
 
 # Stanley Control
 
-ppc 堪用但不夠穩定，Stanley 提供漸進穩定
+Pure pursuit control 雖然好用但不夠穩定，而 Stanley control 提供了漸進穩定的效果
 
-根據當前最近目標點，找到切線、法線做為新的座標系
+![](../.gitbook/assets/stanley_control.png)
 
-法線方向 = theta e
+在 stanley control 會根據當前最近目標點，找到**切線、法線**做為新的座標系
 
-前輪速度 vf 方向盤方向 delta 
+* $$v$$: 前輪方向
+* $$\delta$$: 方向盤方向
+* $$\theta_e$$: 路徑上的法線方向
+* $$\delta - \theta_e$$: 速度方向與路徑方向夾角
 
-速度方向與路徑方向夾角為 delta - theta e
+而法線狀態 (微分) 就是以下式子，可以當作追蹤的誤差
 
-法線狀態 (微分) = 第一式 (可以當作追蹤的誤差)
+$$
+\dot{e} = v\sin(\delta - \theta_e)
+$$
 
-帶入時間
+加入誤差對時間變化的假設，希望誤差隨時間變化漸進到 0
 
-最終得到方向盤控制量 delta (k 是參數)
+$$
+\begin{aligned}
+\dot{e} &= -ke, \text{ where } k > 0  \\
+ -ke &= v\sin(\delta - \theta_e) \\
+\delta &= \arcsin\left(-\frac{ke}{v}\right) + \theta_e
+\end{aligned}
+$$
 
-改成 arctan 可避免 undefined 但在角度大時誤差大
+最終可以得到方向盤控制量 $$\delta$$ (其中 k 是調整漸進程度的參數)
+
+因為當 $$\lvert -ke/vf \rvert > 1$$ 時為 undefined，所以可以改成近似的 local exponential stability (LES)
+
+$$
+\delta = \arctan\left(-\frac{ke}{v}\right) + \theta_e
+$$
+
+改成 arctan 可避免 undefined 但在角度很大時，可能會造成誤差變大
 
 # LQR Control
 
-太難的運動模型無法直接分析 error
-
-LQR 運用 cost function 概念
+因為太難的運動模型無法直接分析 error function，所以 LQR control 運用 cost function 概念
 
 * 運動模型是 linear form
 * Cost function 是 quadratic form
 
-minimum control = regularization
+$$
+\text{cost function } c = \underbrace{x^TQx}_{\text{state error}} + \underbrace{u^TRu}_{\text{minimum control}}
+$$
 
-Q, R matrix 代表 state, control 在不同維度的重要性
+其中 **Q, R 矩陣**分別代表 state, control 在不同維度的重要性
 
-目標: 最小化整體目標函數
+而最終就是要將以下的 total objective function 最小化
+
+$$
+\text{minimize } J = \int_0^T \left[x(t)^TQx(t) + u(t)^TRu(t)\right]dt + x^T(T) Sx(T)
+$$
+
+若以下狀態從現在到終點 $$\left[ u_t^\ast ,u_{t+1}^\ast , u_{t+2}^\ast , \cdots , u_T^\ast  \right]$$ 是最佳解
+
+那麼 $$\left[ u_{t+1}^\ast , u_{t+2}^\ast , \cdots , u_T^\ast  \right]$$ 也會是最佳解
+
+所以我們可以應用 **dynamic programming** 從最佳解的最終狀態，遞迴解回現在狀態
+
+---
+
+
+terminal state 不知道，無限時間
+
+V(x) 未來所有代價總和
+
+當前價值 ＝ 當下最佳控制代價 ＋ 下一刻價值
+
+我們可以假設 V(X) 是二次形式 xTPx (P 是對稱矩陣)
+
+再將 linear motion model 帶入當中
+
+---
+
+因為是二次形式，所以可以用微分來求最佳控制 u star
+
+u star 帶回 V(x) 把兩側 x 拿掉
+
+得到 P 矩陣 (前後時刻的轉換方程：discrete algebra riccati equation)
+
+---
+
+P 不會隨時間變化， P 可以相同
+
+接著用 iterative 方式求得 P
+
+---
+
+## LQR Control for Kinematic Model
+
+
+
+
+
+
+
+
+
 
