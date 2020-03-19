@@ -202,9 +202,9 @@ $$
 
 State 變化可以從車子的當前狀態，乘上 rotation matrix 的反矩陣得到
 
-* 其中 $$\dot{x_R}$$ 是 $$x_R$$ 的變化，也就是前進速度 ($$v$$)
+* $$\dot{x_R}$$ 是 $$x_R$$ 的變化，也就是前進速度 ($$v$$)
 * 而側向是沒有速度的，所以 $$\dot{y_R} = 0$$
-* 最後 $$\dot{\theta}$$ 是 $$\theta$$ 的變化，也就是角速度 ($$\omega$$)
+* $$\dot{\theta}$$ 是 $$\theta$$ 的變化，也就是角速度 ($$\omega$$)
 
 $$
 \begin{aligned}
@@ -224,54 +224,175 @@ $$
 
 ## Differential Drive Vehicle
 
-原點為 P，到兩輪的距離為 l
+![](../.gitbook/assets/differential_drive_vehicle.png)
 
-兩輪的轉速分別是 phi1 和 phi2
+現在來考慮兩輪的自走車活動模型
 
-兩輪半徑為 r
+* P: 原點
+* l: 原點分別到兩輪的距離
+* r: 輪子的半徑
+* 座標依然是 $$x_R, y_R$$
 
-座標依然為 xr yr
+![](../.gitbook/assets/differential_drive_vehicle2.png)
 
-右輪速度 = 半徑*角速度 (r * phi1. )
+兩輪的轉速分別是 $$\phi_1$$ 和 $$\phi_2$$
 
-原點速度 = 右輪速度一半
-原點角速度 = 原點速度 / l
+* 右輪 (左輪) 速度 = 半徑 * 角速度
+  * $$\text{right: } r \times \dot{\phi_1}$$
+  * $$\text{left: } r \times \dot{\phi_2}$$
+* 原點的速度就是右輪 (左輪) 速度的一半
+  * $$\dot{x_{R1}} = \frac{r\dot{\phi_1}}{2}$$
+  * $$\dot{x_{R2}} = \frac{r\dot{\phi_2}}{2}$$
+* 原點的角速度 = 速度 / 到輪子的距離 
+  * $$\omega_1 = \frac{r\dot{\phi_1}}{2l}$$
+  * $$\omega_2 = \frac{-r\dot{\phi_2}}{2l}$$
+  * 要注意左輪旋轉半徑是 $$-l$$
 
-左輪同理
+而原點的運動就是左右兩輪相加
 
-原點運動 = 左輪和右輪相加
+$$
+\begin{aligned}
+\text{Kinematic Model:} \\
+\begin{bmatrix}\dot{x} \\ \dot{y} \\ \dot{\theta}\end{bmatrix} &= 
+R(\theta)^{-1}\begin{bmatrix}\dot{x_R}\\\dot{y_R}\\\dot{\theta}\end{bmatrix} \\
+&= \begin{bmatrix}
+\cos\theta & -\sin\theta & 0 \\
+\sin\theta & \cos\theta & 0 \\
+0& 0& 1\end{bmatrix}
+\begin{bmatrix} 
+\frac{r\dot{\phi_1}}{2}+\frac{r\dot{\phi_2}}{2}\\
+0\\
+\frac{r\dot{\phi_1}}{2l}-\frac{r\dot{\phi_2}}{2l}
+ \end{bmatrix} \\
+\end{aligned}
+$$
 
+左右輪的馬達轉速通常不會設成參數，而是用 $$v, \omega$$ 來推導
 
-用 v 和 omega 來推導 input 左右輪的馬達轉速
+![](../.gitbook/assets/rpm_inference.png)
 
-phi1. 和 phi2.
-
-直線前進，相同轉速，兩邊都 v/r
-
-原地旋轉，相反轉速，正負 omega
-
+* 直線前進，相同轉速，相同方向 ($$\frac{v}{r}$$) 
+* 原地旋轉，相同轉速，相反方向 (正負 $$\omega$$)
 
 ## Pure Pursuit Control
 
-PPC : 根據速度與角速度來畫圓移動到前方某個點的位置
+Pure pursuit control 將根據速度與角速度來畫圓弧移動到前方某個點的位置
 
-Ld 為與目標距離，R 為圓弧半徑
-Ld 通常用速度來決定，速度越快就越遠
+![](../.gitbook/assets/pure_pursuit_control.png)
 
-與車子直線前進形成一個夾角 alpha
+* $$L_d$$ 是車子與目標點的距離
+* $$R$$ 是畫圓產生的半徑
+* $$\alpha$$ 是車子直線方向和 $$L_d$$ 的夾角
+  * $$\alpha = \arctan\left(\frac{y-y_g}{x-x_g}\right) - \theta$$
+  * 因為圓心角 = 兩倍的弦切角
+  * 所以圓心角就是 $$2 alpha$$
+* 因為是等腰三角形
+  * 所以其他兩個角是 $$\frac{\pi}{2} - \alpha$$
 
-車輛到目標畫的圓弧就是 2alpha (圓心角 = 2*弦切角)
+根據正弦定理可以得到
 
-因為是等腰三角形，所以其他兩個角是 pi/2 - alpha
-然後可以用正弦定理得第二行
-然後得到 R 
+$$
+\begin{aligned}
+\frac{L_d}{\sin(2\alpha)} &= \frac{R}{\sin(\frac{\pi}{2}-\alpha)} \\\\
+R &= \frac{L_d\sin(\frac{\pi}{2}-\alpha)}{\sin(2\alpha)} 
+&= \frac{L_d\cos(\alpha)}{2\sin(\alpha)\cos(\alpha)} 
+&= \frac{L_d}{2\sin(\alpha)} \\\\
+\omega &= \frac{v}{R} = \frac{2v\sin(\alpha)}{L_d} 
+\end{aligned}$$
 
-假設 v 速度透過 PID 已決定好
-就可以得到角速度
+也就是說，若速度 v 透過 PID 為已知的值，那就可以推出對應的角速度 ($$\omega$$)
 
+> Ld 通常用速度來決定，速度越快就越遠
+> - e.g., $$L_d = kv + L_{fc}$$
+> - 其中的 $$k, L_{fc}$$ 是可調參數
 
 # Kinematic Bicycle Model
 
+上面講的模型可以自由移動旋轉，但真正的車子是有一定的幾何限制 (**nonholonomic constraints**)
 
+而生活中最常見的移動機構設計是 bicycle model (汽車可以把前後的兩個輪子各別簡化為一個)
 
+* 前輪控制方向 (方向盤)
+* 後輪控制速度 (引擎)
+
+![](../.gitbook/assets/kinematic_bicycle_model.png)
+
+後輪車輛原點 x, y
+
+車輛轉向 (車軸方向) theta
+
+方向盤轉角 delta
+
+車軸長度 L
+
+-------
+
+前輪放大細節
+
+v 速度向前
+
+世界座標軸 weight xf. 和 yf.
+
+計算兩個 weight 對車子的垂直方向的 weight
+考慮在低速下，兩個 weight 相加會抵消
+得到前後輪的 equation
+
+-------
+
+目標是算出車輛原點的運動
+
+可以從後輪座標推得前輪座標
+
+前輪座標代入第一式得到第三式 (最底下)
+
+第三式 = 基於車輛原點的限制方程式
+
+跟著第二式得到一組解，代表原點的變化 (x., y.)，再代回第三式
+
+得到角速度 theta.
+
+-------
+
+整理後得到腳踏車模型 (基於方向盤轉角 delta) 及一些 properties
+
+## Pure Pursuit Control for Bicycle Model
+
+將腳踏車模型代回 ppc
+
+從剛剛的 properties tan delta 推回方向盤轉角 delta
+
+# Stanley Control
+
+ppc 堪用但不夠穩定，Stanley 提供漸進穩定
+
+根據當前最近目標點，找到切線、法線做為新的座標系
+
+法線方向 = theta e
+
+前輪速度 vf 方向盤方向 delta 
+
+速度方向與路徑方向夾角為 delta - theta e
+
+法線狀態 (微分) = 第一式 (可以當作追蹤的誤差)
+
+帶入時間
+
+最終得到方向盤控制量 delta (k 是參數)
+
+改成 arctan 可避免 undefined 但在角度大時誤差大
+
+# LQR Control
+
+太難的運動模型無法直接分析 error
+
+LQR 運用 cost function 概念
+
+* 運動模型是 linear form
+* Cost function 是 quadratic form
+
+minimum control = regularization
+
+Q, R matrix 代表 state, control 在不同維度的重要性
+
+目標: 最小化整體目標函數
 
