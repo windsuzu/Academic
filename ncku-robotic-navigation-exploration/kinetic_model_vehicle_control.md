@@ -470,49 +470,210 @@ $$
 \text{minimize } J = \int_0^T \left[x(t)^TQx(t) + u(t)^TRu(t)\right]dt + x^T(T) Sx(T)
 $$
 
-若以下狀態從現在到終點 $$\left[ u_t^\ast ,u_{t+1}^\ast , u_{t+2}^\ast , \cdots , u_T^\ast  \right]$$ 是最佳解
+若以下狀態從現在到終點 (terminal state) $$\left[ u_t^\ast ,u_{t+1}^\ast , u_{t+2}^\ast , \cdots , u_T^\ast  \right]$$ 是最佳解
 
 那麼 $$\left[ u_{t+1}^\ast , u_{t+2}^\ast , \cdots , u_T^\ast  \right]$$ 也會是最佳解
 
 所以我們可以應用 **dynamic programming** 從最佳解的最終狀態，遞迴解回現在狀態
 
----
+## Value function
+
+通常我們並不知道 terminal state，或者是 terminal state 需要無限時間
+
+這時候我們就會用 value function $$V(x)$$
+
+$$
+V(x_t) = \min_u \left( x_t^TQx_t + u_tRu_t + V(x_{t+1}) \right)
+$$
+
+* $$V(x)$$ 代表最佳情況下，未來所有代價的總和
+* 當前 V = 當下最佳控制的代價 + 下一刻 V
+
+我們可以假設 $$V(X)$$ 是 quadratic form (寫成以下，其中 P 是對稱矩陣)
+
+$$
+V(x_t) = x_t^T P_t x_t
+$$
+
+再將 linear motion model ($$Ax_t+Bu_t$$) 帶入當中得到
+
+$$
+\begin{aligned}
+V\left(x_{t}\right)&
+=\min _{\mathbf{u}}\left\{x_{t}^{T} Q x_{t}+u_{t} R u_{t}+x_{t+1}^{T} P_{t+1} x_{t+1}\right\}
+\\
+&=\min _{\mathbf{u}}\left\{x_{t}^{T} Q x_{t}+u_{t} R u_{t}+\left(A x_{t}+B u_{t}\right)^{T} P_{t+1}\left(A x_{t}+B u_{t}\right)\right\}
+\\
+&=\min _{\mathbf{u}}\left\{x_{t}^{T}\left(Q+A^{T} P_{t+1} A\right) x_{t}+2 x^{T} A^{T} P B u+u_{t}^{T}\left(R+B^{T} P_{t+1} B\right) u_{t}\right\}
+\end{aligned}
+$$
+
+因為我們假設的 value function 是 quadratic 形式，所以可以用微分來求最佳控制 ($$u^\ast$$)
+
+$$
+\begin{aligned}
+&V\left(x_{t}\right)=x_{t}^{T} P_{t} x_{t}=\min _{u}\left\{x_{t}^{T}\left(Q+A^{T} P_{t+1} A\right) x_{t}+2 x^{T} A^{T} P B u+u_{t}^{T}\left(R+B^{T} P_{t+1} B\right) u_{t}\right\}
+\\
+&\frac{\partial}{\partial u}\left[x_{t}^{T}\left(Q+A^{T} P_{t+1} A\right) x_{t}+2 x^{T} A^{T} P B u_{t}^{*}+u_{t}^{* T}\left(R+B^{T} P_{t+1} B\right) u_{t}^{*}\right]=0
+\\
+&2\left(x^{T} A^{T} P_{t+1} B\right)^{T}+2\left(R+B^{T} P_{t+1} B\right) u_{t}^{*}=0
+\\
+&u_{t}^{*}=-\left(R+B^{T} P_{t+1} B\right)^{-1} B^{T} P_{t+1} A x_{t}
+\end{aligned}
+$$
+
+得到的 $$u^\ast$$ 就可以帶回 $$V(x) = x_t^TP_tx_t$$
+
+$$x_{t}^{T} P_{t} x_{t}=x_{t}^{T}\left(Q+A^{T} P_{t+1} A-A^{T} P_{t+1} B\left(R+B^{T} P_{t+1} B\right)^{-1} B^{T} P_{t+1} A\right) x_{t}$$
+
+把兩側的 $$x$$ 都拿掉就可以得到 $$P$$，這個 P 矩陣是 **discrete algebraic Riccati equations (DARE)**
+
+$$
+P_{t}=Q+A^{T} P_{t+1} A-A^{T} P_{t+1} B\left(R+B^{T} P_{t+1} B\right)^{-1} B^{T} P_{t+1} A
+$$
+
+P 代表了前後時刻的轉換方程
+
+> * 順帶一提，在連續的情況下是 continuous algebraic Riccati equations (CARE)
+> $$\dot{P}=-P A-A^{T} P+P B R^{-1} P-Q$$
 
 
-terminal state 不知道，無限時間
+因為 P 不會隨時間變化，所以式子中等式左右的 P 可以改成相同的形式
 
-V(x) 未來所有代價總和
+$$
+P=Q+A^{T} P A-A^{T} P_{t+1} B\left(R+B^{T} P B\right)^{-1} B^{T} P A
+$$
 
-當前價值 ＝ 當下最佳控制代價 ＋ 下一刻價值
+在實作時還可以更簡化，使用 iterative 的方式來求 P 直到收斂
 
-我們可以假設 V(X) 是二次形式 xTPx (P 是對稱矩陣)
-
-再將 linear motion model 帶入當中
-
----
-
-因為是二次形式，所以可以用微分來求最佳控制 u star
-
-u star 帶回 V(x) 把兩側 x 拿掉
-
-得到 P 矩陣 (前後時刻的轉換方程：discrete algebra riccati equation)
-
----
-
-P 不會隨時間變化， P 可以相同
-
-接著用 iterative 方式求得 P
-
----
+![](../.gitbook/assets/iteratively_find_riccati_equation.png)
 
 ## LQR Control for Kinematic Model
 
+$$
+\begin{aligned}
+\text{Define: } \\
+&\text{State }x = \left[ e, \dot{e}, \theta, \dot{\theta}\right]\\
+&\text{Matrix } Q, R
+\end{aligned}
+$$
 
+* $$e$$: 橫向的最近距離 (誤差)
+  * $$\dot{e}$$: 橫向距離 (誤差) 的改變量
+* $$\theta$$: 方向誤差
+  * $$\dot{\theta}$$: 方向誤差的改變量
 
+兩個改變量存在是為了限制 state 誤差改變量不要太大
 
+接著需要 linear kinematic motion model:
 
+$$\frac{d}{d t}\left[\begin{array}{l}
+e \\
+\dot{e} \\
+\theta \\
+\dot{\theta}
+\end{array}\right]=\left[\begin{array}{llll}
+1 & d t & 0 & 0 \\
+0 & 0 & v & 0 \\
+0 & 0 & 1 & d t \\
+0 & 0 & 0 & 0
+\end{array}\right]\left[\begin{array}{l}
+e \\
+\dot{e} \\
+\theta \\
+\dot{\theta}
+\end{array}\right]+\left[\begin{array}{c}
+0 \\
+0 \\
+0 \\
+\frac{v \tan (\delta)}{L}
+\end{array}\right]$$
 
+* 橫向距離 = 上個時間點距離 (1) + 橫向速度 (dt)
+* 角度 = 上個時間點角度 (1) + 角速度 (dt)
+* 最後加的方向盤控制量 ($$\delta$$) 並不是線性的
+  * 所以可以用 $$\delta$$ 來近似取代 $$\tan(\delta)$$
 
+$$\approx\left[\begin{array}{cccc}
+1 & d t & 0 & 0 \\
+0 & 0 & v & 0 \\
+0 & 0 & 1 & d t \\
+0 & 0 & 0 & 0
+\end{array}\right]\left[\begin{array}{c}
+e \\
+\dot{e} \\
+\theta \\
+\dot{\theta}
+\end{array}\right]+\left[\begin{array}{l}
+0 \\
+0 \\
+0 \\
+\frac{v}{L}
+\end{array}\right] \delta=A x+B u$$
 
+於是就可以得到 LQR 可解的線性模型 ($$Ax + Bu$$)
 
+然後用 DARE 求出 P matrix
 
+$$P=Q+A^{T} P A-A^{T} P B\left(R+B^{T} P B\right)^{-1} B^{T} P A$$
+
+再求出最佳的控制量
+
+$$u_{t}^{*}=-\left(R+B^{T} P_{t+1} B\right)^{-1} B^{T} P_{t+1} A x_{t}$$
+
+# Summary
+
+* Basic Kinematic Model
+
+$$
+\begin{aligned}
+\begin{bmatrix}\dot{x} \\ \dot{y} \\ \dot{\theta}\end{bmatrix} &= 
+R(\theta)^{-1}\begin{bmatrix}\dot{x_R}\\\dot{y_R}\\\dot{\theta}\end{bmatrix} \\
+&= \begin{bmatrix}
+\cos\theta & -\sin\theta & 0 \\
+\sin\theta & \cos\theta & 0 \\
+0& 0& 1\end{bmatrix}
+\begin{bmatrix}v\\0\\\omega\end{bmatrix} \\
+&= \begin{bmatrix}v\cos(\theta) \\ v\sin(\theta) \\\omega\end{bmatrix}
+\end{aligned}
+$$
+
+* Differential Drive Vehicle
+
+$$
+\begin{aligned}
+\text{Kinematic Model:} \\
+\begin{bmatrix}\dot{x} \\ \dot{y} \\ \dot{\theta}\end{bmatrix} &= 
+R(\theta)^{-1}\begin{bmatrix}\dot{x_R}\\\dot{y_R}\\\dot{\theta}\end{bmatrix} \\
+&= \begin{bmatrix}
+\cos\theta & -\sin\theta & 0 \\
+\sin\theta & \cos\theta & 0 \\
+0& 0& 1\end{bmatrix}
+\begin{bmatrix} 
+\frac{r\dot{\phi_1}}{2}+\frac{r\dot{\phi_2}}{2}\\
+0\\
+\frac{r\dot{\phi_1}}{2l}-\frac{r\dot{\phi_2}}{2l}
+ \end{bmatrix} \\
+\end{aligned}
+$$
+
+* Kinematic Bicycle Model
+
+$$
+\begin{aligned}
+&\begin{bmatrix}
+\dot{x}\\\dot{y}\\\dot{\theta}
+\end{bmatrix} =
+\begin{bmatrix}
+\cos(\theta) \\ \sin(\theta) \\ \frac{\tan(\theta)}{L}
+\end{bmatrix} v
+\\\\
+&\bullet R\dot{\theta} = v \\
+&\bullet \frac{v\tan(\delta)}{L} = \frac{v}{R} \\
+&\bullet \tan(\delta) = \frac{L}{R} 
+\end{aligned}
+$$
+
+* Control Algorithms
+
+![](../.gitbook/assets/control_algorithms.png)
