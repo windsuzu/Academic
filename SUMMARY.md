@@ -107,6 +107,7 @@
   * [Introduction](ncku-machine-learning/introduction.md)
 * NCKU - Robotic Navigation and Exploration
   * [Kinetic Model & Vehicle Control](ncku-robotic-navigation-exploration/kinetic_model_vehicle_control.md)
+  * [Motion Planning](ncku-robotic-navigation-exploration/motion_planning.md)
 * Python
   * [Numpy](python/numpy.md)
   * [Pandas](python/pandas.md)

@@ -382,7 +382,7 @@ $$
 \dot{x}\\\dot{y}\\\dot{\theta}
 \end{bmatrix} =
 \begin{bmatrix}
-\cos(\theta) \\ \sin(\theta) \\ \frac{\tan(\theta)}{L}
+\cos(\theta) \\ \sin(\theta) \\ \frac{\tan(\delta)}{L}
 \end{bmatrix} v
 $$
 
@@ -665,7 +665,7 @@ $$
 \dot{x}\\\dot{y}\\\dot{\theta}
 \end{bmatrix} =
 \begin{bmatrix}
-\cos(\theta) \\ \sin(\theta) \\ \frac{\tan(\theta)}{L}
+\cos(\theta) \\ \sin(\theta) \\ \frac{\tan(\delta)}{L}
 \end{bmatrix} v
 \\\\
 &\bullet R\dot{\theta} = v \\
