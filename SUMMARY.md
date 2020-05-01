@@ -110,6 +110,7 @@
   * [Motion Planning](ncku-robotic-navigation-exploration/motion_planning.md)
   * [SLAM Back-end (I)](ncku-robotic-navigation-exploration/slam_backend_1.md)
   * [SLAM Back-end (II)](ncku-robotic-navigation-exploration/slam_backend_2.md)
+  * [SLAM Front-end](ncku-robotic-navigation-exploration/slam_frontend.md)
 * Python
   * [Numpy](python/numpy.md)
   * [Pandas](python/pandas.md)

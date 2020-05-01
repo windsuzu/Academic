@@ -1,91 +1,354 @@
-filter 即時 (用前一刻來修正目前) incremental 誤差累積
+這個章節會接續 SLAM back-end 的部分
 
-graph (batch) 參考更多先前記錄
+* filter-based backend 是即時方式
+  * 用前一刻來修正目前誤差
+  * 但會慢慢累積誤差
+* graph-based backend 
+  * 參考更多先前記錄，降低累積誤差
+  * batch-based
 
-===
+# Particle Filter & Fast-SLAM
 
-particle filter => fast slam
+## Particle Filter
 
-之前
-ekf pose, landmark = gaussian => drawback
-1. 無法很好表達 robot's pose
-2. 算 pose, landmarks 的 covariance 的 cost 很大
+前一章節講到的 EKF-SLAM 將機器人的 pose, landmarks 的機率分布都預設是 **Gaussian**，產生了一些缺點:
 
-Particle
-解決上面兩個問題
+* 無法很好表達機器人的 pose
+* 計算 pose 和 landmarks 的 covariance matrix 成本很大 ($$O(K^2)$$)
 
-===
+Particle filter 會應用 **importance sampling** 來計算大約的隨機分布 (**arbitrary distribution**)，而且複雜度變為 $$O(M\log K)$$
 
-先學 Sampling
-PX 無法算
-採樣 f(x) normalize Z 得到 PX (但當採樣多時 Z 很難求)
+### Sampling
 
-===
+* 在 statistical modeling and inference 有很多困難問題用 ***closed-form of P(X)*** 無法計算
+* 所以會使用 tatistical sampling and simulation 來從目標分布中取得 fair samples
 
-Basic sampling
-更公平
+#### Basic Sampling
 
-===
+![](../.gitbook/assets/basic_sampling.png)
 
-Importance sampling
-用簡單分布來近似目標分布
-px/pix 是 weight (px >>> pix 代表跟目標還差很多，就可以調整)
+從離散 sampling 推得連續 sampling，將連續 sample 倒過來看就像是在 0-1 之間取 uniform sampling
 
-變大的就會比較容易被二次採樣，從而改變 pix 為近似 px
+#### Importance Sampling
 
-若 weight 都一樣 (大小) 那就會很像 px
+Importance sampling 利用 discrete multinomial 來求近似的 arbitrary distribution，越多的 sampling particles 可以得到越準的近似值
 
-===
+![](../.gitbook/assets/importance_sampling.png)
 
-SIS 定位
+* 用簡單的分布 ($$\pi(x)$$) 來近似目標分布 ($$p(x)$$)
+  * 可以看到第二項 $$\frac{p(x_i)}{\pi(x_i)}$$ 是一種權重
+    * 若 $$p(x_i)$$ 遠大於 $$\pi(x_i)$$ 代表和目標還差很多，可以調整
+  * 差距越大**右上圖**中的圓點就越大，則下一次又被採樣調整的機率就越大
+    * 會讓 $$\pi(x_i)$$ 近似 $$p(x_i)$$
+  * 若 $$\pi(x_i)$$ 接近 $$p(x_i)$$ 那麼 weight 就會變成**右下圖** (圓點大小一樣)
 
-目標 p 
-proposal pi (為了逼近 p)
-就可以得到 weight
+#### Sequential Importance Sampling (SIS)
 
-可以拆成 1:t-1 * t 時間點的機率
+首先先考慮機器人定位的問題，我們使用一些 particles 來表示**近似的 pose distribution**
 
-再用 bayes theorem
+* 在 importance sampling，每個 particle 都有自己的 pose 和 weighting
 
-把此刻 t 未知的 p 近似於 pi 所以又可以消掉
+$$
+\text{weighting } = \frac{\text{source distribution}}{\text{target distribution}} = w_t^{(i)} = 
+\frac{p\left(x_{1: t}^{(i)} | z_{1: t}, u_{1: t-1}\right)}{\pi\left(x_{1: t}^{(i)} | z_{1: t}, u_{1: t-1}\right)}
+$$
 
-因為每個時間點都做 importance sampling 所以是 sequential
+![](../.gitbook/assets/sis.png)
 
-===
+* 根據上圖，可以將 weighting 拆成 t 和 1:t-1 的機率相乘 (skip formula)
+* 我們可以再套入 Bayes theorem (skip formula)
+* 最後可以得到一個公式來 update weighting
 
-SIS 問題: 權重退化、不見、過大
+$$
+\begin{aligned}
+w_{t}^{(i)}&=w_{t-1}^{(i)} \frac{\eta p\left(z_{t} | m_{t-1}, x_{t}^{(i)}\right) p\left(x_{t}^{(i)} | x_{t-1}^{(i)}, u_{t-1}\right)}{p\left(x_{t}^{(i)} | x_{t-1}^{(i)}, u_{t-1}\right)} 
+\\
+&\propto w_{t-1}^{(i)} \cdot p\left(z_{t} | m_{t-1}, x_{t}^{(i)}\right)
+\end{aligned}
+$$
 
-SIR: resampling => weight 都一樣，但原本較大的採樣比較多次
+在實作中會先隨機灑下一些 particles (same weighting)，並在每一步 (sequential) 對未知的預測 p 進行 sampling，然後更新 weighting
 
-===
+#### Sequential Importance Resampling (SIR)
 
-FAST SLAM
+SIS particle filter 中的 particles 會隨著步數增加 weighting 會慢慢退化、不見，或可能變得更大，為了解決該問題，我們新增了 **resampling** 的步驟
 
-把 pose, map 拆開來 (rao black wellization)
-降低原本 slam 問題
+![](../.gitbook/assets/sir.png)
 
-把每個 landmark 都獨立 (因 particle filter likelihood 可以任意)
+* 對最上面已經快要走歪的分布進行 resampling
+* 原本較大 weighting 的點變成同樣大小的點，但數量變多
+* 就可以重新進行 SIS
 
-改良 : resampling 不用每次都做
-NEFF 所有粒子分布情況
-越平均 = N (個粒子)
-若不平均 => 小於一個 threshold => resampling
+## Fast-SLAM
 
-改良2: balance binary tree 存 map
+Particle filter 只處理到定位的問題，整個 SLAM 問題有定位 (localization) 和建圖 (mapping)，需要用 Fast-SLAM 來解決。
 
-===
+Fast-SLAM 將原本要一起進行的定位和建圖拆成各自的工作 (disentangle)，這方法叫做 **Rao-Blackwellization**，能降低 SLAM 問題的計算複雜度
 
-Grid based Fast slam
+$$p\left(x_{1: t}, m_{t} | z_{1: t}, u_{1: t}\right)=p\left(x_{1: t} | z_{1: t}, u_{1: t}\right) p\left(m_{t} | x_{1: t}, z_{1: t}\right)$$
 
-更新粒子的 occupancy grid map
-odd(s)
-用 bayes 算出 odd(s|z) 等於 odd(s) 乘上觀察結果
-用 log 可以簡化計算
+![](../.gitbook/assets/fast_slam.png)
 
+* 每個 particles 原本有存機器人的 pose 和 weighting
+* 現在多存了每個 landmarks 的機率分布資訊
+  * 由 EKF 獨立計算每個 landmarks 的 posterior 估計
+  * 每個 landmark 之間都是互相獨立，所以可以用連乘得到所有 landmarks 的聯合機率分布
 
-更新粒子的 importance weight
-laser beam model
+![](../.gitbook/assets/fast_slam2.png)
 
-===
+整個 Fast-SLAM 可以整理成如下，可以想成是 SIR 的延伸:
 
-Graph based
+1. 用 motion model 來採集多個 particles (用來預測下一個 pose $$x_t^{(i)}$$)
+
+$$x_{t}^{(i)} \sim p\left(x_{t}^{(i)} | x_{t-1}^{(i)}, u_{t-1}\right)$$
+
+2. 用 EKF 來更新單一 landmark 的地圖建構 (distribution of each landmark ($$\mu_{j, t}^{(i)}, \Sigma_{j, t}^{(i)}$$))
+
+$$
+\begin{aligned}
+&Q=H \Sigma_{j, t-1}^{(i)} H^{T}+R, \quad K_{t}=\Sigma_{j, t-1}^{(i)} H^{T} Q^{-1}\\
+&\mu_{j, t}^{(i)}=\mu_{j, t-1}^{(i)}+K_{k}\left(z_{k}-h\left(\mu_{j, t-1}^{(i)}, x_{t}^{(i)}\right)\right)\\
+&\Sigma_{j, t}^{(i)}=\left(I-K_{t} H\right) \Sigma_{j, t-1}^{(i)}
+\end{aligned}
+$$
+
+3. 更新 importance sampling 中的 particle weighting
+
+$$
+w^{(i)} \sim|2 \pi Q|^{-\frac{1}{2}} \exp \left\{-\frac{1}{2}\left(z_{k}-h\left(\mu_{j, t-1}^{(i)}, x_{t}^{(i)}\right)\right)^{T} Q^{-1}\left(z_{k}-h\left(\mu_{j, t-1}^{(i)}, x_{t}^{(i)}\right)\right)\right\}
+$$
+
+4. Resampling
+   * 複製 particle (M) 和 landmark (K) = $$O(M\times K)$$
+   * 因為可能會重複 sample 到同一個 pose 或 landmark
+
+### Improvement of Fast-SLAM
+
+#### Resample 次數降低
+
+若 particle 沒有退化，那可以不用進行 resampling
+
+* 用 $$N_{eff}$$ 知道 particle weighting 分布均不均勻
+* $$N_{eff}$$ 代表 weighting 的 variance inverse
+  * 越平均則 $$N_{eff}$$ 會越大，接近粒子數量 $$N$$
+  * 越不平均則 $$N_{eff}$$ 會越小
+* 當 $$N_{eff}$$ 小於一個 threshold (e.g., particles 數量的一半) 再進行 resample
+
+$$
+N_{eff} = \frac{1}{\sum_i\left(w_t^{(i)}\right)^2} < \frac{N}{2}
+$$
+
+#### Particles 資料結構
+
+因為在 resample 進行複製很花成本，所以利用 balanced binary tree 來表示 particles，就可以用改指標的方式省略複製過程
+
+![](../.gitbook/assets/fast_slam3.png)
+
+# Occupancy Grid Map & Laser Beam Model
+
+## Occupancy Grid Representation
+
+![](../.gitbook/assets/occupancy_grid_representation.png)
+
+實際情況下要得知 landmark 不是容易的事，所以有另一種表達方式稱為 **Occupancy Grid Map**
+
+* 不需要任何事先定義好的 landmarks
+* 可以 model 任何類型的環境
+
+## Grid-based Fast-SLAM
+
+使用 Grid Map 進行的 Fast-SLAM 只有兩個地方不同，分別是第二和第三步骤
+
+1. Predict the next pose $$x_t^{(i)}$$ by motion model.
+2. Update the occupancy grid map of each particle.
+3. Update the importance weight of particles.
+4. Resampling.
+
+### 更新 Grid Map
+
+地圖上的點會用有無佔領表示 (rate of occupied/free)
+
+$$
+\begin{aligned}
+Odd(s) = \frac{p(s=1)}{p(s=0)} &&(s=0 = \text{free})
+\end{aligned}
+$$
+
+利用 Bayes theorem 可以得到後驗機率等於 odd 乘上有無佔據的觀察結果
+
+$$
+Odd(s\mid z) = \frac{p(z\mid s = 1)}{p(z\mid s = 0)}Odd(s)
+$$
+
+可以用 log 來減化算式得到:
+
+$$
+\log Odd(s\mid z) = \log \frac{p(z\mid s=1)}{p(z\mid s=0)} + \log Odd(s)
+$$
+
+實際演算法當中，會定義兩個參數用來表示**佔據**和**沒有佔據**:
+
+$$
+l_{o c c}=\frac{p(z=0 | s=1)}{p(z=0 | s=0)} \quad l_{f r e e}=\frac{p(z=1 | s=1)}{p(z=1 | s=0)}
+$$
+
+而一開始每個點的佔據 ($$l_{o c c}$$) 和沒有佔據 ($$l_{f r e e}$$) 都是 0.5，所以 grid 狀態就是:
+
+$$
+\log O d d\left(s_{\text {init}}\right)=\log \frac{p\left(s_{\text {init}}=1\right)}{p\left(s_{\text {init}}=0\right)}=\log \frac{0.5}{0.5}=0
+$$
+
+當 laser 往障礙物發射後，就可以更新 $$l_{f r e e}$$ 到所有沒被佔領的地方，而最後 laser 碰到的點就更新 $$l_{o c c}$$ 上去
+
+![](../.gitbook/assets/occupancy_grid_map_algorithm.png)
+
+### 更新 Particle weighting
+
+因為是用 laser 來量測周圍，所以對於障礙物 $$z_t^k$$ 可能會有幾種量測 model，加起來可以組出 laser beam model
+
+![](../.gitbook/assets/laser_beam_model.png)
+
+(a). laser 有打到障礙物，在障礙物上產生 Gaussian 分布
+
+(b). laser 打到經過的移動物 (人狗貓)，會產生 exponential 分布
+
+(c). laser 沒有打到障礙物，沒有把光線反射回來，會回傳 zmax 的值
+
+(d). Sensor 接收到錯誤的回傳光線 (其他光反射折射)，產生 uniform 分布
+
+#### Laser Beam Model
+
+將以上四種可能組合成 mixture distribution 就可以得到 laser beam model
+
+![](../.gitbook/assets/laser_beam_model_mixture.png)
+
+要在考量這四種分布出現的機率，所以要將分布再乘上這些機率 ($$z_{\text{hit}}, z_{\text{short}}, z_{\text{max}}, z_{\text{rand}}$$)
+
+#### Likelihood Field
+
+給定 particle (x, y) 和 laser beam model ($$z_t^k$$)，就可以在地圖上找到 laser 的終點位子 (紅色點)
+
+![](../.gitbook/assets/laser_beam_model2.png)
+
+* 接著就可以找到 laser 路徑上最近的 occupied grid (x', y')
+* 我們可以將這條線畫成一個綠色分布
+* 知道紅色點的在綠色分布上的機率，就可以得到這條 laser 上的 likelihood 分布
+
+![](../.gitbook/assets/laser_beam_model_algo.png)
+
+演算法如上，可以得到該時間點量測的 likelihood 分布 : 
+
+* 第 4 行驗證如果 laser 沒有失敗才繼續
+* 第 5, 6 行考慮 sensor 不在車子中心點進行調整並算出紅色點
+* 第 8 行每條 laser 獨立，所以可以聯乘
+
+## Summary of Grid-based Fast-SLAM
+
+1. 對每個 particle 去 sample 不一樣的預測 pose
+
+$$
+x_{t}^{(i)} \sim p\left(x_{t}^{(i)} | x_{t-1}^{(i)}, u_{t-1}\right)
+$$
+
+2. 進行 ray trace 來更新地圖 grid map 每個 grid 的狀態 (likelihood)
+
+$$
+\log O d d(s | z)=\log \frac{p(z | s=1)}{p(z | s=0)}+\log O d d(s)
+$$
+
+3. 使用 laser beam model 計算機率聯乘得到觀測的 likelihood，並將所有 particles 的 likelihood 做 normalization 得到更新的 weighting
+
+$$
+w_{t}^{(i)}=\eta \prod_{i}\left(z_{h i t} \cdot \operatorname{prob}\left(\text {dist}, \sigma_{h i t}\right)+\frac{Z_{\text {random}}}{z_{\max }}\right)
+$$
+
+4. Resampling
+
+以上就是將 Grid map 套用 Fast-SLAM 的完整過程
+
+# Graph-based Optimization
+
+Filter-based 講到要找到 pose ($$x$$) 和 landmark ($$m$$) 可以使用 MAP 或 MLE 做法，但都會出現誤差
+
+$$
+\begin{aligned}
+&(\mathbf{x}, \mathbf{m})_{M A P}^{*}=\operatorname{argmax} P(\mathbf{x}, \mathbf{m} | \mathbf{z}, \mathbf{u})=\operatorname{argmax} P(\mathbf{z}, \mathbf{u} | \mathbf{x}, \mathbf{m}) P(\mathbf{x}, \mathbf{m}) \\
+&(\mathbf{x}, \mathbf{m})_{M \mathrm{LE}}^{*}=\operatorname{argmax} P(\mathbf{z}, \mathbf{u} | \mathbf{x}, \mathbf{m}) \\
+&\mathbf{e}_{\mathbf{u}, k}=\mathbf{x}_{k}-f\left(\mathbf{x}_{k-1}, \mathbf{u}_{k}\right) \\
+&\mathbf{e}_{z, k, j}=\mathbf{z}_{k, j}-h\left(\mathbf{m}_{j}, \mathbf{x}_{k}\right)
+\end{aligned}
+$$
+
+為了要最小化誤差，可以將式子寫成以下 optimization 的樣式:
+
+$$\min F(\mathbf{x}, \mathbf{m})=\sum_{k} \mathbf{e}_{\mathbf{u}, k}^{T} \mathbf{R}_{K}^{-1} \mathbf{e}_{\mathbf{u}, k}+\sum_{k} \sum_{j} \mathbf{e}_{z, k, j}^{T} \mathbf{Q}_{K, j}^{-1} \mathbf{e}_{z, k, j}$$
+
+## Graph Optimization
+
+例如下面 graph 中機器人的偵測存在著誤差，我們就可以將誤差寫做 error function，而我們的目標就是最小化由 error functions 累積形成的 $$F(\mathbf{x}, \mathbf{m})$$
+
+![](../.gitbook/assets/graph_optimization.png)
+
+有兩個現成工具可以解決 optimization:
+
+* [g2o - General Graph Optimization](https://github.com/RainerKuemmerle/g2o)
+* [Ceres Solver](https://github.com/ceres-solver/ceres-solver)
+
+## Non-linear Optimization
+
+要解上面 $$F(\mathbf{x}, \mathbf{m})$$ 這種 non-linear optimization 問題，有以下這幾種做法
+
+### Basics of Optimization
+
+![](../.gitbook/assets/basic_optimization.png)
+
+當問題中每個函式都是簡單的，就可以直接用微分等於零求解 ($$\frac{dF}{dx}$$)
+
+若微分變得非常複雜就只好求 local minimum
+
+![](../.gitbook/assets/basic_optimization2.png)
+
+因為問題通常都是 non-linear 的，所以會呈現下圖這種例子
+
+![](../.gitbook/assets/basic_optimization3.png)
+
+#### Function Minimization
+
+我們可以將問題寫成 x 的 Taylor expansion:
+
+$$F(\mathbf{x}+\mathbf{h}) \approx F(\mathbf{x})+\boldsymbol{J}(\mathbf{x})^{T} \mathbf{h}+\frac{\mathbf{1}}{\mathbf{2}} \mathbf{h}^{T} \boldsymbol{H}(\mathbf{x}) \mathbf{h}$$
+
+後面的 $$\boldsymbol{J}(\mathbf{x})$$ 和 $$\boldsymbol{H}(\mathbf{x})$$ 分別代表 F(\mathbf{x}) 的一階和二階導數，求導數是為了變為曲面以便尋找 local minima
+
+![](../.gitbook/assets/taylor_expansion_derivative.png)
+
+例如以下是一個典型 quadratic functions，我們可以透過其中的 A 矩陣來判斷曲面的形狀
+
+$$F(x) = \frac{1}{2}\mathbf{x^T Ax - b^T x + c}, \quad \mathbf{A} = \begin{bmatrix}
+3&2\\2&6
+\end{bmatrix}$$
+
+![](../.gitbook/assets/quadratic_functions_shape.png)
+
+要解最佳化的方法有以下幾種:
+
+### Descent Methods
+
+https://zh.wikipedia.org/wiki/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95
+
+#### Steepest Descent Method
+
+https://ch-hsieh.blogspot.com/2009/04/steepest-descent-method-0.html
+
+### Newton's Method
+
+https://zh.wikipedia.org/wiki/%E7%89%9B%E9%A1%BF%E6%B3%95
+
+### Gauss-Newton
+
+https://en.wikipedia.org/wiki/Gauss%E2%80%93Newton_algorithm
+
+### Levenberg-Marquardt Method
+
+https://zh.wikipedia.org/wiki/%E8%8E%B1%E6%96%87%E8%B4%9D%E6%A0%BC%EF%BC%8D%E9%A9%AC%E5%A4%B8%E7%89%B9%E6%96%B9%E6%B3%95
+
