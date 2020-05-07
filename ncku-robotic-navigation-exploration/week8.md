@@ -89,7 +89,7 @@ SLAM 總流程
 error function 越小越好
 
 71
-R 在 2D 可以用 theta 表示就好
+Rotation 在 2D 可以用 theta 表示就好
 但在 3D 變得非常複雜，且無法簡單求導數
 
 72
@@ -138,14 +138,14 @@ Property of Lie Group SO(3)
 
 對 t 做導數，再乘上 transpose 會得到反對稱矩陣
 
-上三角: 建構反對稱 (antisymmetric) 矩陣
-下三角: 從反對稱矩陣中，推回三維向量矩陣
+^: 建構反對稱 (antisymmetric) 矩陣
+ˇ: 從反對稱矩陣中，推回三維向量矩陣
 
 81
 對 t 做導數，得到的反對稱矩陣叫做 phi
 可以再推得 R(t) 的一階導數結果
 
-phi(t0) 其實就是 SO3 在原點附近的正切空間
+phi(t0) 其實就是 SO(3) 在原點附近的正切空間
 
 82
 因為知道怎麼求 R(t) 微分，就可以求 R(t)
@@ -160,11 +160,32 @@ binary operation 為 Lie bracket (外積是一種)
 * alternativity
 * jacobi identity
 
+84
+對 Lie algebra 中由 phi 而來的反對稱矩陣 A 取 exponential 就可以對應回 lie group 的某個 R
 
+85
+跟 73 結果很像，所以對 A 取 exp 就像在做 rotation 的描述
 
+86
+Rotation matrix 是特殊的 lie group
+rotation matrix 會有一個對應的 lie algebra (R的切線空間)
+可以用 exponential, logarithmic 來做 mapping
 
+87
+顯示 lie group, lie algebra 的對應關係
+group = manifold space 延時間 rotation 不斷改變
+在 t 找到切平面 phi (lie algebra 裡的一個元素)
+用 phi 求反對稱矩陣，就能求得新的 rotation matrix
 
+88
+Lie group, algebra 是為了最佳化
 
+89
+對 lie algebra 求導數 (因為 R 不能直接求導)
+
+90
+因為求導太複雜，有比較簡單的做法: perturbation model
+最後可以得到更新 R 的方法
 
 
 # ORB SLAM
