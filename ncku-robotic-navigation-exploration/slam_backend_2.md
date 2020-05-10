@@ -352,3 +352,78 @@ https://en.wikipedia.org/wiki/Gauss%E2%80%93Newton_algorithm
 
 https://zh.wikipedia.org/wiki/%E8%8E%B1%E6%96%87%E8%B4%9D%E6%A0%BC%EF%BC%8D%E9%A9%AC%E5%A4%B8%E7%89%B9%E6%96%B9%E6%B3%95
 
+## Graph Optimization for 2D Pose
+
+在 2D 平面我們可以觀察兩個 pose 的關係
+
+![](../.gitbook/assets/graph_optimization_2d.png)
+
+我們可以將 error 寫成觀測和預測的差
+
+![](../.gitbook/assets/graph_optimization_2d_error.png)
+
+目標就是得到 optimal poses $$F = \sum_{i,j} e_{ij}^T\Omega e_{ij}$$，可以用一階 taylor 求近似解
+
+![](../.gitbook/assets/graph_optimization_2d_taylor.png)
+
+可以用 Gauss-Newton 來解 approximation function F 並轉成矩陣形式
+
+![](../.gitbook/assets/graph_optimization_2d_gauss_newton_matrix.png)
+
+### Scan-to-Scan Registration
+
+現實中可能沒辦法取量測值 ($$x', y', \theta '$$)，做法是使用 scan-to-scan registration
+
+![](../.gitbook/assets/scan_to_scan.png)
+
+Scan-to-scan 方法是計算時間點之間改變的 transformation，用每個時間點的所有點集合，和下個時間點的點集合，來求出轉換關係
+
+也就是求出以下的最佳化公式:
+
+$$
+J = \frac{1}{2}\sum_{i=1}^n \lVert q_i - Rp_i - t \rVert^2
+$$
+
+我們可以假設兩組點集合的 mean ($$\mu_p, \mu_q$$)，改寫上面式子
+
+![](../.gitbook/assets/scan_to_scan2.png)
+
+計算時找出對應 $$\mu_p, \mu_q$$ 的相對位置 ($$p_i', q_i'$$) 之後
+
+可以將最佳化拆成兩個階段，先求 rotation ($$R$$) 再求 translation ($$t$$)
+
+![](../.gitbook/assets/scan_to_scan3.png)
+
+因為 q, p 分別對應兩個時間的 scan 所以稱為 scan2scan
+
+#### ICP Algorithm
+
+因為可能不知道 p 和 q 之間絕對的對應關係，所以要用 ICP algorithm
+
+ICP 也像一種最佳化，不斷初始化，並觀察是否最好，不是則更新
+
+![](../.gitbook/assets/scan_to_scan_icp.png)
+
+## Graph Optimization for Map and Pose
+
+上面只考慮了 pose 的部分，現在多考慮 landmarks，變成 bipartite 圖
+
+![](../.gitbook/assets/graph_optimization_pose_map.png)
+
+我們運用 bundle adjustment 方法，讓 pose 之間、 landmark 之間都沒有關係
+
+得到觀測模型 $$z_{ij} = h(C_i, L_j)$$ 就可以進行最佳化
+
+### Graph Optimization for Grid-based SLAM
+
+若是 landmarks 改用 grid map 形式的話，有兩種做法分別是 Karto-SLAM (開源) 和 Cartographer (Google)
+
+![](../.gitbook/assets/graph_optimization_map_grid.png)
+
+#### Scan-to-Map Matching
+
+假設 robot pose 為 $$\xi = (p_x, p_y, \psi)$$ 而 landmarks 為激光打到的 $$(s_x, s_y)$$ (要轉成 world coordinate)
+
+我們要最大化 grid 是 1 (被佔) 的機率，等於最小化 grid 是 0 (沒有被佔) 的機率
+
+![](../.gitbook/assets/scan_to_map.png)

@@ -1,0 +1,228 @@
+# Structure from Motion (SfM)
+
+圖學的 SfM 和 SLAM 十分相似，只是 SLAM 是 realtime 版本的 SfM
+
+SfM 透過多個圖像來復原 camera motion 和 scene structure
+
+![](../.gitbook/assets/sfm.png)
+
+而 SfM 流程可以大致列為
+
+![](../.gitbook/assets/sfm_process.png)
+
+1. 找 feature points (SIFT: NN 以外最好)
+2. 預測 points 對應到真實 3D 場景會變怎樣 (geometry)
+3. 優化預測 (bundle adjustment)
+4. 找出 rotation 或 translation 是否合理
+
+## SIFT
+
+以下介紹 SIFT 如何萃取 feature points
+
+![](../.gitbook/assets/popular_feature_extractors.png)
+
+SIFT idea 是將圖像的內容轉換成 local feature coordinates，這些座標不受到 translation, rotation, scale 或其他 imaging parameters 的影響而改變
+
+![](../.gitbook/assets/sift_features.png)
+
+SIFT 應用有
+
+* Object recognition (matching)
+找兩張圖 matching 地點
+
+* Image Stitching
+找多張圖 overlap 的部分並拼接
+
+* Photosynth
+
+### SIFT Process
+
+#### 1. Scale-space extrema detection
+搜索多種比例和圖像位置，找出圖片變化較大的點，做法是使用 Gaussian pyramid
+
+#### 2. Keypoint localization
+利用模型以確定位置和比例，根據穩定性來選擇 keypoints
+
+在產生的 pyramid 找極值
+1. 跟鄰居比較
+2. 用 taylor 找出更精確的預測
+3. check 是否為平坦區域或 edge 並 reject
+
+![](../.gitbook/assets/keypoint_localization.png)
+
+#### 3. Orientation assignment
+計算每個 keypoints 的最佳方向，以就是為 keypoint 找出描述 (任意方向都是在描述同一點)
+
+#### 4. Keypoint descriptor
+用現有 feature 做出一致性的 feature descriptor，在選定的 scale, rotation 上利用 local image gradients，來描述 keypoints
+
+一種做法是 Lowe's keypoint descriptor
+
+# Camera Calibration
+
+為了更了解 RANSAC 做法要先講到 camera calibration
+
+Camera calibration 就是求出 intrinsics 和 extrinsics 所有參數
+
+而 world coordinate (x, y, z) 投影到 camera coordinate (u, v) 可以寫成公式
+
+![](../.gitbook/assets/camera_calibration.png)
+
+* A 矩陣為 intrinsics matrix
+* [R t] 矩陣為 extrinsics matrix
+
+## Pinhole Camera Projection Model
+
+我們可以利用 image coordinate 和 world coordinate 的對應，來找出沒有做任何 rotation, translation 的 intrinsic, extrinsic matrix
+
+其中的 extrinsic 等於 rotation (3-d identity matrix) + translation
+
+![](../.gitbook/assets/pinhole_camera_projection_model.png)
+
+為了解決 offset ，我們要加入 $$x_0, y_0$$ 做為 principle point 和原點的 offset
+
+![](../.gitbook/assets/pinhole_camera_projection_model_offset.png)
+
+為了解決 distortion，我們要加入 a, s 來進行校正
+
+![](../.gitbook/assets/pinhole_camera_projection_model_distortion.png)
+
+## Transformation Matrix Estimation by Reprojection
+
+一組 x, y, z 可以和 u 或 v 分別產生兩個對應的方程式，所以假設 extrinsic 有 8 個要解，只需要 4 組對應點
+
+所以原本需要六組 point pair 才能解出 C = A|AT，現在只需要三組就能解出
+
+這種解法稱為 Perspective-n-Point (PnP)
+
+![](../.gitbook/assets/pnp.png)
+
+傳統是利用 AR marker 來解
+
+![](../.gitbook/assets/pnp_ar.png)
+
+但現實中沒有 AR marker，也不知道 x, y, z 是如何對應 u, v 的
+
+![](../.gitbook/assets/pnp_problem.png)
+
+我們假設有一連串 frame ($$sx_1, sx_2, \cdots$$)，寫成 KMP = intrinsic * extrinsic * 3d coordinate
+
+![](../.gitbook/assets/pnp_icp.png)
+
+可以看到這個做法就像是 bundle adjustment，其中 intrinsics K 是給定的，要求的是 extrinsics M
+
+其中 s (scale) 要猜測，除非用 marker 有固定比例尺
+
+![](../.gitbook/assets/pnp_bundle_adjustment.png)
+
+## Unknown Structure Initialization
+
+![](../.gitbook/assets/epipolar_plane.png)
+
+兩個 camera 中心對到點 P，會產生 ($$C_0, C_1, P$$) 這個三角形平面 (epipolar plane)
+
+![](../.gitbook/assets/unknown_structure_init.png)
+
+* $$\vec{C_0C_1} (t)$$ 可看成 $$C_0$$ 到 $$C_1$$ 的 translation
+* $$\vec{C_1p_1} (Rp_1)$$ 可看成對 $$p_1$$ 做 rotation ($$R$$)
+
+我們就可以列出多組已知 $$p0, p1$$ 來求 E
+
+用多組對應來解 E，可以寫成 Ax = 0 來求解
+
+![](../.gitbook/assets/unkown_structure_init_solve.png)
+
+另外，找對應點時不用全部 SIFT points 都找，可用 epipolar line 找，從 $$p_0$$ 投影來的 $$p_1$$ 這幾個點會連成一直線，稱為 epipolar line
+
+透過 epipolar line 可以得到兩個畫面對同一點所產生的投影關係方程
+
+### Essential Matrix Decomposition
+
+得到 E 就可以用 SVD 來拆解回 t 跟 R
+
+![](../.gitbook/assets/essential_matrix_decomposition.png)
+
+因為矩陣拆解可能有正負影響得到多種結果，意思是 p 點到底坐落在 A, B 相機的前方還是後方 (所以有四種可能)，所以必須要都在 A, B 前方的那一個解才行
+
+![](../.gitbook/assets/essential_matrix_decomposition2.png)
+
+### 3D Structure Recovering (Triangulation)
+
+有了 t, R 接著要來猜 p 的 3D structure P
+
+![](../.gitbook/assets/triangulation.png)
+
+# Basic Initialization and Tracking
+
+整個 SfM 用於 SLAM 的流程大致上如下
+
+![](../.gitbook/assets/sfm_slam.png)
+
+## Initialization (Feature Matching)
+
+首先從共同看到的點來求得 Essential Matrix (E)
+
+![](../.gitbook/assets/sfm_slam1.png)
+
+再來是 extract pose 的步驟，將 E 拆成 R 和 t
+
+![](../.gitbook/assets/sfm_slam2.png)
+
+接著是從 R 和 t 來復原 P 的 3D structure (紅色點)
+
+![](../.gitbook/assets/sfm_slam3.png)
+
+## Tracking
+
+新的 frame 進來，用 feature matching 找出 overlap 的部分
+
+![](../.gitbook/assets/sfm_slam4.png)
+
+用 PnP 和 Recover 還原 P (紅色點) 的 3D structure
+
+![](../.gitbook/assets/sfm_slam5.png)
+
+![](../.gitbook/assets/sfm_slam6.png)
+
+重復上述動作就是 tracking 的部份
+
+## Scaling Drift Problem
+
+在進行 SfM 時，不只要猜 R, t 還要猜 scale (s)，因為每個 frame 進來會改變 s
+，這個問題稱為 scaling drift problem，有一些方法可以校正 scale (這裡不討論)
+
+## Image Matching
+
+因為要討論 SLAM 中最後一個 loop detection 所以要採用 image matching
+
+一種方法是觀察 SIFT point pair 的 similarity，目標是找出 transformation T 可以解釋 similarity
+
+![](../.gitbook/assets/image_matching.png)
+
+Find a transformation T that explains the movement of the matched features
+
+transformation 可以表示成以下形式，有 6 個參數要解
+
+![](../.gitbook/assets/image_matching_affine_transformation.png)
+
+越多組 pair (三組以上) 可以越精準的猜出 transformation，但挑的點不好就會造成錯誤
+
+![](../.gitbook/assets/image_matching_fitting.png)
+
+一種除掉錯誤 outliers 的做法就是 RANSAC
+
+### RANSAC
+
+RANdom SAmple Consensus (RANSAC)，在一組數據點中找到一條最適合的線 (省略掉 outliers)
+
+![](../.gitbook/assets/ransac.png)
+
+1. Select two points at random
+2. Solve for the line (L) between these two points
+3. Count the number of inliers to the line L
+4. If L has the highest number of inliers so far, save it
+5. Repeat for N rounds, return the best L
+
+![](../.gitbook/assets/ransac_outliers.png)
+
+在實作上會把 match 失敗的定為 outliers 來移除掉，然後再重新計算 inliners
